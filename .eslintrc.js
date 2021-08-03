@@ -21,5 +21,6 @@ module.exports = {
     'no-undef': 'off',
     'react/jsx-filename-extension': 'off',
     'react/react-in-jsx-scope': 'off',
+    'no-console': 'off',
   },
 };

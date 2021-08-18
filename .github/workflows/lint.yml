@@ -33,4 +33,3 @@ jobs:
 
       - name: Frontend - Run linters
         run: yarn run lint
-

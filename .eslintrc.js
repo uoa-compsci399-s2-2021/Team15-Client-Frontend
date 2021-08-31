@@ -45,5 +45,6 @@ module.exports = {
     'prefer-destructuring': 'off',
     'react/destructuring-assignment': 'off',
     'import/newline-after-import': 'off',
+    'no-use-before-define': 'off',
   },
 };

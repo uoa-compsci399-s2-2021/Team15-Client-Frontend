@@ -1,11 +1,11 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import NativeSelect from "@material-ui/core/NativeSelect";
-import { MenuItem } from "@material-ui/core";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import { MenuItem } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SelectBoxSalary(props) {
   const classes = useStyles();
 
-  const [Value, SetValue] = React.useState("");
+  const [Value, SetValue] = React.useState('');
 
   const handleChange = (event) => {
     SetValue(event.target.value);
@@ -49,7 +49,7 @@ export default function SelectBoxSalary(props) {
           <MenuItem value={80000}>$80,000</MenuItem>
           <MenuItem value={90000}>$90,000</MenuItem>
           <MenuItem value={100000}>$100,000</MenuItem>
-          <MenuItem value={"Max"}>$100,000+</MenuItem>
+          <MenuItem value={'Max'}>$100,000+</MenuItem>
         </Select>
       </FormControl>
     </div>

@@ -1,18 +1,18 @@
-import React from "react";
-import TextField from "@material-ui/core/TextField";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { Grid, Typography, Slider, Box, Button } from "@material-ui/core";
-import SelectBoxSalary from "./SelectBoxSalary";
-import SelectBoxClass from "./SelectBoxClass";
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { Grid, Typography, Slider, Box, Button } from '@material-ui/core';
+import SelectBoxSalary from './SelectBoxSalary';
+import SelectBoxClass from './SelectBoxClass';
 
 const useStyles = makeStyles((theme) => ({
   textField: {
     width: 250,
   },
   gridContainer: {
-    margin: "center",
-    justifyContent: "center",
-    alignItems: "center",
+    margin: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   margin10: {
     marginInlineEnd: 10,
@@ -26,7 +26,7 @@ function valuetext(value) {
 
 export default function SearchBar() {
   const classes = useStyles();
-  const [startingSalaryIn, setstartingSalaryIn] = React.useState("");
+  const [startingSalaryIn, setstartingSalaryIn] = React.useState('');
   const handleChange = (event) => {
     setAge(event.target.value);
   };
@@ -57,7 +57,7 @@ export default function SearchBar() {
           label="Location (Suburb/ City/ Country)"
         />
       </Grid>
-      <Button variant="outline" color="primary" justifyContent="center" style={{ fontFamily: "Oswald" }}>
+      <Button variant="outline" color="primary" justifyContent="center" style={{ fontFamily: 'Oswald' }}>
         Search
       </Button>
     </Grid>

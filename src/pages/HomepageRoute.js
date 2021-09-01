@@ -6,6 +6,7 @@ import NavBar from "../components/Homepage/NavBar";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    fontFamily: 'Oswald',
   },
   paper: {
     padding: theme.spacing(2),
@@ -23,7 +24,6 @@ export default function HomepageRoute() {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
       <NavBar />
     </div>
   );

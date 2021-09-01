@@ -46,6 +46,7 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    height: "10vh",
   },
   AppBar: {
     background: "None",
@@ -75,9 +76,21 @@ export default function NavBar() {
             onChange={handleChange}
             aria-label="simple tabs example"
           >
-            <Tab label="Home" {...a11yProps(0)} />
-            <Tab label="About" {...a11yProps(1)} />
-            <Tab label="Contact Us" {...a11yProps(2)} />
+            <Tab
+              label="Home"
+              style={{ fontFamily: "Oswald" }}
+              {...a11yProps(0)}
+            />
+            <Tab
+              label="About"
+              style={{ fontFamily: "Oswald" }}
+              {...a11yProps(1)}
+            />
+            <Tab
+              label="Contact Us"
+              style={{ fontFamily: "Oswald" }}
+              {...a11yProps(2)}
+            />
           </Tabs>
           <Logo className={classes.Logo} />
         </Toolbar>

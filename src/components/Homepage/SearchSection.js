@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "center",
     justifyContent: "center",
     alignItems: "center",
-    height: "55vh",
+    height: "50vh",
   },
 }));
 
@@ -18,7 +18,9 @@ export default function SearchSection() {
   return (
     <Grid className={classes.container} container direction="column">
       <Grid item>
-        <Typography variant={"h2"}>They Only Want You</Typography>
+        <Typography variant={"h2"} style={{ fontFamily: "Oswald" }}>
+          They Only Want You
+        </Typography>
       </Grid>
       <Grid item>
         <SearchBar />

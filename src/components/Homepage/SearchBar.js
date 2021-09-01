@@ -57,7 +57,7 @@ export default function SearchBar() {
           label="Location (Suburb/ City/ Country)"
         />
       </Grid>
-      <Button variant="contained" color="primary" justifyContent="center">
+      <Button variant="outline" color="primary" justifyContent="center" style={{ fontFamily: "Oswald" }}>
         Search
       </Button>
     </Grid>

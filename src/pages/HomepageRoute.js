@@ -1,7 +1,7 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { CssBaseline } from "@material-ui/core";
-import NavBar from "../components/Homepage/NavBar";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
+import NavBar from '../components/Homepage/NavBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -10,12 +10,12 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: "center",
+    textAlign: 'center',
     color: theme.palette.text.secondary,
   },
   logo: {
     height: 35,
-    textAlign: "center",
+    textAlign: 'center',
   },
 }));
 

@@ -1,22 +1,22 @@
-import { makeStyles, Grid } from "@material-ui/core";
-import { React, useState } from "react";
+import { makeStyles, Grid } from '@material-ui/core';
+import { React, useState } from 'react';
 
-import SideBar from "../components/Homepage/SideBar";
-import SearchSection from "../components/Homepage/SearchSection";
-import JobListingBottom from "../components/Homepage/JobListingBottom";
+import SideBar from '../components/Homepage/SideBar';
+import SearchSection from '../components/Homepage/SearchSection';
+import JobListingBottom from '../components/Homepage/JobListingBottom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   loginButton: {
-    font: "montserrat",
-    color: "White",
-    backgroundColor: "#009AC7",
+    font: 'montserrat',
+    color: 'White',
+    backgroundColor: '#009AC7',
   },
   paper: {
     padding: theme.spacing(1),
-    textAlign: "center",
+    textAlign: 'center',
     color: theme.palette.text.secondary,
   },
 }));

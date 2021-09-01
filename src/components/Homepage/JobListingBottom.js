@@ -1,26 +1,26 @@
-import { React, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import ImageList from "@material-ui/core/ImageList";
-import ImageListItem from "@material-ui/core/ImageListItem";
-import { Container, Grid, Paper, Typography } from "@material-ui/core";
-import CardCustom from "./CardCustom";
+import { React, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import ImageList from '@material-ui/core/ImageList';
+import ImageListItem from '@material-ui/core/ImageListItem';
+import { Container, Grid, Paper, Typography } from '@material-ui/core';
+import CardCustom from './CardCustom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100vw",
+    width: '100vw',
   },
   LatestJobs: {
-    display: "flex",
-    flexDirection: "column",
-    height: "100%",
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
 
-    backgroundColor: "#7e5f6a",
+    backgroundColor: '#7e5f6a',
 
-    fontFamily: "Oswald",
-    color: "white",
+    fontFamily: 'Oswald',
+    color: 'white',
 
-    textAlign: "center",
-    justifyContent: "center",
+    textAlign: 'center',
+    justifyContent: 'center',
   },
 }));
 

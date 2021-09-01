@@ -1,42 +1,42 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-// import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-// import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
-import HomeAppBar from '../components/Home/HomeAppBar';
+import { makeStyles, Grid } from "@material-ui/core";
+import { React, useState } from "react";
+
+import SideBar from "../components/Homepage/SideBar";
+import SearchSection from "../components/Homepage/SearchSection";
+import JobListingBottom from "../components/Homepage/JobListingBottom";
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(12, 1fr)',
-    gridGap: theme.spacing(3),
+  root: {
+    flexGrow: 1,
+  },
+  loginButton: {
+    font: "montserrat",
+    color: "White",
+    backgroundColor: "#009AC7",
   },
   paper: {
     padding: theme.spacing(1),
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary,
-    whiteSpace: 'nowrap',
-    marginBottom: theme.spacing(1),
-    marginTop: theme.spacing(1),
-  },
-  divider: {
-    margin: theme.spacing(2, 0),
   },
 }));
 
 function Home() {
   const classes = useStyles();
   return (
-    <div>
-      <HomeAppBar />
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>xs=8</Paper>
+    <>
+      <Grid container direction="row" spacing={3} className={classes.root}>
+        <Grid item xs={1}>
+          <SideBar />
+        </Grid>
+        <Grid item xs={11}>
+          <SearchSection />
         </Grid>
       </Grid>
-    </div>
+      <Grid container direction="row" spacing={3} className={classes.root}>
+        <JobListingBottom />
+      </Grid>
+    </>
   );
 }
-
 export default Home;

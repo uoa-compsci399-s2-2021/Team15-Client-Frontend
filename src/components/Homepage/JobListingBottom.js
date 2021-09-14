@@ -1,11 +1,11 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
-import { Container, Grid, Paper, Typography } from '@material-ui/core';
-import CardCustom from './CardCustom';
+import { Grid, Paper, Typography } from '@material-ui/core';
+import DJLB from './DJLB';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     width: '100vw',
   },
@@ -28,7 +28,7 @@ export default function JobListingBottom() {
   const classes = useStyles();
   return (
     <Grid container direction="row" className={classes.root}>
-      <Grid item xs={2} classes={classes.LatestJobs}>
+      <Grid item xs={2} className={classes.LatestJobs}>
         <ImageList cols={1} gap={0}>
           <ImageListItem rows={2}>
             <Paper variant="outlined" square className={classes.LatestJobs}>
@@ -44,32 +44,7 @@ export default function JobListingBottom() {
         </ImageList>
       </Grid>
       <Grid item xs={10}>
-        <ImageList cols={5} gap={0}>
-          <ImageListItem rows={1} cols={2}>
-            <CardCustom Name="Software Tester" color="#f39400" />
-          </ImageListItem>
-          <ImageListItem rows={1} cols={1}>
-            <CardCustom Name="Software Tester" color="#b14550" />
-          </ImageListItem>
-          <ImageListItem rows={1} cols={1}>
-            <CardCustom Name="Software Tester" color="#9cb279" />
-          </ImageListItem>
-          <ImageListItem rows={1} cols={1}>
-            <CardCustom Name="Software Tester" color="#9b5873" />
-          </ImageListItem>
-          <ImageListItem rows={1} cols={1}>
-            <CardCustom Name="Software Tester" color="#647fb5" />
-          </ImageListItem>
-          <ImageListItem rows={1} cols={2}>
-            <CardCustom Name="Software Tester" color="#98719d" />
-          </ImageListItem>
-          <ImageListItem rows={1} cols={1}>
-            <CardCustom Name="Software Tester" color="#6c6671" />
-          </ImageListItem>
-          <ImageListItem rows={1} cols={1}>
-            <CardCustom Name="Software Tester" color="#89adca" />s
-          </ImageListItem>
-        </ImageList>
+        <DJLB />
       </Grid>
     </Grid>
   );

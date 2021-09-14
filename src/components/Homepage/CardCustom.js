@@ -1,27 +1,22 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { CardHeader, Grid, Paper, Typography, Box } from '@material-ui/core';
+import { CardHeader, Grid, Paper, Typography, Box, Avatar } from '@material-ui/core';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-
-import Logo from '../logo';
+import CompanyLogo from '../CompanyLogo';
 
 export default function CardCustom(props) {
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
       height: '100%',
-      backgroundColor: props.color || 'white',
+      backgroundColor: props.color || 'orange',
       color: props.color === 'white' ? 'black' : 'white',
     },
 
-    header: {
+    Header: {
       flexGrow: 1,
-    },
-    logo: {
-      position: 'absolute',
-      right: 5,
-      top: 5,
+      ...theme.typography.button,
     },
     ArrowForward: {
       position: 'absolute',
@@ -37,31 +32,40 @@ export default function CardCustom(props) {
     },
     location: {
       paddingInlineStart: 10,
+      fontWeight: 700,
     },
   }));
-
+  /*
+  Example Use Case  as seen in the DJLB class
+   <CardCustom item={item} color={colors[index]} />
+   */
   const classes = useStyles();
   return (
     <Paper variant="outlined" square className={classes.root}>
       <Grid container direction="column" className={classes.gridContainer}>
         <Grid item className={classes.Header}>
-          <Typography variant="p" style={{ fontSize: '1rem' }}>
-            Lorem ipsum dolor sit amet, qu
+          <Typography sx={{ fontSize: '1rem', fontWeight: 700 }}>
+            {props.item.positionName}
           </Typography>
-          <box component="span" className={classes.logo}>
-            <Logo />
-          </box>
+
+          <CompanyLogo
+            companyName={props.item.companyName}
+            className={classes.Logo}
+            sx={{ position: 'Absolute', right: 10, top: 10, maxWidth: 100, maxHeight: 40 }}
+          />
         </Grid>
-        <Grid Item className={classes.location}>
-          <Typography variant="h6">80,000 $/Y</Typography>
+        <Grid item className={classes.location}>
+          <Typography variant="h6">{props.item.jobSalary} $/Y</Typography>
           <LocationOnIcon />
-          <span>Auckland</span>
+          <span>{props.item.jobLocation}</span>
         </Grid>
         <Grid>
           <Typography className={classes.information}>
-            Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-            reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit
-            ex esse exercitation amet.
+            {typeof props.item.jobDescription !== 'undefined'
+              ? props.item.jobDescription.length > 173
+                ? `${props.item.jobDescription.substr(0, 170)}...`
+                : props.item.jobDescription
+              : 'Sorry This is embrassing'}
           </Typography>
           <span className={classes.ArrowForward}>
             <ArrowForwardIcon />

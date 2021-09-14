@@ -9,10 +9,10 @@ const useStyles = makeStyles((theme) => ({
     margin: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '50vh',
+    minHeight: '50vh',
   },
 }));
-
+/** Holds the Search bar and the Text above it  */
 export default function SearchSection() {
   const classes = useStyles();
   return (

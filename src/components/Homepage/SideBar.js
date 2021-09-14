@@ -29,10 +29,7 @@ export default function SideBar() {
       </Grid>
       <Grid item>
         <Tooltip title="UOA Instagram">
-          <Link
-            target="_blank"
-            href="https://www.instagram.com/universityofauckland/"
-          >
+          <Link target="_blank" href="https://www.instagram.com/universityofauckland/">
             <InstagramIcon />
           </Link>
         </Tooltip>

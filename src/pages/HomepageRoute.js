@@ -1,7 +1,8 @@
 import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Tabs, Tab, Typography, Box, Toolbar, CssBaseline } from '@material-ui/core';
+import { AppBar, Tabs, Tab, Box, Toolbar, CssBaseline } from '@material-ui/core';
+import SideBarMenu from '../components/Homepage/SideBarMenu';
 import CompanyLogo from '../components/CompanyLogo';
 import Homepage from './Home';
 import About from './About';
@@ -52,6 +53,7 @@ export default function HomePageRoute(props) {
       <AppBar position="static" className={classes.AppBar}>
         <CssBaseline />
         <Toolbar>
+          <SideBarMenu />
           <Tabs className={classes.Tabs} value={value} centered onChange={handleChange}>
             <Tab label="Home" style={{ fontFamily: 'Oswald' }} />
             <Tab label="About" style={{ fontFamily: 'Oswald' }} />

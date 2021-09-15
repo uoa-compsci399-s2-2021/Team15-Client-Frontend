@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SideBar() {
+export default function SideBarSocialLinks() {
   const classes = useStyles();
 
   return (

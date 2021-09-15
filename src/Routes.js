@@ -15,9 +15,11 @@ function Routes() {
         <PrivateRoute path="/app">
           <JobBoard />
         </PrivateRoute>
-
+        <Route path="/about">
+          <Homepage tabValue={1} />
+        </Route>
         <Route path="/">
-          <Homepage />
+          <Homepage tabValue={0} />
         </Route>
       </Switch>
     </Router>

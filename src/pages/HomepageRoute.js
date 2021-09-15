@@ -1,30 +1,74 @@
-import React from 'react';
+import { React, useState } from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { CssBaseline } from '@material-ui/core';
-import NavBar from '../components/Homepage/NavBar';
+import { AppBar, Tabs, Tab, Typography, Box, Toolbar, CssBaseline } from '@material-ui/core';
+import CompanyLogo from '../components/CompanyLogo';
+import Homepage from './Home';
+import About from './About';
+import ContactUs from './ContactUs';
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div role="tabpanel" hidden={value !== index} {...other}>
+      {value === index && <>{children}</>}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    fontFamily: 'Oswald',
+    width: '100%',
+    hieght: '100%',
+    margin: 0,
+    padding: 0,
   },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
+  AppBar: {
+    background: 'None',
+    color: 'black',
   },
-  logo: {
-    height: 35,
-    textAlign: 'center',
+  Tabs: {
+    flexGrow: 1,
   },
 }));
 
-export default function HomepageRoute() {
+export default function HomePageRoute(props) {
   const classes = useStyles();
+  const [value, setValue] = useState(props.tabValue);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
-    <div className={classes.root}>
-      <NavBar />
-    </div>
+    <Box className={classes.root}>
+      <AppBar position="static" className={classes.AppBar}>
+        <CssBaseline />
+        <Toolbar>
+          <Tabs className={classes.Tabs} value={value} centered onChange={handleChange}>
+            <Tab label="Home" style={{ fontFamily: 'Oswald' }} />
+            <Tab label="About" style={{ fontFamily: 'Oswald' }} />
+            <Tab label="Contact Us" style={{ fontFamily: 'Oswald' }} />
+          </Tabs>
+          <CompanyLogo className={classes.Logo} companyName="Atech+" sx={{ height: 40 }} />
+        </Toolbar>
+      </AppBar>
+      <TabPanel value={value} index={0}>
+        <Homepage />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <About />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <ContactUs />
+      </TabPanel>
+    </Box>
   );
 }

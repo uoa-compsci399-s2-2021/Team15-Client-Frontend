@@ -4,7 +4,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import { Link, Box, Grid, Tooltip } from '@material-ui/core';
+import { Link, Grid, Tooltip } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,10 +29,7 @@ export default function SideBar() {
       </Grid>
       <Grid item>
         <Tooltip title="UOA Instagram">
-          <Link
-            target="_blank"
-            href="https://www.instagram.com/universityofauckland/"
-          >
+          <Link target="_blank" href="https://www.instagram.com/universityofauckland/">
             <InstagramIcon />
           </Link>
         </Tooltip>

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 // material
 import { Avatar, makeStyles, Box } from '@material-ui/core';
-import { width } from '@mui/system';
 import ALogo from './ALogo.png';
 // ----------------------------------------------------------------------
 const useStyles = makeStyles(({ sx }) => ({

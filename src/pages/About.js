@@ -2,7 +2,6 @@ import { Box, Card, Grid, Typography } from '@material-ui/core';
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { width } from '@mui/system';
 import CompanyLogo from '../components/CompanyLogo';
 
 const useStyles = makeStyles((theme) => ({

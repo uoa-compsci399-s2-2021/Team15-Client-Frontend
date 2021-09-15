@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 // material
 import { Avatar, makeStyles, Box } from '@material-ui/core';
-import ALogo from '../../public/ALogo.png';
 // ----------------------------------------------------------------------
 const useStyles = makeStyles(({ sx }) => ({
   logo: {},
@@ -55,7 +54,7 @@ export default function CompanyLogo({ companyName, sx }) {
     return (
       <Box
         component="img"
-        src={ALogo}
+        src={'/ALogo.png'}
         alt="Atech+ logo"
         className={classes.logo}
         sx={{ maxWidth: 100, maxHeight: 40, ...sx }}

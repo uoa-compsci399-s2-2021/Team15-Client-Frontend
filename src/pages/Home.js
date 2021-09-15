@@ -1,7 +1,7 @@
 import { makeStyles, Grid, CssBaseline, Box } from '@material-ui/core';
 import { React, useState } from 'react';
 
-import SideBar from '../components/Homepage/SideBar';
+import SideBarSocialLinks from '../components/Homepage/SideBarSocialLinks';
 import SearchSection from '../components/Homepage/SearchSection';
 import JobListingBottom from '../components/Homepage/JobListingBottom';
 
@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     hieght: '100%',
     margin: 0,
-    padding: '0.1%',
   },
   loginButton: {
     font: 'montserrat',
@@ -23,6 +22,13 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  JLB: {
+    flexGrow: 1,
+    width: '100%',
+    hieght: '100%',
+    margin: 0,
+    padding: '0.1%',
+  },
 }));
 
 function Home() {
@@ -32,12 +38,12 @@ function Home() {
     <Grid container direction="row" spacing={3} className={classes.root}>
       <CssBaseline />
       <Grid item xs={1}>
-        <SideBar />
+        <SideBarSocialLinks />
       </Grid>
       <Grid item xs={11}>
         <SearchSection />
       </Grid>
-      <Grid container direction="row" spacing={3} className={classes.root}>
+      <Grid container direction="row" spacing={3} className={classes.JLB}>
         <JobListingBottom />
       </Grid>
     </Grid>

@@ -2,6 +2,7 @@ import { Box, Card, Grid, Typography } from '@material-ui/core';
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
 import CompanyLogo from '../components/CompanyLogo';
 
 const useStyles = makeStyles((theme) => ({
@@ -10,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function About(props) {
   document.title = 'About';
+  useHistory().push('/About');
 
   const classes = useStyles();
   return (

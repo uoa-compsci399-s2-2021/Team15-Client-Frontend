@@ -1,5 +1,6 @@
 import { makeStyles, Grid, CssBaseline, Box } from '@material-ui/core';
 import { React, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import SideBarSocialLinks from '../components/Homepage/SideBarSocialLinks';
 import SearchSection from '../components/Homepage/SearchSection';
@@ -34,6 +35,8 @@ const useStyles = makeStyles((theme) => ({
 function Home() {
   const classes = useStyles();
   document.title = 'Home';
+  useHistory().push('/Home');
+
   return (
     <Grid container direction="row" spacing={3} className={classes.root}>
       <CssBaseline />

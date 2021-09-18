@@ -6,6 +6,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import {Link} from 'react-router-dom';
+import { Button } from '@material-ui/core';
 import Homepage from '../../pages/Home';
 
 function TabPanel(props) {
@@ -73,6 +75,9 @@ export default function NavBar() {
                     <Tab label="Home" {...a11yProps(0)} />
                     <Tab label="About" {...a11yProps(1)} />
                     <Tab label="Contact Us" {...a11yProps(2)} />
+                    <Link to="/Login">
+                        <Button variant="outlined" color="primary">Login</Button>
+                    </Link>
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>

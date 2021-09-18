@@ -13,7 +13,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import HistoryIcon from '@material-ui/icons/History';
 import DescriptionIcon from '@material-ui/icons/Description';
-
+import { Box, Typography } from '@material-ui/core';
+import CompanyLogo from '../CompanyLogo';
 const useStyles = makeStyles({
   list: {
     marginTop: '20%',
@@ -43,6 +44,10 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
+      <CompanyLogo companyName="Atech+" sx={{ marginInline: 20 }} />
+      <Typography component="span" variant="h4" style={{ fontFamily: 'montserrat' }}>
+        Atech+
+      </Typography>
       <List className={classes.list}>
         {['Home', 'Profile', 'History', 'Terms & Conditions'].map((text, index) => (
           <ListItem button key={text}>

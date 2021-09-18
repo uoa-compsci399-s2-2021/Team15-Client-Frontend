@@ -15,8 +15,7 @@ export default function CardCustom(props) {
     },
 
     Header: {
-      flexGrow: 1,
-      ...theme.typography.button,
+      display: 'flex',
     },
     ArrowForward: {
       position: 'absolute',
@@ -34,6 +33,10 @@ export default function CardCustom(props) {
       paddingInlineStart: 10,
       fontWeight: 700,
     },
+    title: {
+      flexGrow: 1,
+      ...theme.typography.button,
+    },
   }));
   /*
   Example Use Case  as seen in the DJLB class
@@ -44,14 +47,14 @@ export default function CardCustom(props) {
     <Paper variant="outlined" square className={classes.root}>
       <Grid container direction="column" className={classes.gridContainer}>
         <Grid item className={classes.Header}>
-          <Typography sx={{ fontSize: '1rem', fontWeight: 700 }}>
+          <Typography sx={{ fontSize: '1rem', fontWeight: 700 }} className={classes.title}>
             {props.item.positionName}
           </Typography>
 
           <CompanyLogo
             companyName={props.item.companyName}
             className={classes.Logo}
-            sx={{ position: 'Absolute', right: 10, top: 10, maxWidth: 100, maxHeight: 40 }}
+            sx={{ maxWidth: 40, maxHeight: 40, marginRight: 10 }}
           />
         </Grid>
         <Grid item className={classes.location}>

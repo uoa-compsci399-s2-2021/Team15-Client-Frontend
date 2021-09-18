@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function About(props) {
   document.title = 'About';
-
   const classes = useStyles();
   return (
     <Card>

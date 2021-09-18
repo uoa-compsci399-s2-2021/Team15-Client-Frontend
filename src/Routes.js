@@ -21,13 +21,13 @@ function Routes() {
           <Redirect to="/Home" />
         </Route>
         <Route path="/Home">
-          <Homepage tabValue={0} />
+          <Homepage tabValue={'/Home'} />
         </Route>
         <Route path="/About">
-          <Homepage tabValue={1} />
+          <Homepage tabValue={'/About'} />
         </Route>
         <Route path="/ContactUs">
-          <Homepage tabValue={1} />
+          <Homepage tabValue={'/ContactUs'} />
         </Route>
         <Route path="/Login">
           <Login />

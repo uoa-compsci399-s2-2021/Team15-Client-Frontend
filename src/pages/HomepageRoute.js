@@ -5,7 +5,7 @@ import { AppBar, Tabs, Tab, Box, Toolbar, CssBaseline } from '@material-ui/core'
 import { useHistory } from 'react-router';
 import SideBarMenu from '../components/Homepage/SideBarMenu';
 import CompanyLogo from '../components/CompanyLogo';
-import Homepage from './Home';
+import Home from './Home';
 import About from './About';
 import ContactUs from './ContactUs';
 
@@ -33,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     height: '100vh',
     width: '100vw',
+    scrollbarWidth: '100vw',
+    overflowX: 'hidden',
   },
   AppBar: {
     background: 'None',
@@ -40,10 +42,6 @@ const useStyles = makeStyles((theme) => ({
   },
   Tabs: {
     flexGrow: 1,
-    fontFamily: 'Oswald',
-  },
-  Tab: {
-    fontFamily: 'Oswald',
   },
   HomePage: {
     flexGrow: 1,
@@ -65,21 +63,17 @@ export default function HomePageRoute(props) {
         <Toolbar>
           <SideBarMenu />
           <Tabs className={classes.Tabs} value={value} centered onChange={handleChange}>
-            <Tab label="Home" value="/Home" />
-            <Tab label="About" value="/About" />
-            <Tab label="Contact Us" value="/ContactUs" />
+            <Tab label="Home" value="/Home" style={{ fontFamily: 'Oswald' }} />
+            <Tab label="Profile" value="/About" style={{ fontFamily: 'Oswald' }} />
           </Tabs>
           <CompanyLogo className={classes.Logo} companyName="Atech+" sx={{ height: 40 }} />
         </Toolbar>
       </AppBar>
       <TabPanel value={value} index={'/Home'} className={classes.HomePage}>
-        <Homepage />
+        <Home />
       </TabPanel>
       <TabPanel value={value} index={'/About'}>
         <About />
-      </TabPanel>
-      <TabPanel value={value} index={'/ContactUs'}>
-        <ContactUs />
       </TabPanel>
     </Box>
   );

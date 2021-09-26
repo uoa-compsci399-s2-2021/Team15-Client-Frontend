@@ -38,6 +38,11 @@ export default function JobListingDetail({ open, hClose, item }) {
     title: {
       flexGrow: 1,
     },
+    closeModal: {
+      '&:hover': {
+        cursor: 'pointer',
+      },
+    },
   }));
   const classes = useStyles();
 
@@ -53,6 +58,7 @@ export default function JobListingDetail({ open, hClose, item }) {
           <CloseIcon
             style={{ position: 'absolute', top: 10, left: 10, marginBottom: 10 }}
             onClick={hClose}
+            className={classes.closeModal}
           />
 
           <Grid item className={classes.Header}>

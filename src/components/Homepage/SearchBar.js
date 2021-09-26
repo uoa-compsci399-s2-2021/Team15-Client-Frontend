@@ -4,6 +4,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button, InputLabel, Select, MenuItem, FormControl } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    '&.MuiMenuItem-root': {
+      minheight: 200,
+    },
+  },
   textField: {
     width: 250,
   },
@@ -29,12 +34,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 /** THis is a search Bar Currently it only Console logs out the form value  */
-export default function SearchBar() {
+export default function SearchBar({ searchQuery, onClickSearchResult }) {
   const classes = useStyles();
   const intSalaryValues = [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, -1];
-  const degreeList = ['Any', 'Undergraduate', 'Bachelor', 'Postgraduate', 'Masters', 'Doctorate'];
+  const contractList = ['', 'Full Time', 'Part Time', 'Permanent', 'Fix Term', 'Casual'];
+  const locationList = ['', 'Auckland', 'Wellington', 'Christchurch', 'Remote', 'Other'];
   const startSList = [
-    'Less than $10,000',
+    '$0',
     '$10,000',
     '$20,000',
     '$30,000',
@@ -47,102 +53,109 @@ export default function SearchBar() {
     '$100,000+',
   ];
   const [HighSList, setHighSList] = useState(startSList);
-  const [SearchQuery, setSearchQuery] = useState({
-    jobTitle: '',
-    startingSalary: '',
-    highestSalary: '',
-    class: '',
-    location: '',
-  });
 
   const handleInputChange = (e) => {
     e.preventDefault();
-    setSearchQuery({ ...SearchQuery, [e.target.name]: e.target.value });
+    searchQuery[1]({ ...searchQuery[0], [e.target.name]: e.target.value });
   };
 
   return (
-    <Grid container direction="row" className={classes.gridContainer}>
-      <Grid item className={classes.margin10}>
-        <TextField
-          className={classes.textField}
-          id="Search"
-          label="What Are You Looking For?"
-          name="jobTitle"
-          onChange={(e) => handleInputChange(e)}
-        />
-      </Grid>
+    <form className={classes.root}>
+      <Grid container direction="row" className={classes.gridContainer}>
+        <Grid item className={classes.margin10}>
+          <TextField
+            className={classes.textField}
+            id="Search"
+            label="What Are You Looking For?"
+            name="jobTitle"
+            onChange={(e) => handleInputChange(e)}
+          />
+        </Grid>
 
-      <Grid item>
-        <Grid container direction="row" className={classes.margin10}>
+        <Grid item>
+          <Grid container direction="row" className={classes.margin10}>
+            <FormControl className={classes.formControl}>
+              <InputLabel> Starting Salary</InputLabel>
+
+              <Select
+                name="startingSalary"
+                value={searchQuery[0].startingSalary}
+                onChange={(e) => handleInputChange(e)}
+              >
+                {startSList.map((item, index) => (
+                  <MenuItem key={item} value={intSalaryValues[index]} style={{ height: '40px' }}>
+                    {item}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControl className={classes.formControl}>
+              <InputLabel> Highest Salary</InputLabel>
+
+              <Select
+                value={searchQuery[0].highestSalary}
+                name="highestSalary"
+                onChange={(e) => handleInputChange(e)}
+              >
+                {HighSList.map((item, index) => (
+                  <MenuItem key={item} value={intSalaryValues[index]} style={{ height: '40px' }}>
+                    {item}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
+
+        <Grid item className={classes.margin10}>
           <FormControl className={classes.formControl}>
-            <InputLabel> Starting Salary</InputLabel>
+            <InputLabel>Contract Type</InputLabel>
 
             <Select
-              name="startingSalary"
-              value={SearchQuery.startingSalary}
+              value={searchQuery[0].contract}
+              name="contract"
               onChange={(e) => handleInputChange(e)}
             >
-              {startSList.map((item, index) => (
-                <MenuItem key={item} value={intSalaryValues[index]}>
-                  {item}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          <FormControl className={classes.formControl}>
-            <InputLabel> Highest Salary</InputLabel>
-
-            <Select
-              value={SearchQuery.highestSalary}
-              name="highestSalary"
-              onChange={(e) => handleInputChange(e)}
-            >
-              {HighSList.map((item, index) => (
-                <MenuItem key={item} value={intSalaryValues[index]}>
+              {contractList.map((item) => (
+                <MenuItem key={item} value={item} style={{ height: '40px' }}>
                   {item}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
         </Grid>
+
+        <Grid item className={classes.margin10}>
+          <FormControl className={classes.formControl}>
+            <InputLabel>Location</InputLabel>
+
+            <Select
+              value={searchQuery[0].location}
+              id="Location"
+              label="Location"
+              name="location"
+              onChange={(e) => handleInputChange(e)}
+            >
+              {locationList.map((item) => (
+                <MenuItem key={item} value={item} style={{ height: '40px' }}>
+                  {item}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Button
+          color="primary"
+          justifycontent="center"
+          className={classes.SearchButton}
+          name="search"
+          onClick={onClickSearchResult}
+        >
+          Search
+        </Button>
       </Grid>
-
-      <Grid item className={classes.margin10}>
-        <FormControl className={classes.formControl}>
-          <InputLabel>Degree</InputLabel>
-
-          <Select value={SearchQuery.class} name="class" onChange={(e) => handleInputChange(e)}>
-            {degreeList.map((item, index) => (
-              <MenuItem key={item} value={index}>
-                {item}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Grid>
-
-      <Grid item className={classes.margin10}>
-        <TextField
-          className={classes.textField}
-          id="Location"
-          label="Location (Suburb/ City/ Country)"
-          name="location"
-          onChange={(e) => handleInputChange(e)}
-        />
-      </Grid>
-
-      <Button
-        color="primary"
-        justifycontent="center"
-        className={classes.SearchButton}
-        name="search"
-        onClick={() => {
-          console.log(SearchQuery);
-        }}
-      >
-        Search
-      </Button>
-    </Grid>
+    </form>
   );
 }

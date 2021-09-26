@@ -2,30 +2,17 @@ import { React, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ImageListItem, ImageList, CardActionArea } from '@material-ui/core';
 import { PropTypes } from 'prop-types';
-import CardCustom from './CardCustom';
+import CardCustom from '../CardCustom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    display: 'flex',
   },
 }));
 
-DJLB.defaultProps = {
-  blankCard: {
-    positionName: 'No positions available',
-    companyName: '',
-    jobSalary: '',
-    jobLocation: '',
-    jobDescription: 'Sorry we Currently dont have many Jobs Right Now, Check back later',
-  },
-};
-
-DJLB.propTypes = {
-  blankCard: PropTypes.object,
-};
 /** this Is probably a one time class */
 // Dynamic Job Listing Bottom
-export default function DJLB(props) {
+export default function DJLB() {
   const classes = useStyles();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -42,20 +29,13 @@ export default function DJLB(props) {
     '#89adca',
   ];
 
-  const addblank = () => {
-    const itemDiff = 8 - items.length;
-    for (let i = 0; i < itemDiff; i += 1) {
-      setItems([...items, props.blankCard]);
-    }
-  };
-
   useEffect(() => {
     fetch('http://localhost:5000/api/admin/get-job-info')
       .then((res) => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
-          setItems(result);
+          setItems(result.filter((e) => e.isActive));
         },
         (error) => {
           setIsLoaded(true);
@@ -64,11 +44,8 @@ export default function DJLB(props) {
       );
   }, []);
 
-  addblank();
-
   if (error) {
-    addblank();
-    console.log('There are no Job in the DB');
+    return <div>An Errror Occurced: {error}</div>;
   }
   if (!isLoaded) {
     return <div>Loading...</div>;
@@ -77,10 +54,12 @@ export default function DJLB(props) {
   return (
     <ImageList cols={5} gap={0}>
       {items.slice(0, 8).map((item, index) => (
-        <ImageListItem rows={1} key={item + index.toString()} cols={layout[index]}>
-          <CardActionArea style={{ height: '100%' }}>
-            <CardCustom item={item} color={colors[index]} />
-          </CardActionArea>
+        <ImageListItem
+          rows={items.length > 4 ? 1 : 2}
+          key={`${item.positionName} Lastest ${index.toString()}`}
+          cols={layout[index]}
+        >
+          <CardCustom item={item} color={colors[index]} />
         </ImageListItem>
       ))}
     </ImageList>

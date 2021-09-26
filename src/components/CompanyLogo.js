@@ -28,27 +28,10 @@ Functional component
             sx={{ position: 'Absolute', right: 10, top: 10 }}
           />
  */
-export default function CompanyLogo({ companyName, sx }) {
+export default function CompanyLogo({ url, companyName, sx }) {
   const classes = useStyles();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [imgSrc, setImgSrc] = useState([]);
-  const [error, setError] = useState(null);
-
-  const fetchImg = () => {
-    if (companyName !== '') {
-      fetch(`https://logo.clearbit.com/${companyName}.com`)
-        .then((res) => res)
-        .then(
-          (result) => {
-            setImgSrc(result);
-            setError(null);
-          },
-          (error) => {
-            setError(error);
-          },
-        );
-    }
-  };
+  const [imgSrc, setimgSrc] = useState();
 
   if (companyName === 'Atech+') {
     return (
@@ -63,14 +46,29 @@ export default function CompanyLogo({ companyName, sx }) {
   }
 
   useEffect(() => {
-    fetchImg();
-  }, [companyName]);
+    const fetchData = async () => {
+      const response1 = await fetch(`https://logo.clearbit.com/${companyName}.com`)
+        .then((result) => {
+          if (result.ok) setimgSrc(result.url);
+        })
+        .catch((err) => {});
 
-  if (imgSrc.status === 200) {
+      if (url) {
+        const response2 = await fetch(url)
+          .then((result) => {
+            if (result.ok) setimgSrc(result.url);
+          })
+          .catch((err) => {});
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (imgSrc) {
     return (
       <Box
         component="img"
-        src={imgSrc.url}
+        src={imgSrc}
         alt={`${companyName} Logo`}
         className={classes.logo}
         sx={{ ...sx }}

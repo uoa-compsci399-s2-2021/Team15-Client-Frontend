@@ -1,29 +1,31 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Box } from '@material-ui/core';
 import SearchBar from './SearchBar';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((searchQuery, theme) => ({
   container: {
-    flexGrow: 1,
-    margin: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    minHeight: '50vh',
+    height: 'auto',
   },
 }));
 /** Holds the Search bar and the Text above it  */
-export default function SearchSection() {
-  const classes = useStyles();
+export default function SearchSection({ searchQuery, onClickSearchResult }) {
+  const classes = useStyles(searchQuery[0]);
   return (
     <Grid className={classes.container} container direction="column">
       <Grid item>
-        <Typography variant={'h2'} style={{ fontFamily: 'Oswald' }}>
-          They Only Want You
-        </Typography>
+        {searchQuery[0].beforeSearch ? (
+          <Typography variant={'h2'} style={{ fontFamily: 'Oswald' }}>
+            They Only Want You
+          </Typography>
+        ) : (
+          <Box />
+        )}
       </Grid>
       <Grid item>
-        <SearchBar />
+        <SearchBar searchQuery={searchQuery} onClickSearchResult={onClickSearchResult} />
       </Grid>
     </Grid>
   );

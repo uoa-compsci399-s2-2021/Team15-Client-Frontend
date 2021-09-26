@@ -13,7 +13,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import HistoryIcon from '@material-ui/icons/History';
 import DescriptionIcon from '@material-ui/icons/Description';
-import { Box, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import CompanyLogo from '../CompanyLogo';
 const useStyles = makeStyles({
   list: {

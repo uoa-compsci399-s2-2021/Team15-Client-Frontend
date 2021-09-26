@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import JobBoard from './pages/JobBoard';
 import PrivateRoute from './utils/PrivateRoute';
 import Homepage from './pages/HomepageRoute';
+import JobDetail from './pages/JobDetail';
 function Unknown404() {
   const location = useLocation();
   return (
@@ -34,6 +35,9 @@ function Routes() {
         </Route>
         <PrivateRoute path="/app">
           <JobBoard />
+        </PrivateRoute>
+        <PrivateRoute path="/JobDetail/:id">
+          <JobDetail />
         </PrivateRoute>
         <Route path="*">
           <Unknown404 />

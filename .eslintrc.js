@@ -42,5 +42,7 @@ module.exports = {
     'no-tabs': 'off',
     'no-mixed-spaces-and-tabs': 'off',
     'no-nested-ternary': 'off',
+    "quotes": 'off',
+    "no-useless-escape": 'off',
   },
 };

@@ -6,9 +6,7 @@ import { Grid, Paper, Typography } from '@material-ui/core';
 import DJLB from './DJLB';
 
 const useStyles = makeStyles(() => ({
-  root: {
-    width: '100vw',
-  },
+  root: {},
   LatestJobs: {
     display: 'flex',
     flexDirection: 'column',

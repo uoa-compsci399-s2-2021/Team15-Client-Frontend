@@ -113,18 +113,11 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
       ContractT = searchQuery.contract.includes(value.jobHours);
       Hours = searchQuery.contract.includes(value.jobContract);
     }
-<<<<<<< HEAD
-    let Location;
-    if (searchQuery.location === ["Other"]) {
-      Location = !["Auckland", "Christchurch", "Wellington", "Remote"].includes(value.jobLocation);
-    } else {
-=======
     let Location = true;
 
     if (searchQuery.location.includes("Other")) {
       Location = !["Auckland", "Christchurch", "Wellington", "Remote"].includes(value.jobLocation);
     } else if (searchQuery.location.length !== 0) {
->>>>>>> 718af5a4620cfd136ddc5845736c3e421b7f7d94
       Location = searchQuery.location.includes(value.location);
     }
     console.log(ContractT || Hours);
@@ -133,7 +126,7 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
 
   useEffect(() => {
     const fetchJobInfo = async () => {
-      await fetch("http://localhost:5000/api/admin/get-job-info")
+      await fetch("https://cs399-team15.herokuapp.com/api/admin/get-job-info")
         .then((res) => res.json())
         .then(
           (result) => {

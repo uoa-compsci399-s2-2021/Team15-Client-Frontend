@@ -60,7 +60,7 @@ function Home() {
           />
         </Grid>
       </Grid>
-      {searchQuery.beforeSearch ? (
+      {searchQuery.beforeSearch && width > 1000 ? (
         <Grid container className={classes.JLB}>
           <JobListingBottom />
         </Grid>

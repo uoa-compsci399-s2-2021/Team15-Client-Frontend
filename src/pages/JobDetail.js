@@ -152,7 +152,7 @@ export default function JobDetail(props) {
       <AppBar position="static" className={classes.AppBar}>
         <CssBaseline />
         <Toolbar>
-          <SideBarMenu />
+          {/* <SideBarMenu /> */}
           <Tabs
             className={classes.Tabs}
             value={value}

@@ -114,10 +114,10 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
       Hours = value.jobContract === searchQuery.contract;
     }
     let Location;
-    if (searchQuery.location === 'Other') {
-      Location = !['Auckland', 'Christchurch', 'Wellington', 'Remote'].includes(value.jobLocation);
+    if (searchQuery.location === ["Other"]) {
+      Location = !["Auckland", "Christchurch", "Wellington", "Remote"].includes(value.jobLocation);
     } else {
-      Location = value.jobLocation.toLowerCase().includes(searchQuery.location.toLowerCase());
+      Location = searchQuery.location.includes(value.location);
     }
     return value.isActive && PName && HSalary && LSalary && (ContractT || Hours) && Location;
   };

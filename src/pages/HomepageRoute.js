@@ -61,7 +61,7 @@ export default function HomePageRoute(props) {
       <AppBar position="static" className={classes.AppBar}>
         <CssBaseline />
         <Toolbar>
-          <SideBarMenu />
+          {/* <SideBarMenu /> */}
           <Tabs className={classes.Tabs} value={value} centered onChange={handleChange}>
             <Tab label="Home" value="/Home" style={{ fontFamily: 'Oswald' }} />
             <Tab label="Saved Jobs" value="/About" style={{ fontFamily: 'Oswald' }} />

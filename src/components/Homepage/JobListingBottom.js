@@ -41,7 +41,7 @@ export default function JobListingBottom() {
           </ImageListItem>
         </ImageList>
       </Grid>
-      <Grid item xs={10}>
+      <Grid item xs>
         <DJLB />
       </Grid>
     </Grid>

@@ -56,7 +56,7 @@ export default function JobListingDetail({ open, hClose, item }) {
       >
         <Box sx={style}>
           <CloseIcon
-            style={{ position: 'absolute', top: 10, left: 10, marginBottom: 10 }}
+            style={{ position: 'absolute', top: 10, right: 10, marginBottom: 10 }}
             onClick={hClose}
             className={classes.closeModal}
           />

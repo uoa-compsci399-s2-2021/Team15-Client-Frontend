@@ -117,7 +117,8 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
 
     if (searchQuery.location.includes("Other")) {
       Location = !["Auckland", "Christchurch", "Wellington", "Remote"].includes(value.jobLocation);
-    } else if (searchQuery.location.length !== 0) {
+    }
+    if (searchQuery.location.length !== 0) {
       Location = searchQuery.location.includes(value.location);
     }
     console.log(ContractT || Hours);

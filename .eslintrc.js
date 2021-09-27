@@ -46,5 +46,7 @@ module.exports = {
     "no-useless-escape": 'off',
     "no-lonely-if": 'off',
     "prefer-template": 'off',
+    "max-len": 'off',
+    "import/no-cycle": 'off',
   },
 };

@@ -20,25 +20,28 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
     width: "80vw",
     margin: "auto",
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
+    // justifyContent: "center",
+    // alignItems: "center",
+    // textAlign: "center",
     paddingTop: 10,
+    marginTop: 10,
   },
   CardCustom: {},
   SearchResultsContainer: {},
   ResultHead: {
     display: "flex",
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    paddingBottom: 10,
+    // flexWrap: "wrap",
+    // flexDirection: "row",
+    // justifyContent: "center",
+    // alignItems: "center",
+    // textAlign: "center",
+    // paddingBottom: 10,
   },
   formControl: {
     minWidth: 130,
-    width: "15%",
+    // width: "15%",
+    float: "right",
+    paddingBottom: 10,
   },
 }));
 
@@ -71,6 +74,17 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
+  const menuProps = {
+    anchorOrigin: {
+      vertical: "bottom",
+      horizontal: "left",
+    },
+    transformOrigin: {
+      vertical: "top",
+      horizontal: "left",
+    },
+    getContentAnchorEl: null,
+  };
 
   const handleSortChange = (e) => {
     setSortValue(e.target.value);
@@ -117,10 +131,11 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
 
     if (searchQuery.location.includes("Other")) {
       Location = !["Auckland", "Christchurch", "Wellington", "Remote"].includes(value.jobLocation);
-    } else if (searchQuery.location.length !== 0) {
+    }
+    if (searchQuery.location.length !== 0) {
       Location = searchQuery.location.includes(value.location);
     }
-    console.log(ContractT || Hours);
+    // console.log(ContractT || Hours);
     return value.isActive && PName && HSalary && LSalary && (ContractT || Hours) && Location;
   };
 
@@ -131,7 +146,12 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
         .then(
           (result) => {
             setIsLoaded(true);
-            setItems(result.filter(filterListing));
+            console.log(searchQuery);
+            if (searchQuery.showAll) {
+              setItems(result.filter((job) => job.isActive));
+            } else {
+              setItems(result.filter(filterListing));
+            }
           },
           (error) => {
             setIsLoaded(true);
@@ -152,20 +172,24 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
   return (
     <Box className={classes.root} sx={{ width: "100vw" }}>
       <Box className={classes.ResultHead}>
-        <Button
-          variant="contained"
-          onClick={() => setsearchQuery({ ...searchQuery, beforeSearch: true })}
-        >
-          Back
-        </Button>
-        <Typography variant="h3" style={{ fontFamily: "Oswald", flexGrow: 1 }}>
+        <Grid xs={8}>
+        <Typography variant="h5" style={{ fontFamily: "Oswald", flexGrow: 1, verticalAlign: "bottom" }}>
           Found {items.length} Jobs Matching Your Search
         </Typography>
-
+        </Grid>
+        <Grid xs={4}>
+        <Button
+          variant="outlined"
+          onClick={() => setsearchQuery({ ...searchQuery, beforeSearch: true })}
+          size="small"
+          style={{ verticalAlign: "bottom", float: "right", marginLeft: 20, padding: 0 }}
+        >
+          Reset
+        </Button>
         <FormControl className={classes.formControl}>
           <InputLabel>Sort</InputLabel>
 
-          <Select value={SortValue} name="sort" onChange={(e) => handleSortChange(e)}>
+          <Select value={SortValue} name="sort" onChange={(e) => handleSortChange(e)} MenuProps={menuProps}>
             {SortList.map((item) => (
               <MenuItem key={item} value={item}>
                 {item}
@@ -173,6 +197,7 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
             ))}
           </Select>
         </FormControl>
+        </Grid>
       </Box>
 
       <Divider style={{ marginBottom: 10 }} />

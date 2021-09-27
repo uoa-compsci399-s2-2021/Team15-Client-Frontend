@@ -25,7 +25,7 @@ function Routes() {
           <Homepage tabValue={'/Home'} />
         </Route>
         <Route path="/About">
-          <Homepage tabValue={'/About'} />
+          <Homepage tabValue={'/About'} about />
         </Route>
         <Route path="/ContactUs">
           <Homepage tabValue={'/ContactUs'} />

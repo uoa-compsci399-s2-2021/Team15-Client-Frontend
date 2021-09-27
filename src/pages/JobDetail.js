@@ -126,7 +126,7 @@ export default function JobDetail(props) {
   const handleCloseBtn = () => {
     history.goBack();
   };
-  const salaryType = "Market rat";
+  const salaryType = "Market rate";
   const text = "This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text.";
   // const application = "https://www.auckland.ac.nz/en.html";
   const application = text;

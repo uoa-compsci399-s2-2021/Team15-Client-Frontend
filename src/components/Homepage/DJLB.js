@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 
 /** this Is probably a one time class */
 // Dynamic Job Listing Bottom
-export default function DJLB() {
+export default function DJLB(props) {
   const classes = useStyles();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -75,7 +75,7 @@ export default function DJLB() {
           key={`${item.positionName} Lastest ${index.toString()}`}
           cols={layout[index]}
         >
-          <CardCustom item={item} color={colors[index]} />
+          <CardCustom item={item} color={colors[index]} detailOpen={props.detailOpen} closeDetail={props.closeDetail} />
         </ImageListItem>
       ))}
     </ImageList>

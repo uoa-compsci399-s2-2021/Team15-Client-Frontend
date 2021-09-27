@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function JobListingBottom() {
+export default function JobListingBottom(props) {
   const classes = useStyles();
   return (
     <Grid container direction="row" className={classes.root}>
@@ -42,7 +42,7 @@ export default function JobListingBottom() {
         </ImageList>
       </Grid>
       <Grid item xs={10}>
-        <DJLB />
+        <DJLB detailOpen={props.detailOpen} closeDetail={props.closeDetail} />
       </Grid>
     </Grid>
   );

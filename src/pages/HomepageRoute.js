@@ -8,6 +8,7 @@ import CompanyLogo from '../components/CompanyLogo';
 import Home from './Home';
 import About from './About';
 import ContactUs from './ContactUs';
+import SearchResultsSection from '../components/SearchResults/SearchResultsSection';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

@@ -17,7 +17,7 @@ export default function SearchSection({ searchQuery, onClickSearchResult }) {
     <Grid className={classes.container} container direction="column">
       <Grid item>
         {searchQuery[0].beforeSearch ? (
-          <Typography variant={'h2'} style={{ fontFamily: 'Oswald' }}>
+          <Typography variant={'h2'} style={{ fontFamily: 'Oswald' }} align="center">
             They Only Want You
           </Typography>
         ) : (

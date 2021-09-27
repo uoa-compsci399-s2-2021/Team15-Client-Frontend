@@ -64,7 +64,7 @@ export default function HomePageRoute(props) {
           <SideBarMenu />
           <Tabs className={classes.Tabs} value={value} centered onChange={handleChange}>
             <Tab label="Home" value="/Home" style={{ fontFamily: 'Oswald' }} />
-            <Tab label="Profile" value="/About" style={{ fontFamily: 'Oswald' }} />
+            <Tab label="Saved Jobs" value="/About" style={{ fontFamily: 'Oswald' }} />
           </Tabs>
           <CompanyLogo className={classes.Logo} companyName="Atech+" sx={{ height: 40 }} />
         </Toolbar>

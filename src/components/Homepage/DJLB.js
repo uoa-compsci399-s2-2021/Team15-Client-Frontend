@@ -30,19 +30,35 @@ export default function DJLB() {
   ];
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/admin/get-job-info')
+    fetch('https://cs399-team15.herokuapp.com/api/admin/get-job-info')
       .then((res) => res.json())
       .then(
         (result) => {
+          // console.log(result);
           setIsLoaded(true);
           setItems(result.filter((e) => e.isActive));
         },
         (error) => {
+          console.log(error);
           setIsLoaded(true);
           setError(error);
         },
       );
   }, []);
+  // useEffect(() => {
+  //   fetch('http://localhost:5000/api/admin/get-job-info')
+  //     .then((res) => res.json())
+  //     .then(
+  //       (result) => {
+  //         setIsLoaded(true);
+  //         setItems(result.filter((e) => e.isActive));
+  //       },
+  //     )
+  //     .catch((error) => {
+  //       setIsLoaded(true);
+  //       setError(error);
+  //     });
+  // }, []);
 
   if (error) {
     return <div>An Errror Occurced: {error}</div>;

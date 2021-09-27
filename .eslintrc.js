@@ -44,5 +44,7 @@ module.exports = {
     'no-nested-ternary': 'off',
     "quotes": 'off',
     "no-useless-escape": 'off',
+    "no-lonely-if": 'off',
+    "prefer-template": 'off',
   },
 };

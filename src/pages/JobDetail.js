@@ -159,8 +159,8 @@ export default function JobDetail(props) {
             centered
             onChange={handleChange}
           >
-            <Tab label="Home" value="/Home" />
-            <Tab label="Saved Jobs" value="/About" />
+            <Tab label="Home" value="/Home" style={{ fontFamily: 'Oswald' }} />
+            <Tab label="Saved Jobs" value="/About" style={{ fontFamily: 'Oswald' }} />
           </Tabs>
           <CompanyLogo
             className={classes.Logo}

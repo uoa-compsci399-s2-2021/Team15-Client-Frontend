@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Button, InputLabel, Select, MenuItem, FormControl } from '@material-ui/core';
+import { Grid, Button, InputLabel, Select, MenuItem, FormControl, OutlinedInput } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,15 +30,15 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 130,
+    width: 130,
   },
 }));
 /** THis is a search Bar Currently it only Console logs out the form value  */
 export default function SearchBar({ searchQuery, onClickSearchResult }) {
   const classes = useStyles();
   const intSalaryValues = [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, -1];
-  const contractList = ['', 'Full Time', 'Part Time', 'Permanent', 'Fix Term', 'Casual'];
-  const locationList = ['', 'Auckland', 'Wellington', 'Christchurch', 'Remote', 'Other'];
+  const contractList = ['Full Time', 'Part Time', 'Permanent', 'Fix Term', 'Casual'];
+  const locationList = ['Auckland', 'Wellington', 'Christchurch', 'Remote', 'Other'];
   const startSList = [
     '$0',
     '$10,000',
@@ -57,6 +57,18 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
   const handleInputChange = (e) => {
     e.preventDefault();
     searchQuery[1]({ ...searchQuery[0], [e.target.name]: e.target.value });
+  };
+
+  const menuProps = {
+    anchorOrigin: {
+      vertical: "bottom",
+      horizontal: "left",
+    },
+    transformOrigin: {
+      vertical: "top",
+      horizontal: "left",
+    },
+    getContentAnchorEl: null,
   };
 
   return (
@@ -81,6 +93,7 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
                 name="startingSalary"
                 value={searchQuery[0].startingSalary}
                 onChange={(e) => handleInputChange(e)}
+                MenuProps={menuProps}
               >
                 {startSList.map((item, index) => (
                   <MenuItem key={item} value={intSalaryValues[index]} style={{ height: '40px' }}>
@@ -92,11 +105,11 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
 
             <FormControl className={classes.formControl}>
               <InputLabel> Highest Salary</InputLabel>
-
               <Select
                 value={searchQuery[0].highestSalary}
                 name="highestSalary"
                 onChange={(e) => handleInputChange(e)}
+                MenuProps={menuProps}
               >
                 {HighSList.map((item, index) => (
                   <MenuItem key={item} value={intSalaryValues[index]} style={{ height: '40px' }}>
@@ -107,15 +120,15 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
             </FormControl>
           </Grid>
         </Grid>
-
         <Grid item className={classes.margin10}>
           <FormControl className={classes.formControl}>
             <InputLabel>Contract Type</InputLabel>
-
             <Select
+              multiple
               value={searchQuery[0].contract}
               name="contract"
               onChange={(e) => handleInputChange(e)}
+              MenuProps={menuProps}
             >
               {contractList.map((item) => (
                 <MenuItem key={item} value={item} style={{ height: '40px' }}>
@@ -131,11 +144,13 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
             <InputLabel>Location</InputLabel>
 
             <Select
+              multiple
               value={searchQuery[0].location}
               id="Location"
               label="Location"
               name="location"
               onChange={(e) => handleInputChange(e)}
+              MenuProps={menuProps}
             >
               {locationList.map((item) => (
                 <MenuItem key={item} value={item} style={{ height: '40px' }}>
@@ -152,8 +167,19 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
           className={classes.SearchButton}
           name="search"
           onClick={onClickSearchResult}
+          // variant="outlined"
         >
           Search
+        </Button>
+        <Button
+          color="secondary"
+          justifycontent="center"
+          className={classes.SearchButton}
+          name="search"
+          onClick={onClickSearchResult}
+          style={{ marginLeft: 10 }}
+        >
+          List All
         </Button>
       </Grid>
     </form>

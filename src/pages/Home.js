@@ -29,8 +29,8 @@ function Home() {
     jobTitle: '',
     startingSalary: '',
     highestSalary: '',
-    contract: '',
-    location: '',
+    contract: [],
+    location: [],
     beforeSearch: true,
     searchDone: false,
   });

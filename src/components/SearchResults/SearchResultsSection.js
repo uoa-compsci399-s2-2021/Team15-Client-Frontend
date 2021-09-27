@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useEffect, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 
 import {
   Box,
@@ -11,61 +11,61 @@ import {
   Select,
   MenuItem,
   Button,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
-import CardCustom from '../CardCustom';
+import CardCustom from "../CardCustom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
-    width: '80vw',
-    margin: 'auto',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
+    height: "100vh",
+    width: "80vw",
+    margin: "auto",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
     paddingTop: 10,
   },
   CardCustom: {},
   SearchResultsContainer: {},
   ResultHead: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
+    display: "flex",
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
     paddingBottom: 10,
   },
   formControl: {
     minWidth: 130,
-    width: '15%',
+    width: "15%",
   },
 }));
 
 SearchResultsSection.defaultProps = {
   searchQuery: {
-    jobTitle: '',
-    startingSalary: '',
-    highestSalary: '',
-    contract: '',
-    location: '',
+    jobTitle: "",
+    startingSalary: "",
+    highestSalary: "",
+    contract: "",
+    location: "",
     beforeSearch: false,
     searchDone: false,
   },
 };
 export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
   const classes = useStyles();
-  const [SortValue, setSortValue] = useState('');
-  const SortList = ['Date', 'Alphabetically'];
+  const [SortValue, setSortValue] = useState("");
+  const SortList = ["Date", "Alphabetically"];
   const colors = [
-    '#f39400',
-    '#b14550',
-    '#9cb279',
-    '#9b5873',
-    '#647fb5',
-    '#98719d',
-    '#6c6671',
-    '#89adca',
+    "#f39400",
+    "#b14550",
+    "#9cb279",
+    "#9b5873",
+    "#647fb5",
+    "#98719d",
+    "#6c6671",
+    "#89adca",
   ];
   // fetch Data
   const [error, setError] = useState(null);
@@ -75,7 +75,7 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
   const handleSortChange = (e) => {
     setSortValue(e.target.value);
 
-    if (e.target.value === 'Date') {
+    if (e.target.value === "Date") {
       setItems(
         items.sort((obj1, obj2) => {
           if (obj1.jobStartTime < obj2.jobStartTime) return -1;
@@ -84,7 +84,7 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
         }),
       );
     }
-    if (e.target.value === 'Alphabetically') {
+    if (e.target.value === "Alphabetically") {
       items.sort((obj1, obj2) => {
         if (obj1.positionName < obj2.positionName) return -1;
         if (obj1.positionName > obj2.positionName) return 1;
@@ -96,12 +96,12 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
   const filterListing = (value) => {
     const PName = value.positionName.toLowerCase().includes(searchQuery.jobTitle.toLowerCase());
     let LSalary = true;
-    if (searchQuery.startingSalary !== '' && searchQuery.startingSalary !== -1) {
+    if (searchQuery.startingSalary !== "" && searchQuery.startingSalary !== -1) {
       LSalary = value.jobSalary >= searchQuery.startingSalary;
     }
     let HSalary = true;
     if (
-      searchQuery.highestSalary !== ''
+      searchQuery.highestSalary !== ""
       && searchQuery.highestSalary !== -1
       && searchQuery.startingSalary !== -1
     ) {
@@ -109,22 +109,31 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
     }
     let ContractT = true;
     let Hours = true;
-    if (searchQuery.contract !== '') {
-      ContractT = value.jobHours === searchQuery.contract;
-      Hours = value.jobContract === searchQuery.contract;
+    if (searchQuery.contract.length !== 0) {
+      ContractT = searchQuery.contract.includes(value.jobHours);
+      Hours = searchQuery.contract.includes(value.jobContract);
     }
+<<<<<<< HEAD
     let Location;
     if (searchQuery.location === ["Other"]) {
       Location = !["Auckland", "Christchurch", "Wellington", "Remote"].includes(value.jobLocation);
     } else {
+=======
+    let Location = true;
+
+    if (searchQuery.location.includes("Other")) {
+      Location = !["Auckland", "Christchurch", "Wellington", "Remote"].includes(value.jobLocation);
+    } else if (searchQuery.location.length !== 0) {
+>>>>>>> 718af5a4620cfd136ddc5845736c3e421b7f7d94
       Location = searchQuery.location.includes(value.location);
     }
+    console.log(ContractT || Hours);
     return value.isActive && PName && HSalary && LSalary && (ContractT || Hours) && Location;
   };
 
   useEffect(() => {
     const fetchJobInfo = async () => {
-      await fetch('http://localhost:5000/api/admin/get-job-info')
+      await fetch("http://localhost:5000/api/admin/get-job-info")
         .then((res) => res.json())
         .then(
           (result) => {
@@ -148,7 +157,7 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
     return <div>Loading...</div>;
   }
   return (
-    <Box className={classes.root} sx={{ width: '100vw' }}>
+    <Box className={classes.root} sx={{ width: "100vw" }}>
       <Box className={classes.ResultHead}>
         <Button
           variant="contained"
@@ -156,7 +165,7 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
         >
           Back
         </Button>
-        <Typography variant="h3" style={{ fontFamily: 'Oswald', flexGrow: 1 }}>
+        <Typography variant="h3" style={{ fontFamily: "Oswald", flexGrow: 1 }}>
           Found {items.length} Jobs Matching Your Search
         </Typography>
 

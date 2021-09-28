@@ -1,6 +1,6 @@
-import { React, useState } from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
+import { React, useState } from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   AppBar,
   Tabs,
@@ -13,22 +13,22 @@ import {
   Button,
   Card,
   Checkbox,
-} from "@material-ui/core";
-import { useHistory } from "react-router";
-import CardHeader from "@material-ui/core/CardHeader";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+} from '@material-ui/core';
+import { useHistory } from 'react-router';
+import CardHeader from '@material-ui/core/CardHeader';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
-import IconButton from "@material-ui/core/IconButton";
-import SideBarMenu from "../components/Homepage/SideBarMenu";
-import CompanyLogo from "../components/CompanyLogo";
-import Homepage from "./Home";
-import About from "./About";
-import SideBarSocialLinks from "../components/Homepage/SideBarSocialLinks";
-import ContactUs from "./ContactUs";
+import IconButton from '@material-ui/core/IconButton';
+import SideBarMenu from '../components/Homepage/SideBarMenu';
+import CompanyLogo from '../components/CompanyLogo';
+import Homepage from './Home';
+import About from './About';
+import SideBarSocialLinks from '../components/Homepage/SideBarSocialLinks';
+import ContactUs from './ContactUs';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -48,23 +48,23 @@ TabPanel.propTypes = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
     margin: 0,
     padding: 0,
-    height: "100vh",
-    width: "100vw",
+    height: '100vh',
+    width: '100vw',
   },
   AppBar: {
-    background: "None",
-    color: "black",
+    background: 'None',
+    color: 'black',
   },
   Tabs: {
     flexGrow: 1,
-    fontFamily: "Oswald",
+    fontFamily: 'Oswald',
   },
   Tab: {
-    fontFamily: "Oswald",
+    fontFamily: 'Oswald',
   },
   HomePage: {
     flexGrow: 1,
@@ -81,13 +81,13 @@ const useStyles = makeStyles((theme) => ({
     // right: theme.spacing(2),
     // top: -theme.spacing(17),
     maxWidth: 100,
-    float: "right",
+    float: 'right',
   },
   card: {
-    width: "95%",
-    height: "100%",
+    width: '95%',
+    height: '100%',
     marginTop: 10,
-    backgroundColor: "#f7f7f5",
+    backgroundColor: '#f7f7f5',
     padding: 20,
     marginBottom: 20,
   },
@@ -126,13 +126,13 @@ export default function JobDetail(props) {
   const handleCloseBtn = () => {
     history.goBack();
   };
-  const salaryType = "Market rate";
-  const text = "This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text.";
+  const salaryType = 'Market rate';
+  const text = 'This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text. This is some dummy text.';
   // const application = "https://www.auckland.ac.nz/en.html";
   const application = text;
 
   const openInNewTab = (url) => {
-    const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
     if (newWindow) newWindow.opener = null;
   };
   const handleApply = () => {
@@ -160,7 +160,11 @@ export default function JobDetail(props) {
             onChange={handleChange}
           >
             <Tab label="Home" value="/Home" style={{ fontFamily: 'Oswald' }} />
-            <Tab label="Saved Jobs" value="/About" style={{ fontFamily: 'Oswald' }} />
+            <Tab
+              label="Saved Jobs"
+              value="/About"
+              style={{ fontFamily: 'Oswald' }}
+            />
           </Tabs>
           <CompanyLogo
             className={classes.Logo}
@@ -169,10 +173,10 @@ export default function JobDetail(props) {
           />
         </Toolbar>
       </AppBar>
-      <TabPanel value={value} index={"/Home"} className={classes.HomePage}>
+      <TabPanel value={value} index={'/Home'} className={classes.HomePage}>
         <Homepage />
       </TabPanel>
-      <TabPanel value={value} index={"/About"}>
+      <TabPanel value={value} index={'/About'}>
         <About />
       </TabPanel>
       <Grid container className={classes.middleContainer}>
@@ -195,7 +199,12 @@ export default function JobDetail(props) {
             </Grid>
             <Card className={classes.card}>
               <Grid item xs={12}>
-                <Typography display="inline" style={{ fontSize: 40, verticalAlign: "bottom" }}>Google - Techincal Support/Analyst</Typography>
+                <Typography
+                  display="inline"
+                  style={{ fontSize: 40, verticalAlign: 'bottom' }}
+                >
+                  Google - Techincal Support/Analyst
+                </Typography>
                 <Checkbox
                   className={classes.save}
                   color="warning"
@@ -209,14 +218,33 @@ export default function JobDetail(props) {
                 />
               </Grid>
               <Grid item xs={12} style={{ marginTop: 10 }}>
-                <Typography variant="h6" display="inline" style={{ marginRight: 30, verticalAlign: "bottom" }}>
-                  <LocationOnIcon color="primary" style={{ verticalAlign: "middle" }} /> Auckland
+                <Typography
+                  variant="h6"
+                  display="inline"
+                  style={{ marginRight: 30, verticalAlign: 'bottom' }}
+                >
+                  <LocationOnIcon
+                    color="primary"
+                    style={{ verticalAlign: 'middle' }}
+                  />{' '}
+                  Auckland
                 </Typography>
-                <Typography variant="h6" display="inline" style={{ marginRight: 30, verticalAlign: "middle" }}>
-                  <EventNoteIcon color="primary" style={{ verticalAlign: "middle" }} /> Part Time
+                <Typography
+                  variant="h6"
+                  display="inline"
+                  style={{ marginRight: 30, verticalAlign: 'middle' }}
+                >
+                  <EventNoteIcon
+                    color="primary"
+                    style={{ verticalAlign: 'middle' }}
+                  />{' '}
+                  Part Time
                 </Typography>
                 <Typography variant="h6" display="inline" noWrap>
-                  <AccountBalanceWalletIcon color="primary" style={{ verticalAlign: "middle", marginRight: 8 }} />
+                  <AccountBalanceWalletIcon
+                    color="primary"
+                    style={{ verticalAlign: 'middle', marginRight: 8 }}
+                  />
                   {salaryType === 'Market rate' ? (
                     <>&quot;Market rate&quot;</>
                   ) : (
@@ -225,62 +253,58 @@ export default function JobDetail(props) {
                 </Typography>
               </Grid>
               <Grid item xs={12} style={{ marginTop: 10, marginLeft: 5 }}>
-                <Typography variant="h6" display="inline" style={{ marginRight: 10 }}>
+                <Typography
+                  variant="h6"
+                  display="inline"
+                  style={{ marginRight: 10 }}
+                >
                   Start Date:
                 </Typography>
-                <Typography display="inline">
-                  20-11-2021
-                </Typography>
+                <Typography display="inline">20-11-2021</Typography>
                 <br />
-                <Typography variant="h6" display="inline" style={{ marginRight: 10 }}>
+                <Typography
+                  variant="h6"
+                  display="inline"
+                  style={{ marginRight: 10 }}
+                >
                   Application Closing Date:
                 </Typography>
-                <Typography display="inline">
-                  8-10-2021
-                </Typography>
+                <Typography display="inline">8-10-2021</Typography>
                 <br />
-                <Typography variant="h6" display="inline" style={{ marginRight: 10 }}>
+                <Typography
+                  variant="h6"
+                  display="inline"
+                  style={{ marginRight: 10 }}
+                >
                   Contract:
                 </Typography>
-                <Typography display="inline">
-                  Permanent
-                </Typography>
+                <Typography display="inline">Permanent</Typography>
               </Grid>
               <Grid item xs={12} style={{ marginTop: 10, marginLeft: 5 }}>
                 <Typography variant="h6" style={{ marginTop: 30 }}>
                   About the Company
                 </Typography>
-                <Typography className={classes.body}>
-                  {text}
-                </Typography>
+                <Typography className={classes.body}>{text}</Typography>
                 <br />
                 <Typography variant="h6" style={{ marginTop: 30 }}>
                   About the Role
                 </Typography>
-                <Typography className={classes.body}>
-                  {text}
-                </Typography>
+                <Typography className={classes.body}>{text}</Typography>
                 <br />
                 <Typography variant="h6" style={{ marginTop: 30 }}>
                   Key Skills
                 </Typography>
-                <Typography className={classes.body}>
-                  {text}
-                </Typography>
+                <Typography className={classes.body}>{text}</Typography>
                 <br />
                 <Typography variant="h6" style={{ marginTop: 30 }}>
                   Contact Detail
                 </Typography>
-                <Typography className={classes.body}>
-                  {text}
-                </Typography>
+                <Typography className={classes.body}>{text}</Typography>
               </Grid>
               {openApply ? (
                 <Grid container xs={12} style={{ marginTop: 30 }}>
                   <Card className={classes.applySection}>
-                    <Typography variant="h6">
-                      Application Detail:
-                    </Typography>
+                    <Typography variant="h6">Application Detail:</Typography>
                     <Typography className={classes.body}>
                       {application}
                     </Typography>

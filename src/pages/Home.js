@@ -1,36 +1,36 @@
-import { makeStyles, Grid, CssBaseline, Box } from "@material-ui/core";
-import { React, useRef, useState, useEffect } from "react";
-import SideBarSocialLinks from "../components/Homepage/SideBarSocialLinks";
-import SearchSection from "../components/Homepage/SearchSection";
-import JobListingBottom from "../components/Homepage/JobListingBottom";
-import SearchResult from "../components/SearchResults/SearchResultsSection";
-import JobListingDetail from "../components/JobListingDetail";
+import { makeStyles, Grid, CssBaseline, Box } from '@material-ui/core';
+import { React, useRef, useState, useEffect } from 'react';
+import SideBarSocialLinks from '../components/Homepage/SideBarSocialLinks';
+import SearchSection from '../components/Homepage/SearchSection';
+import JobListingBottom from '../components/Homepage/JobListingBottom';
+import SearchResult from '../components/SearchResults/SearchResultsSection';
+import JobListingDetail from '../components/JobListingDetail';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-    height: "100%",
-    backgroundColor: "#f5fbfc",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    height: '100%',
+    backgroundColor: '#f5fbfc',
   },
   SearchSection: {
-    margin: "auto",
+    margin: 'auto',
   },
   middleContainer: { flexGrow: 1 },
   searchResults: {},
   JLB: {},
   SearchResultSection: {
-    maxwidth: "80vw",
+    maxwidth: '80vw',
   },
 }));
 
 function Home() {
   const classes = useStyles();
   const [searchQuery, setsearchQuery] = useState({
-    jobTitle: "",
-    startingSalary: "",
-    highestSalary: "",
+    jobTitle: '',
+    startingSalary: '',
+    highestSalary: '',
     contract: [],
     location: [],
     beforeSearch: true,
@@ -42,8 +42,8 @@ function Home() {
     setsearchQuery({ ...searchQuery, beforeSearch: false, searchDone: false });
   };
   useEffect(() => {
-    window.addEventListener("resize", () => setWidth(window.innerWidth));
-    return () => window.removeEventListener("resize", () => setWidth(window.innerWidth));
+    window.addEventListener('resize', () => setWidth(window.innerWidth));
+    return () => window.removeEventListener('resize', () => setWidth(window.innerWidth));
   });
   const openDetail = () => {
     setDetailOpened(true);

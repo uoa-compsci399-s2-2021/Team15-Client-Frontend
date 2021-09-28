@@ -1,7 +1,15 @@
 import { React, useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Button, InputLabel, Select, MenuItem, FormControl, OutlinedInput } from '@material-ui/core';
+import {
+  Grid,
+  Button,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormControl,
+  OutlinedInput,
+} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,9 +44,33 @@ const useStyles = makeStyles((theme) => ({
 /** THis is a search Bar Currently it only Console logs out the form value  */
 export default function SearchBar({ searchQuery, onClickSearchResult }) {
   const classes = useStyles();
-  const intSalaryValues = [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, -1];
-  const contractList = ['Full Time', 'Part Time', 'Permanent', 'Fix Term', 'Casual'];
-  const locationList = ['Auckland', 'Wellington', 'Christchurch', 'Remote', 'Other'];
+  const intSalaryValues = [
+    0,
+    10000,
+    20000,
+    30000,
+    40000,
+    50000,
+    60000,
+    70000,
+    80000,
+    90000,
+    -1,
+  ];
+  const contractList = [
+    'Full Time',
+    'Part Time',
+    'Permanent',
+    'Fix Term',
+    'Casual',
+  ];
+  const locationList = [
+    'Auckland',
+    'Wellington',
+    'Christchurch',
+    'Remote',
+    'Other',
+  ];
   const startSList = [
     '$0',
     '$10,000',
@@ -61,12 +93,12 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
 
   const menuProps = {
     anchorOrigin: {
-      vertical: "bottom",
-      horizontal: "left",
+      vertical: 'bottom',
+      horizontal: 'left',
     },
     transformOrigin: {
-      vertical: "top",
-      horizontal: "left",
+      vertical: 'top',
+      horizontal: 'left',
     },
     getContentAnchorEl: null,
   };
@@ -96,7 +128,11 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
                 MenuProps={menuProps}
               >
                 {startSList.map((item, index) => (
-                  <MenuItem key={item} value={intSalaryValues[index]} style={{ height: '40px' }}>
+                  <MenuItem
+                    key={item}
+                    value={intSalaryValues[index]}
+                    style={{ height: '40px' }}
+                  >
                     {item}
                   </MenuItem>
                 ))}
@@ -112,7 +148,11 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
                 MenuProps={menuProps}
               >
                 {HighSList.map((item, index) => (
-                  <MenuItem key={item} value={intSalaryValues[index]} style={{ height: '40px' }}>
+                  <MenuItem
+                    key={item}
+                    value={intSalaryValues[index]}
+                    style={{ height: '40px' }}
+                  >
                     {item}
                   </MenuItem>
                 ))}

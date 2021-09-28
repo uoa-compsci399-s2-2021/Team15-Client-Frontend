@@ -1,34 +1,34 @@
-import { React, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Paper, Typography } from "@material-ui/core";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import CompanyLogo from "./CompanyLogo";
-import JobListingDetail from "./JobListingDetail";
-import useFetch from "../apis/useFetch";
+import { React, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Paper, Typography } from '@material-ui/core';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import CompanyLogo from './CompanyLogo';
+import JobListingDetail from './JobListingDetail';
+import useFetch from '../apis/useFetch';
 
 export default function CardCustom(props) {
   const useStyles = makeStyles((theme) => ({
     root: {
-      display: "flex",
-      position: "relative",
+      display: 'flex',
+      position: 'relative',
 
-      flexDirection: "column",
+      flexDirection: 'column',
       borderRadius: props.rounded ? 5 : 0,
-      width: props.width ? props.width : "auto",
-      height: "100%",
+      width: props.width ? props.width : 'auto',
+      height: '100%',
 
-      backgroundColor: props.color || "orange",
-      color: props.color === "white" ? "black" : "white",
+      backgroundColor: props.color || 'orange',
+      color: props.color === 'white' ? 'black' : 'white',
 
-      textAlign: "left",
+      textAlign: 'left',
     },
     gridContainer: {
       paddingLeft: 5,
       paddingTop: 10,
     },
     Header: {
-      display: "flex",
+      display: 'flex',
     },
     title: {
       flexGrow: 1,
@@ -36,7 +36,7 @@ export default function CardCustom(props) {
     },
     information: {
       marginRight: 31,
-      fontSize: "0.75rem",
+      fontSize: '0.75rem',
       paddingBottom: 10,
     },
     location: {
@@ -44,7 +44,7 @@ export default function CardCustom(props) {
       fontWeight: 700,
     },
     ArrowForward: {
-      position: "absolute",
+      position: 'absolute',
       right: 10,
       bottom: 5,
       marginTop: 10,
@@ -71,7 +71,7 @@ export default function CardCustom(props) {
       props.closeDetail();
     }
   };
-  let logoUrl = "";
+  let logoUrl = '';
   if (props.item.companyLogoURL) {
     logoUrl = props.item.companyLogoURL;
   } else {
@@ -80,7 +80,7 @@ export default function CardCustom(props) {
     );
     // console.log(error);
     if (error) {
-      logoUrl = "https://benti-energies.com/asset/images/clients/logo-default.svg";
+      logoUrl = 'https://benti-energies.com/asset/images/clients/logo-default.svg';
     } else {
       logoUrl = `https://logo.clearbit.com/${props.item.companyName}.com`;
     }
@@ -100,7 +100,7 @@ export default function CardCustom(props) {
       >
         <Grid container direction="column" className={classes.gridContainer}>
           <Grid item className={classes.Header}>
-            <Typography sx={{ fontSize: "1rem" }} className={classes.title}>
+            <Typography sx={{ fontSize: '1rem' }} className={classes.title}>
               {props.item.positionName}
             </Typography>
 
@@ -113,7 +113,7 @@ export default function CardCustom(props) {
 
           <Grid item className={classes.location}>
             <Typography variant="h6">
-              {" "}
+              {' '}
               {`$${props.item.jobSalary} ${props.item.jobSalaryType}`}
             </Typography>
 
@@ -121,11 +121,11 @@ export default function CardCustom(props) {
             <span>{props.item.jobLocation}</span>
           </Grid>
           <Typography className={classes.information}>
-            {typeof props.item.jobDescription !== "undefined"
+            {typeof props.item.jobDescription !== 'undefined'
               ? props.item.jobDescription.length > 173
                 ? `${props.item.jobDescription.substr(0, 170)}...`
                 : props.item.jobDescription
-              : "Sorry This is embrassing"}
+              : 'Sorry This is embrassing'}
           </Typography>
         </Grid>
         <ArrowForwardIcon className={classes.ArrowForward} />

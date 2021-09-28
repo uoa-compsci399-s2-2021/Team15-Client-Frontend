@@ -8,6 +8,7 @@ import CompanyLogo from '../components/CompanyLogo';
 import Home from './Home';
 import About from './About';
 import ContactUs from './ContactUs';
+import SearchResultsSection from '../components/SearchResults/SearchResultsSection';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -61,10 +62,10 @@ export default function HomePageRoute(props) {
       <AppBar position="static" className={classes.AppBar}>
         <CssBaseline />
         <Toolbar>
-          <SideBarMenu />
+          {/* <SideBarMenu /> */}
           <Tabs className={classes.Tabs} value={value} centered onChange={handleChange}>
             <Tab label="Home" value="/Home" style={{ fontFamily: 'Oswald' }} />
-            <Tab label="Profile" value="/About" style={{ fontFamily: 'Oswald' }} />
+            <Tab label="Saved Jobs" value="/About" style={{ fontFamily: 'Oswald' }} />
           </Tabs>
           <CompanyLogo className={classes.Logo} companyName="Atech+" sx={{ height: 40 }} />
         </Toolbar>

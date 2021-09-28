@@ -20,25 +20,28 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     width: '80vw',
     margin: 'auto',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
+    // justifyContent: "center",
+    // alignItems: "center",
+    // textAlign: "center",
     paddingTop: 10,
+    marginTop: 10,
   },
   CardCustom: {},
   SearchResultsContainer: {},
   ResultHead: {
     display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    paddingBottom: 10,
+    // flexWrap: "wrap",
+    // flexDirection: "row",
+    // justifyContent: "center",
+    // alignItems: "center",
+    // textAlign: "center",
+    // paddingBottom: 10,
   },
   formControl: {
     minWidth: 130,
-    width: '15%',
+    // width: "15%",
+    float: 'right',
+    paddingBottom: 10,
   },
 }));
 
@@ -71,6 +74,17 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
+  const menuProps = {
+    anchorOrigin: {
+      vertical: 'bottom',
+      horizontal: 'left',
+    },
+    transformOrigin: {
+      vertical: 'top',
+      horizontal: 'left',
+    },
+    getContentAnchorEl: null,
+  };
 
   const handleSortChange = (e) => {
     setSortValue(e.target.value);
@@ -94,9 +108,14 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
   };
 
   const filterListing = (value) => {
-    const PName = value.positionName.toLowerCase().includes(searchQuery.jobTitle.toLowerCase());
+    const PName = value.positionName
+      .toLowerCase()
+      .includes(searchQuery.jobTitle.toLowerCase());
     let LSalary = true;
-    if (searchQuery.startingSalary !== '' && searchQuery.startingSalary !== -1) {
+    if (
+      searchQuery.startingSalary !== ''
+      && searchQuery.startingSalary !== -1
+    ) {
       LSalary = value.jobSalary >= searchQuery.startingSalary;
     }
     let HSalary = true;
@@ -109,27 +128,44 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
     }
     let ContractT = true;
     let Hours = true;
-    if (searchQuery.contract !== '') {
-      ContractT = value.jobHours === searchQuery.contract;
-      Hours = value.jobContract === searchQuery.contract;
+    if (searchQuery.contract.length !== 0) {
+      ContractT = searchQuery.contract.includes(value.jobHours);
+      Hours = searchQuery.contract.includes(value.jobContract);
     }
-    let Location;
-    if (searchQuery.location === 'Other') {
-      Location = !['Auckland', 'Christchurch', 'Wellington', 'Remote'].includes(value.jobLocation);
-    } else {
-      Location = value.jobLocation.toLowerCase().includes(searchQuery.location.toLowerCase());
+    let Location = true;
+
+    if (searchQuery.location.includes('Other')) {
+      Location = !['Auckland', 'Christchurch', 'Wellington', 'Remote'].includes(
+        value.jobLocation,
+      );
     }
-    return value.isActive && PName && HSalary && LSalary && (ContractT || Hours) && Location;
+    if (searchQuery.location.length !== 0) {
+      Location = searchQuery.location.includes(value.location);
+    }
+    // console.log(ContractT || Hours);
+    return (
+      value.isActive
+      && PName
+      && HSalary
+      && LSalary
+      && (ContractT || Hours)
+      && Location
+    );
   };
 
   useEffect(() => {
     const fetchJobInfo = async () => {
-      await fetch('http://localhost:5000/api/admin/get-job-info')
+      await fetch('https://cs399-team15.herokuapp.com/api/admin/get-job-info')
         .then((res) => res.json())
         .then(
           (result) => {
             setIsLoaded(true);
-            setItems(result.filter(filterListing));
+            console.log(searchQuery);
+            if (searchQuery.showAll) {
+              setItems(result.filter((job) => job.isActive));
+            } else {
+              setItems(result.filter(filterListing));
+            }
           },
           (error) => {
             setIsLoaded(true);
@@ -150,27 +186,49 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
   return (
     <Box className={classes.root} sx={{ width: '100vw' }}>
       <Box className={classes.ResultHead}>
-        <Button
-          variant="contained"
-          onClick={() => setsearchQuery({ ...searchQuery, beforeSearch: true })}
-        >
-          Back
-        </Button>
-        <Typography variant="h3" style={{ fontFamily: 'Oswald', flexGrow: 1 }}>
-          Found {items.length} Jobs Matching Your Search
-        </Typography>
+        <Grid xs={8}>
+          <Typography
+            variant="h5"
+            style={{
+              fontFamily: 'Oswald',
+              flexGrow: 1,
+              verticalAlign: 'bottom',
+            }}
+          >
+            Found {items.length} Jobs Matching Your Search
+          </Typography>
+        </Grid>
+        <Grid xs={4}>
+          <Button
+            variant="outlined"
+            onClick={() => setsearchQuery({ ...searchQuery, beforeSearch: true })}
+            size="small"
+            style={{
+              verticalAlign: 'bottom',
+              float: 'right',
+              marginLeft: 20,
+              padding: 0,
+            }}
+          >
+            Reset
+          </Button>
+          <FormControl className={classes.formControl}>
+            <InputLabel>Sort</InputLabel>
 
-        <FormControl className={classes.formControl}>
-          <InputLabel>Sort</InputLabel>
-
-          <Select value={SortValue} name="sort" onChange={(e) => handleSortChange(e)}>
-            {SortList.map((item) => (
-              <MenuItem key={item} value={item}>
-                {item}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+            <Select
+              value={SortValue}
+              name="sort"
+              onChange={(e) => handleSortChange(e)}
+              MenuProps={menuProps}
+            >
+              {SortList.map((item) => (
+                <MenuItem key={item} value={item}>
+                  {item}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
       </Box>
 
       <Divider style={{ marginBottom: 10 }} />

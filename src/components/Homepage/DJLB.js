@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 
 /** this Is probably a one time class */
 // Dynamic Job Listing Bottom
-export default function DJLB() {
+export default function DJLB(props) {
   const classes = useStyles();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -30,19 +30,35 @@ export default function DJLB() {
   ];
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/admin/get-job-info')
+    fetch('https://cs399-team15.herokuapp.com/api/admin/get-job-info')
       .then((res) => res.json())
       .then(
         (result) => {
+          // console.log(result);
           setIsLoaded(true);
           setItems(result.filter((e) => e.isActive));
         },
         (error) => {
+          console.log(error);
           setIsLoaded(true);
           setError(error);
         },
       );
   }, []);
+  // useEffect(() => {
+  //   fetch('http://localhost:5000/api/admin/get-job-info')
+  //     .then((res) => res.json())
+  //     .then(
+  //       (result) => {
+  //         setIsLoaded(true);
+  //         setItems(result.filter((e) => e.isActive));
+  //       },
+  //     )
+  //     .catch((error) => {
+  //       setIsLoaded(true);
+  //       setError(error);
+  //     });
+  // }, []);
 
   if (error) {
     return <div>An Errror Occurced: {error}</div>;
@@ -59,7 +75,7 @@ export default function DJLB() {
           key={`${item.positionName} Lastest ${index.toString()}`}
           cols={layout[index]}
         >
-          <CardCustom item={item} color={colors[index]} />
+          <CardCustom item={item} color={colors[index]} detailOpen={props.detailOpen} closeDetail={props.closeDetail} />
         </ImageListItem>
       ))}
     </ImageList>

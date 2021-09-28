@@ -5,6 +5,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import CompanyLogo from './CompanyLogo';
 import JobListingDetail from './JobListingDetail';
+import useFetch from '../apis/useFetch';
 
 export default function CardCustom(props) {
   const useStyles = makeStyles((theme) => ({
@@ -64,10 +65,39 @@ export default function CardCustom(props) {
    */
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    if (props.closeDetail) {
+      props.closeDetail();
+    }
+  };
+  let logoUrl = '';
+  if (props.item.companyLogoURL) {
+    logoUrl = props.item.companyLogoURL;
+  } else {
+    const { error } = useFetch(
+      `https://logo.clearbit.com/${props.item.companyName}.com`,
+    );
+    // console.log(error);
+    if (error) {
+      logoUrl = 'https://benti-energies.com/asset/images/clients/logo-default.svg';
+    } else {
+      logoUrl = `https://logo.clearbit.com/${props.item.companyName}.com`;
+    }
+  }
   return (
     <>
-      <Paper variant="outlined" square className={classes.root} onClick={() => setOpen(true)}>
+      <Paper
+        variant="outlined"
+        square
+        className={classes.root}
+        onClick={() => {
+          setOpen(true);
+          if (props.detailOpen) {
+            props.detailOpen();
+          }
+        }}
+      >
         <Grid container direction="column" className={classes.gridContainer}>
           <Grid item className={classes.Header}>
             <Typography sx={{ fontSize: '1rem' }} className={classes.title}>
@@ -76,7 +106,7 @@ export default function CardCustom(props) {
 
             <CompanyLogo
               companyName={props.item.companyName}
-              url={props.item.companyLogoURL}
+              url={logoUrl}
               sx={{ maxHeight: 40, marginRight: 10 }}
             />
           </Grid>
@@ -100,7 +130,11 @@ export default function CardCustom(props) {
         </Grid>
         <ArrowForwardIcon className={classes.ArrowForward} />
       </Paper>
-      {open ? <JobListingDetail item={props.item} open={open} hClose={handleClose} /> : <></>}
+      {open ? (
+        <JobListingDetail item={props.item} open={open} hClose={handleClose} />
+      ) : (
+        <></>
+      )}
     </>
   );
 }

@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Home() {
+function Home(props) {
   const classes = useStyles();
   const [searchQuery, setsearchQuery] = useState({
     jobTitle: '',
@@ -68,9 +68,9 @@ function Home() {
         </Grid>
       </Grid>
       {/* searchQuery.beforeSearch */}
-      {searchQuery.beforeSearch && (width > 800 || detailOpened) ? (
+      {searchQuery.beforeSearch && (width > 1000 || detailOpened) ? (
         <Grid container className={classes.JLB}>
-          <JobListingBottom detailOpen={openDetail} closeDetail={closeDetail} />
+          <JobListingBottom detailOpen={openDetail} closeDetail={closeDetail} items={props.items} userData={props.userData} isLoaded={props.isLoaded} handleUpdate={props.handleUpdate} />
         </Grid>
       ) : null}
       {searchQuery.beforeSearch ? (
@@ -81,6 +81,9 @@ function Home() {
           className={classes.SearchResultSection}
           searchQuery={searchQuery}
           setsearchQuery={setsearchQuery}
+          items={props.items}
+          userData={props.userData}
+          handleUpdate={props.handleUpdate}
         />
       )}
       {/* <JobListingDetail /> */}

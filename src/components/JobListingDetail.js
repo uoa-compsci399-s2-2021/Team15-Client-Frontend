@@ -10,6 +10,7 @@ import {
   Card,
   Checkbox,
 } from '@material-ui/core';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -25,7 +26,9 @@ import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import IconButton from '@material-ui/core/IconButton';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import useFetch from '../apis/useFetch';
+import SaveStar from './SearchResults/SaveStar';
 
 // const style = {
 //   position: "absolute",
@@ -54,7 +57,7 @@ JobListingDetail.defaultProps = {
   },
 };
 
-export default function JobListingDetail({ open, hClose, item }) {
+export default function JobListingDetail({ open, hClose, item, userData, handleUpdate }) {
   const useStyles = makeStyles((theme) => ({
     Header: {
       display: 'flex',
@@ -132,10 +135,16 @@ export default function JobListingDetail({ open, hClose, item }) {
       position: 'fixed',
       marginTop: 10,
     },
+    img: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
   }));
   const classes = useStyles();
   const [openApply, setOpenApply] = useState(false);
   const location = useHistory();
+  const jobID = item._id;
   const handleChange = (event, newValue) => {
     setValue(newValue);
     location.push(newValue);
@@ -175,7 +184,124 @@ export default function JobListingDetail({ open, hClose, item }) {
       logoUrl = `https://logo.clearbit.com/${item.companyName}.com`;
     }
   }
-  console.log(item);
+  function timeout(delay) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
+
+  const [openMessageBox, setOpenMessageBox] = useState(false);
+  const [saved, setSaved] = useState(userData.savedJobList.includes(jobID));
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const closeMessageBox = () => {
+    setOpenMessageBox(false);
+  };
+  const openMessage = () => {
+    setOpenMessageBox(true);
+  };
+
+  async function saveJob(info) {
+    const response = await axios(
+      'https://cs399-team15.herokuapp.com/api/private/user-save-job',
+      {
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+        },
+        data: info,
+        method: 'POST',
+      },
+    );
+    return response;
+  }
+  async function unsaveJob(info) {
+    console.log(info);
+    const response = await axios(
+      'https://cs399-team15.herokuapp.com/api/private/user-delete-job',
+      {
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+        },
+        data: info,
+        method: 'DELETE',
+      },
+    );
+    return response;
+  }
+  async function handleSave() {
+    const data = {
+      jobId: item._id,
+    };
+    try {
+      setLoading(true);
+      // call api
+      const response = await saveJob(data);
+      console.log(response);
+      if (response.status === 200) {
+        console.log(response);
+        setLoading(false);
+        setSaved(true);
+        handleUpdate();
+      } else {
+        console.log(response);
+        setError(true);
+        setLoading(false);
+        //   setOpenMessageBox(true);
+        //   await timeout(2000);
+        //   setOpenMessageBox(false);
+      }
+    } catch (e) {
+      console.log(e.response.data.error);
+      console.log('error');
+      setLoading(false);
+      setError(true);
+      setOpenMessageBox(true);
+      await timeout(2000);
+      setOpenMessageBox(false);
+    }
+  }
+
+  async function handleUnsave() {
+    const data = {
+      jobId: item._id,
+    };
+    try {
+      setLoading(true);
+      // call api
+      const response = await unsaveJob(data);
+      console.log(response);
+      if (response.status === 200) {
+        console.log(response);
+        setLoading(false);
+        setSaved(false);
+        handleUpdate();
+      } else {
+        console.log(response);
+        setError(true);
+        setLoading(false);
+        //   setOpenMessageBox(true);
+        //   await timeout(2000);
+        //   setOpenMessageBox(false);
+      }
+    } catch (e) {
+      console.log(e);
+      console.log('unsave Error');
+      setLoading(false);
+      setError(true);
+      setOpenMessageBox(true);
+      await timeout(2000);
+      setOpenMessageBox(false);
+    }
+  }
+  const handleOnChange = (e) => {
+    console.log(saved);
+    if (saved) {
+      handleUnsave();
+    } else {
+      handleSave();
+    }
+  };
+
   return (
     <div>
       <Dialog
@@ -256,12 +382,19 @@ export default function JobListingDetail({ open, hClose, item }) {
             >
               {item.companyName} - {item.positionName}
             </Typography>
-            <Checkbox
-              className={classes.save}
-              color="warning"
-              icon={<StarBorderRoundedIcon />}
-              checkedIcon={<StarRoundedIcon />}
-            />
+            {loading ? (
+              <CircularProgress className={classes.save} color="inherit" size="1.5rem" />
+            ) : (
+              <Checkbox
+                className={classes.save}
+                color="warning"
+                checked={saved}
+                icon={<StarBorderRoundedIcon />}
+                checkedIcon={<StarRoundedIcon />}
+                onChange={(e) => handleOnChange(e)}
+              />
+            )}
+            {/* <SaveStar openMessage={openMessage} closeMessage={closeMessageBox} jobID={jobID} userData={userData} /> */}
             <img className={classes.logo} src={logoUrl} alt="not found" />
           </Grid>
           <Grid item xs={12} style={{ marginTop: 10 }}>
@@ -421,6 +554,31 @@ export default function JobListingDetail({ open, hClose, item }) {
             </Grid>
           )}
         </Grid>
+      </Dialog>
+      <Dialog
+        // className={classes.messageBox}
+        maxWidth="xs"
+        open={openMessageBox}
+        onClose={closeMessageBox}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        {error ? (
+          <DialogContent>
+            <div className={classes.img}>
+              <img
+                src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/alert-circle-orange-512.png"
+                alt="Error"
+                style={{ maxWidth: 100, marginLeft: 'auto', marginRight: 'auto' }}
+              />
+            </div>
+            <DialogContentText align="center" variant="h5" style={{ color: 'black', margin: 8, fontFamily: 'Oswald' }}>
+              Oops! Something went wrong. Please try again.
+            </DialogContentText>
+          </DialogContent>
+        ) : (
+          null
+        )}
       </Dialog>
     </div>
   );

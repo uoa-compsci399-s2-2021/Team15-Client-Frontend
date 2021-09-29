@@ -47,5 +47,7 @@ module.exports = {
     'prefer-template': 'off',
     'max-len': 'off',
     'import/no-cycle': 'off',
+    'no-plusplus': 'off',
+    'no-underscore-dangle': 'off',
   },
 };

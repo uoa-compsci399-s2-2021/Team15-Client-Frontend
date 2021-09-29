@@ -56,7 +56,7 @@ SearchResultsSection.defaultProps = {
     searchDone: false,
   },
 };
-export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
+export default function SearchResultsSection({ searchQuery, setsearchQuery, userData, handleUpdate }) {
   const classes = useStyles();
   const [SortValue, setSortValue] = useState('');
   const SortList = ['Date', 'Alphabetically'];
@@ -160,11 +160,11 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
         .then(
           (result) => {
             setIsLoaded(true);
-            console.log(searchQuery);
+            // console.log(searchQuery);
             if (searchQuery.showAll) {
               setItems(result.filter((job) => job.isActive));
             } else {
-              setItems(result.filter(filterListing));
+              setItems(result.filter((job) => job.isActive).filter(filterListing));
             }
           },
           (error) => {
@@ -253,6 +253,8 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery }) {
               item={listing}
               color={colors[i % 8]}
               className={classes.CardCustom}
+              userData={userData}
+              handleUpdate={handleUpdate}
             />
           </Grid>
         ))}

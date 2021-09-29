@@ -30,7 +30,7 @@ export default function JobListingBottom(props) {
         <ImageList cols={1} gap={0}>
           <ImageListItem rows={2}>
             <Paper variant="outlined" square className={classes.LatestJobs}>
-              <Typography variant="h3">
+              <Typography variant="h3" style={{ fontFamily: 'Oswald' }}>
                 The
                 <br />
                 Latest
@@ -42,7 +42,7 @@ export default function JobListingBottom(props) {
         </ImageList>
       </Grid>
       <Grid item xs={10}>
-        <DJLB detailOpen={props.detailOpen} closeDetail={props.closeDetail} />
+        <DJLB detailOpen={props.detailOpen} closeDetail={props.closeDetail} items={props.items} isLoaded={props.isLoaded} userData={props.userData} handleUpdate={props.handleUpdate} />
       </Grid>
     </Grid>
   );

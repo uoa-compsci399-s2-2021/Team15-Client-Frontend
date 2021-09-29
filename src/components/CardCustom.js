@@ -118,13 +118,15 @@ export default function CardCustom(props) {
             <Typography sx={{ fontSize: '1rem', fontFamily: 'Oswald' }} className={classes.title} display="inline">
               {props.item.positionName}
             </Typography>
-            <Checkbox
+            {props.userData.savedJobList !== undefined ? (
+              <Checkbox
                 className={classes.save}
                 color="warning"
                 checked={props.userData.savedJobList.includes(props.item._id)}
                 icon={<StarBorderRoundedIcon />}
                 checkedIcon={<StarRoundedIcon />}
-            />
+              />
+            ) : null}
             <img className={classes.logo} src={logoUrl} alt="not found" />
             {/* <CompanyLogo
               companyName={props.item.companyName}

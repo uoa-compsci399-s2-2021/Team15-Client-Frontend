@@ -10,4 +10,18 @@ const test = async () => {
   return response;
 };
 
-export default test;
+async function saveJob(info) {
+  const response = await axios(
+    'https://cs399-team15.herokuapp.com/api/private/user-save-job',
+    {
+      headers: {
+        'Content-type': 'application/json',
+      },
+      data: info,
+      method: 'POST',
+    },
+  );
+  return response;
+}
+
+export default {test, saveJob};

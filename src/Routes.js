@@ -18,18 +18,18 @@ function Routes() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
+        <PrivateRoute exact path="/">
           <Redirect to="/Home" />
-        </Route>
-        <Route path="/Home">
+        </PrivateRoute>
+        <PrivateRoute path="/Home">
           <Homepage tabValue={'/Home'} />
-        </Route>
-        <Route path="/About">
+        </PrivateRoute>
+        <PrivateRoute path="/About">
           <Homepage tabValue={'/About'} about />
-        </Route>
-        <Route path="/ContactUs">
+        </PrivateRoute>
+        <PrivateRoute path="/ContactUs">
           <Homepage tabValue={'/ContactUs'} />
-        </Route>
+        </PrivateRoute>
         <Route path="/Login">
           <Login />
         </Route>

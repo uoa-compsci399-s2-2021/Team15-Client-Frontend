@@ -1,8 +1,10 @@
 import { React, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Paper, Typography } from '@material-ui/core';
+import { Grid, Paper, Typography, Checkbox } from '@material-ui/core';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
+import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import CompanyLogo from './CompanyLogo';
 import JobListingDetail from './JobListingDetail';
 import useFetch from '../apis/useFetch';
@@ -33,6 +35,7 @@ export default function CardCustom(props) {
     title: {
       flexGrow: 1,
       ...theme.typography.button,
+      fontFamily: 'Oswald',
     },
     information: {
       marginRight: 31,
@@ -48,6 +51,18 @@ export default function CardCustom(props) {
       right: 10,
       bottom: 5,
       marginTop: 10,
+    },
+    logo: {
+      maxHeight: 40,
+      float: 'right',
+      marginRight: 10,
+    },
+    save: {
+      '& svg': {
+        fontSize: 25,
+      },
+      color: '#f2d12c',
+      verticalAlign: 'bottom',
     },
   }));
   /*
@@ -100,27 +115,39 @@ export default function CardCustom(props) {
       >
         <Grid container direction="column" className={classes.gridContainer}>
           <Grid item className={classes.Header}>
-            <Typography sx={{ fontSize: '1rem' }} className={classes.title}>
+            <Typography sx={{ fontSize: '1rem', fontFamily: 'Oswald' }} className={classes.title} display="inline">
               {props.item.positionName}
             </Typography>
-
-            <CompanyLogo
+            <Checkbox
+                className={classes.save}
+                color="warning"
+                checked={props.userData.savedJobList.includes(props.item._id)}
+                icon={<StarBorderRoundedIcon />}
+                checkedIcon={<StarRoundedIcon />}
+            />
+            <img className={classes.logo} src={logoUrl} alt="not found" />
+            {/* <CompanyLogo
               companyName={props.item.companyName}
               url={logoUrl}
               sx={{ maxHeight: 40, marginRight: 10 }}
-            />
+            /> */}
           </Grid>
 
           <Grid item className={classes.location}>
-            <Typography variant="h6">
-              {' '}
-              {`$${props.item.jobSalary} ${props.item.jobSalaryType}`}
+            <Typography variant="h6" style={{ fontFamily: 'Oswald' }}>
+              {props.item.jobSalaryType === 'Market rate' ? (
+                <>&quot;Market rate&quot;</>
+              ) : (
+                <>
+                  ${props.item.jobSalary} {props.item.jobSalaryType}
+                </>
+              )}
             </Typography>
 
-            <LocationOnIcon />
-            <span>{props.item.jobLocation}</span>
+            <LocationOnIcon style={{ fontSize: '20' }} />
+            <span style={{ fontFamily: 'Oswald' }}>{props.item.jobLocation}</span>
           </Grid>
-          <Typography className={classes.information}>
+          <Typography className={classes.information} style={{ fontFamily: 'Oswald' }}>
             {typeof props.item.jobDescription !== 'undefined'
               ? props.item.jobDescription.length > 173
                 ? `${props.item.jobDescription.substr(0, 170)}...`
@@ -131,7 +158,7 @@ export default function CardCustom(props) {
         <ArrowForwardIcon className={classes.ArrowForward} />
       </Paper>
       {open ? (
-        <JobListingDetail item={props.item} open={open} hClose={handleClose} />
+        <JobListingDetail item={props.item} open={open} hClose={handleClose} userData={props.userData} handleUpdate={props.handleUpdate} />
       ) : (
         <></>
       )}

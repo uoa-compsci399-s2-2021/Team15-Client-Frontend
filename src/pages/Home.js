@@ -26,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Home(props) {
+  useEffect(() => {
+    document.title = 'Home';
+  }, []);
+
   const classes = useStyles();
   const [searchQuery, setsearchQuery] = useState({
     jobTitle: '',

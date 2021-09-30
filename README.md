@@ -1,5 +1,14 @@
 # Team15-Client-Frontend
 
+Name of the project.
+A link to your Project Management tool.
+A short description of what the project is about. (You can put a link to your final report here).
+Technologies that are used to build the project (include the languages used, the libraries and their versions).
+Instructions on how to install and setup the project (specify all dependencies).
+Usage Examples (if available).
+URL of the website where the project has been deployed (if applicable).
+Future Plan (Ideas for future releases)
+Acknowledgements (if any) - You can list tutorials used, projects referred to, people consulted etc.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -220,7 +220,6 @@ export default function JobListingDetail({
     return response;
   }
   async function unsaveJob(info) {
-    console.log(info);
     const response = await axios(
       'https://cs399-team15.herokuapp.com/api/private/user-delete-job',
       {
@@ -242,14 +241,11 @@ export default function JobListingDetail({
       setLoading(true);
       // call api
       const response = await saveJob(data);
-      console.log(response);
       if (response.status === 200) {
-        console.log(response);
         setLoading(false);
         setSaved(true);
         handleUpdate();
       } else {
-        console.log(response);
         setError(true);
         setLoading(false);
         //   setOpenMessageBox(true);
@@ -257,7 +253,6 @@ export default function JobListingDetail({
         //   setOpenMessageBox(false);
       }
     } catch (e) {
-      console.log(e.response.data.error);
       console.log('error');
       setLoading(false);
       setError(true);
@@ -275,14 +270,11 @@ export default function JobListingDetail({
       setLoading(true);
       // call api
       const response = await unsaveJob(data);
-      console.log(response);
       if (response.status === 200) {
-        console.log(response);
         setLoading(false);
         setSaved(false);
         handleUpdate();
       } else {
-        console.log(response);
         setError(true);
         setLoading(false);
         //   setOpenMessageBox(true);
@@ -300,7 +292,6 @@ export default function JobListingDetail({
     }
   }
   const handleOnChange = (e) => {
-    console.log(saved);
     if (saved) {
       handleUnsave();
     } else {

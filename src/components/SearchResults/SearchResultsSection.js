@@ -149,7 +149,6 @@ export default function SearchResultsSection({
     if (searchQuery.location.length !== 0) {
       Location = searchQuery.location.includes(value.location);
     }
-    // console.log(ContractT || Hours);
     return PName && HSalary && LSalary && (ContractT || Hours) && Location;
   };
 
@@ -160,7 +159,6 @@ export default function SearchResultsSection({
         .then(
           (result) => {
             setIsLoaded(true);
-            // console.log(searchQuery);
             if (searchQuery.showAll) {
               setItems(result.filter((job) => job.isActive));
             } else {

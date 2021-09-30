@@ -153,7 +153,7 @@ export default function HomePageRoute(props) {
       <MenuItem>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="Cindy Baker" />
+            <Avatar alt={userData.firstname + ' ' + userData.lastname} />
           </ListItemAvatar>
           <ListItemText
             primary={userData.firstname + ' ' + userData.lastname}
@@ -202,6 +202,7 @@ export default function HomePageRoute(props) {
               style={{ fontFamily: 'Oswald' }}
             />
           </Tabs>
+          {userData.firstname}
           <IconButton
             edge="end"
             aria-label="account of current user"
@@ -210,13 +211,22 @@ export default function HomePageRoute(props) {
             onClick={handleProfileMenuOpen}
             color="inherit"
           >
-            <Avatar alt="Remy Sharp" className={classes.large} />
+            <Avatar
+              alt={userData.firstname + ' ' + userData.lastname}
+              className={classes.large}
+            />
           </IconButton>
         </Toolbar>
       </AppBar>
       {renderMenu}
+
       <TabPanel value={value} index={'/Home'} className={classes.HomePage}>
-        <Home userData={userData} items={items} isLoaded={props.isLoaded} handleUpdate={handleUpdate} />
+        <Home
+          userData={userData}
+          items={items}
+          isLoaded={props.isLoaded}
+          handleUpdate={handleUpdate}
+        />
       </TabPanel>
       <TabPanel value={value} index={'/About'}>
         <About userData={userData} items={items} handleUpdate={handleUpdate} />

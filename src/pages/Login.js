@@ -68,8 +68,6 @@ export default function Login() {
         setLoading(true);
         const response = await login(loginInfo);
         if (response.status === 200) {
-          console.log('success');
-          console.log(localStorage.getItem('authToken'));
           localStorage.setItem('authToken', response.data.token);
           window.location.href = '/';
         }

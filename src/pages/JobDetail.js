@@ -26,7 +26,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SideBarMenu from '../components/Homepage/SideBarMenu';
 import CompanyLogo from '../components/CompanyLogo';
 import Homepage from './Home';
-import About from './About';
+import SavedJobs from './SavedJobs';
 import SideBarSocialLinks from '../components/Homepage/SideBarSocialLinks';
 import ContactUs from './ContactUs';
 
@@ -162,7 +162,7 @@ export default function JobDetail(props) {
             <Tab label="Home" value="/Home" style={{ fontFamily: 'Oswald' }} />
             <Tab
               label="Saved Jobs"
-              value="/About"
+              value="/SavedJobs"
               style={{ fontFamily: 'Oswald' }}
             />
           </Tabs>
@@ -176,8 +176,8 @@ export default function JobDetail(props) {
       <TabPanel value={value} index={'/Home'} className={classes.HomePage}>
         <Homepage />
       </TabPanel>
-      <TabPanel value={value} index={'/About'}>
-        <About />
+      <TabPanel value={value} index={'/SavedJobs'}>
+        <SavedJobs />
       </TabPanel>
       <Grid container className={classes.middleContainer}>
         <Grid item xs={1}>

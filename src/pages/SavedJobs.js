@@ -47,8 +47,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function About(props) {
-  document.title = 'About';
+export default function SavedJobs(props) {
+  useEffect(() => {
+    document.title = 'Saved Jobs';
+  }, []);
+
   const classes = useStyles();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);

@@ -23,12 +23,9 @@ import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import { useHistory } from 'react-router';
 import { useParams, Link as RouterLink } from 'react-router-dom';
-import SideBarMenu from '../components/Homepage/SideBarMenu';
 import CompanyLogo from '../components/CompanyLogo';
 import Home from './Home';
-import About from './About';
-import ContactUs from './ContactUs';
-import SearchResultsSection from '../components/SearchResults/SearchResultsSection';
+import SavedJobs from './SavedJobs';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -79,6 +76,7 @@ export default function HomePageRoute(props) {
   const [items, setItems] = useState([]);
   const [updated, setUpdated] = useState(false);
   const handleChange = (event, newValue) => {
+    console.log(newValue);
     setValue(newValue);
     location.push(newValue);
   };
@@ -153,7 +151,7 @@ export default function HomePageRoute(props) {
       <MenuItem>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="Cindy Baker" />
+            <Avatar alt={userData.firstname + ' ' + userData.lastname} />
           </ListItemAvatar>
           <ListItemText
             primary={userData.firstname + ' ' + userData.lastname}
@@ -198,10 +196,11 @@ export default function HomePageRoute(props) {
             <Tab label="Home" value="/Home" style={{ fontFamily: 'Oswald' }} />
             <Tab
               label="Saved Jobs"
-              value="/About"
+              value="/SavedJobs"
               style={{ fontFamily: 'Oswald' }}
             />
           </Tabs>
+          {userData.firstname}
           <IconButton
             edge="end"
             aria-label="account of current user"
@@ -210,16 +209,29 @@ export default function HomePageRoute(props) {
             onClick={handleProfileMenuOpen}
             color="inherit"
           >
-            <Avatar alt="Remy Sharp" className={classes.large} />
+            <Avatar
+              alt={userData.firstname + ' ' + userData.lastname}
+              className={classes.large}
+            />
           </IconButton>
         </Toolbar>
       </AppBar>
       {renderMenu}
+
       <TabPanel value={value} index={'/Home'} className={classes.HomePage}>
-        <Home userData={userData} items={items} isLoaded={props.isLoaded} handleUpdate={handleUpdate} />
+        <Home
+          userData={userData}
+          items={items}
+          isLoaded={props.isLoaded}
+          handleUpdate={handleUpdate}
+        />
       </TabPanel>
-      <TabPanel value={value} index={'/About'}>
-        <About userData={userData} items={items} handleUpdate={handleUpdate} />
+      <TabPanel value={value} index={'/SavedJobs'}>
+        <SavedJobs
+          userData={userData}
+          items={items}
+          handleUpdate={handleUpdate}
+        />
       </TabPanel>
     </Box>
   );

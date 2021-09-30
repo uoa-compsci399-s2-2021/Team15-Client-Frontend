@@ -82,7 +82,9 @@ export default function SaveStar(props) {
   }
 
   const [openMessageBox, setOpenMessageBox] = useState(false);
-  const [saved, setSaved] = useState(props.userData.savedJobList.includes(jobID));
+  const [saved, setSaved] = useState(
+    props.userData.savedJobList.includes(jobID),
+  );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const closeMessageBox = () => {
@@ -125,14 +127,11 @@ export default function SaveStar(props) {
       setLoading(true);
       // call api
       const response = await saveJob(data);
-      console.log(response);
       if (response.status === 200) {
-        console.log(response);
         setLoading(false);
         setSaved(true);
         handleUpdate();
       } else {
-        console.log(response);
         setError(true);
         setLoading(false);
         //   setOpenMessageBox(true);
@@ -158,14 +157,11 @@ export default function SaveStar(props) {
       setLoading(true);
       // call api
       const response = await unsaveJob(data);
-      console.log(response);
       if (response.status === 200) {
-        console.log(response);
         setLoading(false);
         setSaved(false);
         handleUpdate();
       } else {
-        console.log(response);
         setError(true);
         setLoading(false);
         //   setOpenMessageBox(true);
@@ -183,7 +179,6 @@ export default function SaveStar(props) {
     }
   }
   const handleOnChange = (e) => {
-    console.log(saved);
     if (saved) {
       handleUnsave();
     } else {
@@ -191,7 +186,7 @@ export default function SaveStar(props) {
     }
   };
   return (
-    <div style={{ display: 'inline-block'}}>
+    <div style={{ display: 'inline-block' }}>
       {loading ? (
         <CircularProgress
           className={classes.save}

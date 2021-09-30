@@ -1,5 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect, useLocation } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+  useLocation,
+} from 'react-router-dom';
 import Login from './pages/Login';
 import JobBoard from './pages/JobBoard';
 import PrivateRoute from './utils/PrivateRoute';
@@ -24,8 +30,8 @@ function Routes() {
         <PrivateRoute path="/Home">
           <Homepage tabValue={'/Home'} />
         </PrivateRoute>
-        <PrivateRoute path="/About">
-          <Homepage tabValue={'/About'} about />
+        <PrivateRoute path="/SavedJobs">
+          <Homepage tabValue={'/SavedJobs'} />
         </PrivateRoute>
         <PrivateRoute path="/ContactUs">
           <Homepage tabValue={'/ContactUs'} />

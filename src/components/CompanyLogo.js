@@ -46,21 +46,27 @@ export default function CompanyLogo({ url, companyName, sx }) {
   }
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response1 = await fetch(`https://logo.clearbit.com/${companyName}.com`)
-        .then((result) => {
-          if (result.ok) setimgSrc(result.url);
-        })
-        .catch((err) => {});
-
-      if (url) {
-        const response2 = await fetch(url)
+    try {
+      const fetchData = async () => {
+        const response1 = await fetch(
+          `https://logo.clearbit.com/${companyName}.com`,
+        )
           .then((result) => {
             if (result.ok) setimgSrc(result.url);
           })
           .catch((err) => {});
-      }
-    };
+
+        if (url) {
+          const response2 = await fetch(url)
+            .then((result) => {
+              if (result.ok) setimgSrc(result.url);
+            })
+            .catch((err) => {});
+        }
+      };
+    } catch (err) {
+      console.log(err);
+    }
     fetchData();
   }, []);
 

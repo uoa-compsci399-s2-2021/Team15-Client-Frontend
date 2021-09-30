@@ -56,7 +56,12 @@ SearchResultsSection.defaultProps = {
     searchDone: false,
   },
 };
-export default function SearchResultsSection({ searchQuery, setsearchQuery, userData, handleUpdate }) {
+export default function SearchResultsSection({
+  searchQuery,
+  setsearchQuery,
+  userData,
+  handleUpdate,
+}) {
   const classes = useStyles();
   const [SortValue, setSortValue] = useState('');
   const SortList = ['Date', 'Alphabetically'];
@@ -108,6 +113,8 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery, user
   };
 
   const filterListing = (value) => {
+    if (!value.isActive) return false;
+    if (searchQuery.listAll) return true;
     const PName = value.positionName
       .toLowerCase()
       .includes(searchQuery.jobTitle.toLowerCase());
@@ -143,14 +150,7 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery, user
       Location = searchQuery.location.includes(value.location);
     }
     // console.log(ContractT || Hours);
-    return (
-      value.isActive
-      && PName
-      && HSalary
-      && LSalary
-      && (ContractT || Hours)
-      && Location
-    );
+    return PName && HSalary && LSalary && (ContractT || Hours) && Location;
   };
 
   useEffect(() => {
@@ -164,7 +164,9 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery, user
             if (searchQuery.showAll) {
               setItems(result.filter((job) => job.isActive));
             } else {
-              setItems(result.filter((job) => job.isActive).filter(filterListing));
+              setItems(
+                result.filter((job) => job.isActive).filter(filterListing),
+              );
             }
           },
           (error) => {
@@ -185,6 +187,18 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery, user
   }
   return (
     <Box className={classes.root} sx={{ width: '100vw' }}>
+      <Button
+        variant="outlined"
+        onClick={() => setsearchQuery({ ...searchQuery, beforeSearch: true })}
+        size="small"
+        style={{
+          marginLeft: 20,
+          marginBottom: 20,
+          padding: 0,
+        }}
+      >
+        back
+      </Button>
       <Box className={classes.ResultHead}>
         <Grid xs={8}>
           <Typography
@@ -199,19 +213,6 @@ export default function SearchResultsSection({ searchQuery, setsearchQuery, user
           </Typography>
         </Grid>
         <Grid xs={4}>
-          <Button
-            variant="outlined"
-            onClick={() => setsearchQuery({ ...searchQuery, beforeSearch: true })}
-            size="small"
-            style={{
-              verticalAlign: 'bottom',
-              float: 'right',
-              marginLeft: 20,
-              padding: 0,
-            }}
-          >
-            Reset
-          </Button>
           <FormControl className={classes.formControl}>
             <InputLabel>Sort</InputLabel>
 

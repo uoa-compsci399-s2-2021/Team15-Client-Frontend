@@ -115,7 +115,11 @@ export default function CardCustom(props) {
       >
         <Grid container direction="column" className={classes.gridContainer}>
           <Grid item className={classes.Header}>
-            <Typography sx={{ fontSize: '1rem', fontFamily: 'Oswald' }} className={classes.title} display="inline">
+            <Typography
+              sx={{ fontSize: '1rem', fontFamily: 'Oswald' }}
+              className={classes.title}
+              display="inline"
+            >
               {props.item.positionName}
             </Typography>
             {props.userData.savedJobList !== undefined ? (
@@ -147,9 +151,14 @@ export default function CardCustom(props) {
             </Typography>
 
             <LocationOnIcon style={{ fontSize: '20' }} />
-            <span style={{ fontFamily: 'Oswald' }}>{props.item.jobLocation}</span>
+            <span style={{ fontFamily: 'Oswald' }}>
+              {props.item.jobLocation}
+            </span>
           </Grid>
-          <Typography className={classes.information} style={{ fontFamily: 'Oswald' }}>
+          <Typography
+            className={classes.information}
+            style={{ fontFamily: 'Oswald' }}
+          >
             {typeof props.item.jobDescription !== 'undefined'
               ? props.item.jobDescription.length > 173
                 ? `${props.item.jobDescription.substr(0, 170)}...`
@@ -160,7 +169,13 @@ export default function CardCustom(props) {
         <ArrowForwardIcon className={classes.ArrowForward} />
       </Paper>
       {open ? (
-        <JobListingDetail item={props.item} open={open} hClose={handleClose} userData={props.userData} handleUpdate={props.handleUpdate} />
+        <JobListingDetail
+          item={props.item}
+          open={open}
+          hClose={handleClose}
+          userData={props.userData}
+          handleUpdate={props.handleUpdate}
+        />
       ) : (
         <></>
       )}

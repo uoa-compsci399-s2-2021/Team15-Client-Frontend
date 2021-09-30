@@ -57,7 +57,13 @@ JobListingDetail.defaultProps = {
   },
 };
 
-export default function JobListingDetail({ open, hClose, item, userData, handleUpdate }) {
+export default function JobListingDetail({
+  open,
+  hClose,
+  item,
+  userData,
+  handleUpdate,
+}) {
   const useStyles = makeStyles((theme) => ({
     Header: {
       display: 'flex',
@@ -310,51 +316,6 @@ export default function JobListingDetail({ open, hClose, item, userData, handleU
         maxWidth="md"
         className={classes.dialogPaper}
       >
-        {/* <Grid item className={classes.Header}>
-            <Typography
-              sx={{ fontSize: '1rem' }}
-              variant="h4"
-              component="h2"
-              className={classes.title}
-            >
-              {item.positionName}
-            </Typography>
-            <Box>
-              <CompanyLogo
-                companyName={item.companyName}
-                url={item.companyLogoURL}
-                sx={{ maxHeight: 40, marginRight: 10 }}
-              />
-              <Typography
-                id="modal-modal-description"
-                sx={{ mt: 2 }}
-                component="a"
-                href={`mailto:${item.applicationContactDetail}`}
-              >
-                {`Apply at: ${item.applicationContactDetail}`}
-              </Typography>
-            </Box>
-          </Grid>
-          <Typography id="modal-modal-title" variant="h5" component="h2">
-            {item.companyName}
-          </Typography>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {item.jobLocation}
-          </Typography>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {`$${item.jobSalary} ${item.jobSalaryType}`}
-          </Typography>
-
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {`About ${item.companyName}`}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {item.companyDescription}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            About the role <br />
-            {item.jobDescription}
-          </Typography> */}
         <Grid
           container
           style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 20 }}
@@ -383,7 +344,11 @@ export default function JobListingDetail({ open, hClose, item, userData, handleU
               {item.companyName} - {item.positionName}
             </Typography>
             {loading ? (
-              <CircularProgress className={classes.save} color="inherit" size="1.5rem" />
+              <CircularProgress
+                className={classes.save}
+                color="inherit"
+                size="1.5rem"
+              />
             ) : (
               <Checkbox
                 className={classes.save}
@@ -569,16 +534,22 @@ export default function JobListingDetail({ open, hClose, item, userData, handleU
               <img
                 src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/alert-circle-orange-512.png"
                 alt="Error"
-                style={{ maxWidth: 100, marginLeft: 'auto', marginRight: 'auto' }}
+                style={{
+                  maxWidth: 100,
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                }}
               />
             </div>
-            <DialogContentText align="center" variant="h5" style={{ color: 'black', margin: 8, fontFamily: 'Oswald' }}>
+            <DialogContentText
+              align="center"
+              variant="h5"
+              style={{ color: 'black', margin: 8, fontFamily: 'Oswald' }}
+            >
               Oops! Something went wrong. Please try again.
             </DialogContentText>
           </DialogContent>
-        ) : (
-          null
-        )}
+        ) : null}
       </Dialog>
     </div>
   );

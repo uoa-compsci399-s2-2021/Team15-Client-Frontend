@@ -35,11 +35,17 @@ function Home(props) {
     location: [],
     beforeSearch: true,
     searchDone: false,
+    listAll: false,
   });
   const [width, setWidth] = useState(window.innerWidth);
   const [detailOpened, setDetailOpened] = useState(false);
   const onClickSearchResult = () => {
-    setsearchQuery({ ...searchQuery, beforeSearch: false, searchDone: false });
+    setsearchQuery({
+      ...searchQuery,
+      beforeSearch: false,
+      searchDone: false,
+      listAll: false,
+    });
   };
   useEffect(() => {
     window.addEventListener('resize', () => setWidth(window.innerWidth));
@@ -70,7 +76,14 @@ function Home(props) {
       {/* searchQuery.beforeSearch */}
       {searchQuery.beforeSearch && (width > 1000 || detailOpened) ? (
         <Grid container className={classes.JLB}>
-          <JobListingBottom detailOpen={openDetail} closeDetail={closeDetail} items={props.items} userData={props.userData} isLoaded={props.isLoaded} handleUpdate={props.handleUpdate} />
+          <JobListingBottom
+            detailOpen={openDetail}
+            closeDetail={closeDetail}
+            items={props.items}
+            userData={props.userData}
+            isLoaded={props.isLoaded}
+            handleUpdate={props.handleUpdate}
+          />
         </Grid>
       ) : null}
       {searchQuery.beforeSearch ? (

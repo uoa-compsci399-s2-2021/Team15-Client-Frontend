@@ -15,9 +15,8 @@ const useStyles = makeStyles((theme) => ({
 export default function DJLB(props) {
   const classes = useStyles();
   const [error, setError] = useState(null);
-  // const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
   const layout = [2, 1, 1, 1, 1, 2, 1, 1];
+  const itemsLength = props.items.length - 1;
   const colors = [
     '#f39400',
     '#b14550',
@@ -42,7 +41,8 @@ export default function DJLB(props) {
         <ImageListItem
           rows={props.items.length > 4 ? 1 : 2}
           key={`${item.positionName} Lastest ${index.toString()}`}
-          cols={layout[index]}
+          cols={itemsLength === index ? 9 - index : layout[index]}
+          classnam={classes.imageListItem}
         >
           <CardCustom
             item={item}

@@ -90,7 +90,14 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
     e.preventDefault();
     searchQuery[1]({ ...searchQuery[0], [e.target.name]: e.target.value });
   };
-
+  const onClickListAll = () => {
+    searchQuery[1]({
+      ...searchQuery[0],
+      beforeSearch: false,
+      searchDone: false,
+      listAll: true,
+    });
+  };
   const menuProps = {
     anchorOrigin: {
       vertical: 'bottom',
@@ -215,8 +222,8 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
           color="secondary"
           justifycontent="center"
           className={classes.SearchButton}
-          name="search"
-          onClick={onClickSearchResult}
+          name="listAll"
+          onClick={onClickListAll}
           style={{ marginLeft: 10 }}
         >
           List All

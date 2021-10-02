@@ -13,9 +13,11 @@ import {
   Button,
 } from '@material-ui/core';
 
-import CardCustom from '../CardCustom';
+import CardCustom from '../components/CardCustom';
+import CompanyLogo from '../components/CompanyLogo';
 
 const useStyles = makeStyles((theme) => ({
+  // root: { flexGrow: 1 },
   root: {
     height: '100vh',
     width: '80vw',
@@ -45,24 +47,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-SearchResultsSection.defaultProps = {
-  searchQuery: {
-    jobTitle: '',
-    startingSalary: '',
-    highestSalary: '',
-    contract: '',
-    location: '',
-    beforeSearch: false,
-    searchDone: false,
-  },
-};
-export default function SearchResultsSection({
-  searchQuery,
-  setsearchQuery,
-  userData,
-  handleUpdate,
-}) {
+export default function SavedJobs(props) {
+  useEffect(() => {
+    document.title = 'Saved Jobs';
+  }, []);
+
   const classes = useStyles();
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
   const [SortValue, setSortValue] = useState('');
   const SortList = ['Date', 'Alphabetically'];
   const colors = [
@@ -75,10 +68,6 @@ export default function SearchResultsSection({
     '#6c6671',
     '#89adca',
   ];
-  // fetch Data
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
   const menuProps = {
     anchorOrigin: {
       vertical: 'bottom',
@@ -90,6 +79,23 @@ export default function SearchResultsSection({
     },
     getContentAnchorEl: null,
   };
+
+  useEffect(() => {
+    // console.log(props);
+    if (props.items !== null) {
+      const savedJobs = [];
+      if (Object.keys(props.userData).length !== 0) {
+        for (let i = 0; i < props.userData.savedJobList.length; i++) {
+          const jobId = props.userData.savedJobList[i];
+          const data = props.items.filter((job) => job._id === jobId)[0];
+          if (data) {
+            savedJobs.push(data);
+          }
+        }
+      }
+      setItems(savedJobs);
+    }
+  }, [props.items, props.userData]);
 
   const handleSortChange = (e) => {
     setSortValue(e.target.value);
@@ -111,92 +117,26 @@ export default function SearchResultsSection({
       });
     }
   };
-
-  const filterListing = (value) => {
-    if (!value.isActive) return false;
-    if (searchQuery.listAll) return true;
-    const PName = value.positionName
-      .toLowerCase()
-      .includes(searchQuery.jobTitle.toLowerCase());
-    let LSalary = true;
-    if (
-      searchQuery.startingSalary !== ''
-      && searchQuery.startingSalary !== -1
-    ) {
-      LSalary = value.jobSalary >= searchQuery.startingSalary;
-    }
-    let HSalary = true;
-    if (
-      searchQuery.highestSalary !== ''
-      && searchQuery.highestSalary !== -1
-      && searchQuery.startingSalary !== -1
-    ) {
-      HSalary = value.jobSalary <= searchQuery.highestSalary;
-    }
-    let ContractT = true;
-    let Hours = true;
-    if (searchQuery.contract.length !== 0) {
-      ContractT = searchQuery.contract.includes(value.jobHours);
-      Hours = searchQuery.contract.includes(value.jobContract);
-    }
-    let Location = true;
-
-    if (searchQuery.location.includes('Other')) {
-      Location = !['Auckland', 'Christchurch', 'Wellington', 'Remote'].includes(
-        value.jobLocation,
-      );
-    }
-    if (searchQuery.location.length !== 0) {
-      Location = searchQuery.location.includes(value.location);
-    }
-    return PName && HSalary && LSalary && (ContractT || Hours) && Location;
-  };
-
-  useEffect(() => {
-    const fetchJobInfo = async () => {
-      await fetch('https://cs399-team15.herokuapp.com/api/admin/get-job-info')
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            if (searchQuery.showAll) {
-              setItems(result.filter((job) => job.isActive));
-            } else {
-              setItems(
-                result.filter((job) => job.isActive).filter(filterListing),
-              );
-            }
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          },
-        );
-    };
-    fetchJobInfo();
-    setsearchQuery({ ...searchQuery, searchDone: true });
-  }, [searchQuery.searchDone]);
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-  if (!isLoaded) {
-    return <div>Loading...</div>;
-  }
+  // console.log(props);
   return (
+    // <Card>
+    //   <Grid container direction="column">
+    //     <Grid container direction="row">
+    //       <Grid item sx={{ flexGrow: 1, width: '50vw' }}>
+    //         <Typography variant="h2">About Us</Typography>
+    //         <Box>
+    //           <CompanyLogo companyName="UniversityOfAuckland" />
+    //         </Box>
+    //       </Grid>
+    //       <Grid item>b</Grid>
+    //     </Grid>
+    //     <Grid container direction="row">
+    //       <Grid item>c</Grid>
+    //       <Grid item>d</Grid>
+    //     </Grid>
+    //   </Grid>
+    // </Card>
     <Box className={classes.root} sx={{ width: '100vw' }}>
-      <Button
-        variant="outlined"
-        onClick={() => setsearchQuery({ ...searchQuery, beforeSearch: true })}
-        size="small"
-        style={{
-          marginLeft: 0,
-          marginBottom: 20,
-          padding: 0,
-        }}
-      >
-        back
-      </Button>
       <Box className={classes.ResultHead}>
         <Grid xs={8}>
           <Typography
@@ -207,7 +147,7 @@ export default function SearchResultsSection({
               verticalAlign: 'bottom',
             }}
           >
-            Found {items.length} Jobs Matching Your Search
+            You have saved {items.length} Jobs
           </Typography>
         </Grid>
         <Grid xs={4}>
@@ -252,8 +192,8 @@ export default function SearchResultsSection({
               item={listing}
               color={colors[i % 8]}
               className={classes.CardCustom}
-              userData={userData}
-              handleUpdate={handleUpdate}
+              userData={props.userData}
+              handleUpdate={props.handleUpdate}
             />
           </Grid>
         ))}

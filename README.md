@@ -10,7 +10,7 @@ This is the Project files for the Frontend catered for the Computer Science Stud
 - View latest Jobs (Newly approved jobs)
 - Search for approved Jobs
 - Sort search results of approved Jobs
-- Filter search results By Title and company, Salary range, Type of job, and Location
+- Filter search results By Title or company, Salary range, Type of job, and Location
 - Save Jobs to account
 - View Jobs in detail
 - Desktop and mobile systems Supported

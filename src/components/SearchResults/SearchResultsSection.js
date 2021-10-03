@@ -117,7 +117,12 @@ export default function SearchResultsSection({
     if (searchQuery.listAll) return true;
     const PName = value.positionName
       .toLowerCase()
-      .includes(searchQuery.jobTitle.toLowerCase());
+      .trim()
+      .includes(searchQuery.jobTitle.toLowerCase().trim())
+      || value.companyName
+        .toLowerCase()
+        .trim()
+        .includes(searchQuery.jobTitle.toLowerCase().trim());
     let LSalary = true;
     if (
       searchQuery.startingSalary !== ''
@@ -141,14 +146,18 @@ export default function SearchResultsSection({
     }
     let Location = true;
 
-    if (searchQuery.location.includes('Other')) {
-      Location = !['Auckland', 'Christchurch', 'Wellington', 'Remote'].includes(
-        value.jobLocation,
-      );
-    }
     if (searchQuery.location.length !== 0) {
-      Location = searchQuery.location.includes(value.location);
+      Location = searchQuery.location.includes(value.jobLocation);
+
+      const Other = searchQuery.location.includes('Other')
+        ? !['Auckland', 'Christchurch', 'Wellington', 'Remote'].includes(
+          value.jobLocation,
+        )
+        : null;
+
+      Location = Location || Other;
     }
+
     return PName && HSalary && LSalary && (ContractT || Hours) && Location;
   };
 
@@ -159,13 +168,7 @@ export default function SearchResultsSection({
         .then(
           (result) => {
             setIsLoaded(true);
-            if (searchQuery.showAll) {
-              setItems(result.filter((job) => job.isActive));
-            } else {
-              setItems(
-                result.filter((job) => job.isActive).filter(filterListing),
-              );
-            }
+            setItems(result.filter(filterListing));
           },
           (error) => {
             setIsLoaded(true);

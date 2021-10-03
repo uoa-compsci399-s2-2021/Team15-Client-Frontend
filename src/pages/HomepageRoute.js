@@ -177,8 +177,7 @@ export default function HomePageRoute(props) {
               )}
             />
           ) : null}
-        </ListItem>{' '}
-        )
+        </ListItem>
       </MenuItem>
       <Divider variant="middle" />
       <MenuItem onClick={handleSignOut} component={RouterLink} to="/login">

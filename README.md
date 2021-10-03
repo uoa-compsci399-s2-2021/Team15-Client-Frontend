@@ -1,70 +1,119 @@
-# Team15-Client-Frontend
+# Frontend Client Side of Online Job Board
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project Management Tool : [Trello CS399 Project: Team 15](https://trello.com/b/Vn3tMyRD/compsci-399-project-sprint-1-%F0%9F%9A%80-28-07-21-04-08-21)
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+This is the Project files for the Frontend catered for the Computer Science Students using the Online JobBoard. The Abilities of this Project is to:
 
-### `npm start`
+- Register / Login to access the Website
+- View latest Jobs (Newly approved jobs)
+- Search for approved Jobs
+- Sort search results of approved Jobs
+- Filter search results By Title or company, Salary range, Type of job, and Location
+- Save Jobs to account
+- View Jobs in detail
+- Desktop and mobile systems Supported
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Final Report:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+[Link to Final Report in Google Doc](ENTER THE URL HERE)
 
-### `npm test`
+## Technologies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React : 17.0.2
+- Material UI : 5.0.1
+- eslint : 7.32.0
+- yarn : 1.22.11
+- node : 16.4.2
+- javascript : ES6
 
-### `npm run build`
+## Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Download The projects
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    Git clone https://github.com/uoa-compsci399-s2-2021/Team15-Backend.git
+    Git clone https://github.com/uoa-compsci399-s2-2021/Team15-Client-Frontend.git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installing the Dependencies
 
-### `npm run eject`
+Installing Yarn (make sure you already have Node.js installed)
+https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 1. Installing frontend Dependencies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> Open Team15-Client-Frontend folder \
+> In the CMD/ Terminal enter
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    yarn install
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+> Open Team15-Backend folder \
+> In the CMD/ Terminal enter
 
-## Learn More
+     yarn install
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 2. Running the servers
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+> Open Team15-Client-Frontend folder \
+> In the CMD/ Terminal enter
 
-### Code Splitting
+    yarn start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+> Open Team15-Backend folder \
+> in the CMD/ Terminal enter
 
-### Analyzing the Bundle Size
+     yarn server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+> Runs the app in the development mode.\
+> Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### Making a Progressive Web App
+## Examples
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Here is the Deployed Website: [Website URL](Deployed url):
 
-### Advanced Configuration
+### Login page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![Login page image](Example/login.png)
 
-### Deployment
+### Homepage page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![Homepage page image](Example/Homepage.png)
 
-### `npm run build` fails to minify
+### Saved Jobs page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Saved Jobs page image](Example/savedJobs.png)
+
+### Search Results page
+
+![Search Results page image](Example/searchResults.png)
+
+### View Jobs page
+
+![View Jobs page image](Example/viewJob.png)
+
+## Future Plans
+
+In the future we plan to add more features for the Students, such as:
+
+- In built job applying process. But this would be consisting of the following:
+  - Student Profile
+  - Student CV
+  - Extra form for employers if they want to Quiz candidates
+- More filtering options
+- Employers Profile
+  - To see more jobs from an employer
+  - See about an employer
+- Other features.
+
+## Acknowledgements
+
+We Like to Thank our team members and everyone involved in the creation of this Project.
+
+We also would like to Acknowledge:
+
+- [Material UI Documentation](https://mui.com/getting-started/usage/)
+- [React Documentation](https://create-react-app.dev/docs/documentation-intro)
+- [Mozilla Developer Javascript Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [w3 Schools Documentation](https://www.w3schools.com/css/default.asp)
+
+I would say having access to these documentation webpages allowed us to implement this project as good as we have.

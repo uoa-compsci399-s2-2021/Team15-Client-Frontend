@@ -135,6 +135,9 @@ export default function HomePageRoute(props) {
         },
       );
   }, []);
+  function capitalizeFirstLetter(string) {
+    return string[0].toUpperCase() + string.slice(1);
+  }
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -153,18 +156,27 @@ export default function HomePageRoute(props) {
           <ListItemAvatar>
             <Avatar alt={userData.firstname + ' ' + userData.lastname} />
           </ListItemAvatar>
-          <ListItemText
-            primary={userData.firstname + ' ' + userData.lastname}
-            secondary={(
-              <Typography
-                component="span"
-                variant="body2"
-                color="textSecondary"
-              >
-                {userData.email}
-              </Typography>
-            )}
-          />
+          {userData.firstname ? (
+            <ListItemText
+              primary={(
+                <Typography style={{ fontFamily: 'Oswald' }}>
+                  {capitalizeFirstLetter(userData.firstname)
+                    + ' '
+                    + capitalizeFirstLetter(userData.lastname)}
+                </Typography>
+              )}
+              secondary={(
+                <Typography
+                  style={{ fontFamily: 'Oswald' }}
+                  component="span"
+                  variant="body2"
+                  color="textSecondary"
+                >
+                  {userData.email}
+                </Typography>
+              )}
+            />
+          ) : null}
         </ListItem>
       </MenuItem>
       <Divider variant="middle" />
@@ -172,7 +184,7 @@ export default function HomePageRoute(props) {
         <ListItemIcon>
           <ExitToAppTwoToneIcon fontSize="medium" />
         </ListItemIcon>
-        <Typography>Sign out</Typography>
+        <Typography style={{ fontFamily: 'Oswald' }}>Sign out</Typography>
       </MenuItem>
     </Menu>
   );
@@ -200,7 +212,11 @@ export default function HomePageRoute(props) {
               style={{ fontFamily: 'Oswald' }}
             />
           </Tabs>
-          {userData.firstname}
+          {userData.firstname ? (
+            <Typography style={{ fontFamily: 'Oswald' }}>
+              {capitalizeFirstLetter(userData.firstname)}
+            </Typography>
+          ) : null}
           <IconButton
             edge="end"
             aria-label="account of current user"

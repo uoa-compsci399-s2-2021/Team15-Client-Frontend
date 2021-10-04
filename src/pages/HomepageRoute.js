@@ -67,6 +67,21 @@ const useStyles = makeStyles((theme) => ({
   HomePage: {
     flexGrow: 1,
   },
+  UserMenu: {
+    '& .MuiPaper-root': {
+      color: '#FFF',
+      backgroundColor: '#D7D7D73F',
+    },
+    '& .MuiTypography-colorTextSecondary': {
+      color: '#FFFC',
+    },
+    '& .MuiListItemIcon-root': {
+      color: '#FFF',
+    },
+  },
+  MenuItemDivider: {
+    backgroundColor: '#FFF',
+  },
 }));
 
 export default function HomePageRoute(props) {
@@ -153,6 +168,7 @@ export default function HomePageRoute(props) {
       getContentAnchorEl={null}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      className={classes.UserMenu}
     >
       <MenuItem>
         <ListItem alignItems="flex-start">
@@ -182,8 +198,8 @@ export default function HomePageRoute(props) {
           ) : null}
         </ListItem>
       </MenuItem>
-      <Divider variant="middle" />
-      <MenuItem onClick={handleSignOut} component={RouterLink} to="/Login">
+      <Divider variant="middle" className={classes.MenuItemDivider} />
+      <MenuItem onClick={handleSignOut} component={RouterLink} to="/login">
         <ListItemIcon>
           <ExitToAppTwoToneIcon fontSize="medium" />
         </ListItemIcon>

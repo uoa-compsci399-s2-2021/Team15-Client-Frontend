@@ -93,7 +93,9 @@ export default function JobListingDetail({
     HomePage: {
       flexGrow: 1,
     },
-    middleContainer: { flexGrow: 1 },
+    middleContainer: {
+      flexGrow: 1,
+    },
     closeButton: {
       marginTop: 10,
       // position: "absolute",
@@ -140,6 +142,12 @@ export default function JobListingDetail({
       height: '100vh',
       position: 'fixed',
       marginTop: 10,
+    },
+    dialogWrapper: {
+      padding: 20,
+      backgroundColor: '#0d0014',
+      color: '#FFF',
+      border: '2px solid #80606A',
     },
     img: {
       display: 'flex',
@@ -309,7 +317,7 @@ export default function JobListingDetail({
       >
         <Grid
           container
-          style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 20 }}
+          className={classes.dialogWrapper}
         >
           <Grid item xs={12}>
             <IconButton

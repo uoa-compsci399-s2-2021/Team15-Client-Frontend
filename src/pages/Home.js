@@ -12,7 +12,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     height: '100%',
-    backgroundColor: '#f5fbfc',
+    color: '#FFFFFF',
+  },
+  socialLinksWrapper: {
+    borderRight: '1px solid #FFFA',
   },
   SearchSection: {
     margin: 'auto',
@@ -66,7 +69,7 @@ function Home(props) {
       <CssBaseline />
       <Grid container className={classes.middleContainer}>
         {width >= 800 ? (
-          <Grid item xs={1}>
+          <Grid className={classes.socialLinksWrapper} item xs={1}>
             <SideBarSocialLinks />
           </Grid>
         ) : null}

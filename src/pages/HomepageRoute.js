@@ -27,6 +27,8 @@ import CompanyLogo from '../components/CompanyLogo';
 import Home from './Home';
 import SavedJobs from './SavedJobs';
 
+import bgDark from '../assets/bg-dark.jpeg';
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -53,10 +55,11 @@ const useStyles = makeStyles((theme) => ({
     width: '100vw',
     scrollbarWidth: '100vw',
     overflowX: 'hidden',
+    backgroundImage: `url(${bgDark})`,
   },
   AppBar: {
-    background: 'None',
-    color: 'black',
+    background: 'none',
+    borderBottom: '1px solid #FFFA',
   },
   Tabs: {
     flexGrow: 1,
@@ -180,7 +183,7 @@ export default function HomePageRoute(props) {
         </ListItem>
       </MenuItem>
       <Divider variant="middle" />
-      <MenuItem onClick={handleSignOut} component={RouterLink} to="/login">
+      <MenuItem onClick={handleSignOut} component={RouterLink} to="/Login">
         <ListItemIcon>
           <ExitToAppTwoToneIcon fontSize="medium" />
         </ListItemIcon>
@@ -204,6 +207,11 @@ export default function HomePageRoute(props) {
             value={value}
             centered
             onChange={handleChange}
+            TabIndicatorProps={{
+              style: {
+                display: 'none',
+              },
+            }}
           >
             <Tab label="Home" value="/Home" style={{ fontFamily: 'Oswald' }} />
             <Tab

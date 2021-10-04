@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
+  imageListItem: {},
 }));
 
 /** this Is probably a one time class */
@@ -48,7 +49,7 @@ export default function DJLB(props) {
                 : layout.slice(index, 8).reduce((a, b) => a + b, 0)
               : layout[index]
           }
-          classnam={classes.imageListItem}
+          className={classes.imageListItem}
         >
           <CardCustom
             item={item}

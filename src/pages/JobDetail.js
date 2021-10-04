@@ -55,6 +55,9 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     width: '100vw',
   },
+  socialLinksWrapper: {
+    borderRight: '1px solid #FFFA',
+  },
   AppBar: {
     background: 'None',
     color: 'black',
@@ -180,7 +183,7 @@ export default function JobDetail(props) {
         <SavedJobs />
       </TabPanel>
       <Grid container className={classes.middleContainer}>
-        <Grid item xs={1}>
+        <Grid className={classes.socialLinksWrapper} item xs={1}>
           <SideBarSocialLinks />
         </Grid>
         <Grid item xs={11}>

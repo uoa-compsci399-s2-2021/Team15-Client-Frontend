@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     minHeight: 250,
   },
+  link: {
+    color: '#FFFFFF',
+  },
 }));
 
 export default function SideBarSocialLinks() {
@@ -23,21 +26,21 @@ export default function SideBarSocialLinks() {
     <Grid container direction="column" spacing={3} className={classes.root}>
       <Grid item>
         <Tooltip title="UOA Compsci Twitter">
-          <Link target="_blank" href="https://twitter.com/uoacompsci">
+          <Link className={classes.link} target="_blank" href="https://twitter.com/uoacompsci">
             <TwitterIcon />
           </Link>
         </Tooltip>
       </Grid>
       <Grid item>
         <Tooltip title="UOA Instagram">
-          <Link target="_blank" href="https://www.instagram.com/universityofauckland/">
+          <Link className={classes.link} target="_blank" href="https://www.instagram.com/universityofauckland/">
             <InstagramIcon />
           </Link>
         </Tooltip>
       </Grid>
       <Grid item>
         <Tooltip title="UOA CDES Facebook">
-          <Link target="_blank" href="https://www.facebook.com/UniofAklCDES">
+          <Link className={classes.link} target="_blank" href="https://www.facebook.com/UniofAklCDES">
             <FacebookIcon />
           </Link>
         </Tooltip>
@@ -45,6 +48,7 @@ export default function SideBarSocialLinks() {
       <Grid item>
         <Tooltip title="UOA CDES LinkedIn">
           <Link
+            className={classes.link}
             target="_blank"
             href="https://www.linkedin.com/showcase/university-of-auckland-career-development-and-employability-services-cdes-/"
           >

@@ -9,7 +9,7 @@ const PrivateRoute = ({ children, ...rest }) => (
     render={() => (localStorage.getItem('authToken') ? (
       children
     ) : (
-      <Redirect to="/login" />
+      <Redirect to="/Hello" />
     ))}
   />
 );

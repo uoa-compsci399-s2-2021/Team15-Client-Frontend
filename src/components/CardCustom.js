@@ -24,6 +24,8 @@ export default function CardCustom(props) {
       color: props.color === 'white' ? 'black' : 'white',
 
       textAlign: 'left',
+
+      padding: '30px',
     },
     gridContainer: {
       paddingLeft: 5,

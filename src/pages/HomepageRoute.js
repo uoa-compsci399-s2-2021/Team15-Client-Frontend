@@ -195,8 +195,8 @@ export default function HomePageRoute(props) {
           ) : null}
         </ListItem>
       </MenuItem>
-      <Divider variant="middle" />
-      <MenuItem onClick={handleSignOut} component={RouterLink} to="/Login">
+      <Divider variant="middle" className={classes.MenuItemDivider} />
+      <MenuItem onClick={handleSignOut} component={RouterLink} to="/login">
         <ListItemIcon>
           <ExitToAppTwoToneIcon fontSize="medium" />
         </ListItemIcon>

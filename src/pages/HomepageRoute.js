@@ -79,6 +79,21 @@ const useStyles = makeStyles((theme) => ({
   HomePage: {
     flexGrow: 1,
   },
+  UserMenu: {
+    '& .MuiPaper-root': {
+      color: '#FFF',
+      backgroundColor: '#D7D7D73F',
+    },
+    '& .MuiTypography-colorTextSecondary': {
+      color: '#FFFC',
+    },
+    '& .MuiListItemIcon-root': {
+      color: '#FFF',
+    },
+  },
+  MenuItemDivider: {
+    backgroundColor: '#FFF',
+  },
 }));
 
 export default function HomePageRoute(props) {

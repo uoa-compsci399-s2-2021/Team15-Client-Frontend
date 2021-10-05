@@ -25,7 +25,7 @@ export default function CardCustom(props) {
 
       textAlign: 'left',
 
-      padding: '30px',
+      padding: '10px',
     },
     gridContainer: {
       paddingLeft: 5,
@@ -45,7 +45,7 @@ export default function CardCustom(props) {
       paddingBottom: 10,
     },
     location: {
-      paddingInlineStart: 10,
+      // paddingInlineStart: 10,
       fontWeight: 700,
     },
     ArrowForward: {

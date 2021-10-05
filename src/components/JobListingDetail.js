@@ -113,7 +113,7 @@ export default function JobListingDetail({
       width: '95%',
       height: '100%',
       marginTop: 10,
-      backgroundColor: '#f7f7f5',
+      // backgroundColor: '#090512',
       padding: 20,
       marginBottom: 20,
     },
@@ -144,10 +144,14 @@ export default function JobListingDetail({
       marginTop: 10,
     },
     dialogWrapper: {
-      padding: 20,
-      backgroundColor: '#0d0014',
+      paddingLeft: 20,
+      paddingRight: 20,
+      paddingTop: 5,
+      paddingBottom: 10,
+      backgroundColor: '#0b0712',
       color: '#FFF',
       border: '2px solid #80606A',
+      opacity: 0.99,
     },
     img: {
       display: 'flex',
@@ -327,8 +331,8 @@ export default function JobListingDetail({
               size="small"
               onClick={hClose}
             >
-              <ArrowBackIosIcon fontSize="small" />
-              <Typography style={{ fontFamily: 'Oswald' }}>Back</Typography>
+              <ArrowBackIosIcon fontSize="small" style={{ color: 'white' }} />
+              <Typography style={{ fontFamily: 'Oswald', color: 'white' }}>Back</Typography>
             </IconButton>
           </Grid>
           <Grid item xs={12}>
@@ -372,7 +376,7 @@ export default function JobListingDetail({
               }}
             >
               <LocationOnIcon
-                color="primary"
+                sx={{ color: 'white' }}
                 style={{ verticalAlign: 'middle' }}
               />{' '}
               {item.jobLocation}
@@ -387,7 +391,7 @@ export default function JobListingDetail({
               }}
             >
               <EventNoteIcon
-                color="primary"
+                sx={{ color: 'white' }}
                 style={{ verticalAlign: 'middle' }}
               />{' '}
               {item.jobHours}
@@ -399,7 +403,7 @@ export default function JobListingDetail({
               style={{ verticalAlign: 'middle', fontFamily: 'Oswald' }}
             >
               <AccountBalanceWalletIcon
-                color="primary"
+                sx={{ color: 'white' }}
                 style={{ verticalAlign: 'middle', marginRight: 8 }}
               />
               {item.jobSalaryType === 'Market rate' ? (

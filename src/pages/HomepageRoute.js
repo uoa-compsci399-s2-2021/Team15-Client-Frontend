@@ -57,6 +57,18 @@ const useStyles = makeStyles((theme) => ({
     overflowX: 'hidden',
     backgroundImage: `url(${bgDark})`,
   },
+  UserMenu: {
+    '& .MuiPaper-root': {
+      color: '#FFF',
+      backgroundColor: '#D7D7D73F',
+    },
+    '& .MuiTypography-colorTextSecondary': {
+      color: '#FFFC',
+    },
+    '& .MuiListItemIcon-root': {
+      color: '#FFF',
+    },
+  },
   AppBar: {
     background: 'none',
     borderBottom: '1px solid #FFFA',
@@ -153,6 +165,7 @@ export default function HomePageRoute(props) {
       getContentAnchorEl={null}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      className={classes.UserMenu}
     >
       <MenuItem>
         <ListItem alignItems="flex-start">

@@ -68,7 +68,7 @@ function Home(props) {
     <Box className={classes.root}>
       <CssBaseline />
       <Grid container className={classes.middleContainer}>
-        {width >= 800 ? (
+        {width >= 5000 ? (
           <Grid className={classes.socialLinksWrapper} item xs={1}>
             <SideBarSocialLinks />
           </Grid>
@@ -81,7 +81,7 @@ function Home(props) {
         </Grid>
       </Grid>
       {/* searchQuery.beforeSearch */}
-      {searchQuery.beforeSearch && (width > 1000 || detailOpened) ? (
+      {searchQuery.beforeSearch && (width > 1100 || detailOpened) ? (
         <Grid container className={classes.JLB}>
           <JobListingBottom
             detailOpen={openDetail}

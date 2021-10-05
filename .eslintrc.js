@@ -49,5 +49,6 @@ module.exports = {
     'import/no-cycle': 'off',
     'no-plusplus': 'off',
     'no-underscore-dangle': 'off',
+    'no-dupe-keys': 'off',
   },
 };

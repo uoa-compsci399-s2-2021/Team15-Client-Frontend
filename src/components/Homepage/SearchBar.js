@@ -9,7 +9,7 @@ import {
   MenuItem,
   FormControl,
   OutlinedInput,
-  Table, TableBody, TableCell,
+  Typography,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,13 +27,9 @@ const useStyles = makeStyles((theme) => ({
       borderBottom: '2px solid white',
     },
   },
-  tableCell: {
-    border: '2px solid #80606A',
-    paddingTop: 0,
-    paddingBottom: 0,
-  },
   textField: {
-    width: 250,
+    width: 230,
+    height: 60,
   },
   gridContainer: {
     margin: 'center',
@@ -46,6 +42,12 @@ const useStyles = makeStyles((theme) => ({
   },
   SearchButton: {
     fontFamily: 'Oswald',
+    marginTop: 10,
+    width: 100,
+    padding: 10,
+    '&:hover': {
+      backgroundColor: '#270f61',
+    },
   },
   marginT5: {
     marginTop: 5,
@@ -53,6 +55,9 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     width: 130,
+    borderRight: '2px solid #80606A',
+    paddingRight: 5,
+    height: 60,
   },
 }));
 /** THis is a search Bar Currently it only Console logs out the form value  */
@@ -127,127 +132,128 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
   return (
     <form className={classes.root}>
       <Grid container direction="row" className={classes.gridContainer}>
-        <Table>
-          <TableBody>
-            <TableCell className={classes.tableCell}>
-              <Grid item className={classes.margin10}>
-                <TextField
-                  className={classes.textField}
-                  id="Search"
-                  label="What Are You Looking For?"
-                  name="jobTitle"
-                  onChange={(e) => handleInputChange(e)}
-                  InputLabelProps={{
-                    style: {
-                      color: '#FFF',
-                    },
-                  }}
-                />
-              </Grid>
-            </TableCell>
-            <TableCell className={classes.tableCell}>
-              <Grid item>
-                <Grid container direction="row" className={classes.margin10}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel> Starting Salary</InputLabel>
+        <Grid item className={classes.margin10}>
+          <Typography
+            style={{ borderRight: '2px solid #80606A', paddingRight: 10, color: 'transparent', height: 60 }}
+          >{'b'}
+          </Typography>
+        </Grid>
+        <Grid item className={classes.margin10}>
+          <TextField
+            className={classes.textField}
+            style={{ borderRight: '2px solid #80606A', paddingRight: 10 }}
+            id="Search"
+            label="What Are You Looking For?"
+            name="jobTitle"
+            onChange={(e) => handleInputChange(e)}
+          />
+        </Grid>
 
-                    <Select
-                      name="startingSalary"
-                      value={searchQuery[0].startingSalary}
-                      onChange={(e) => handleInputChange(e)}
-                      MenuProps={menuProps}
-                    >
-                      {startSList.map((item, index) => (
-                        <MenuItem
-                          key={item}
-                          value={intSalaryValues[index]}
-                          style={{ height: '40px' }}
-                        >
-                          {item}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
+        <Grid item>
+          <Grid container direction="row" className={classes.margin10}>
+            <FormControl className={classes.formControl}>
+              <InputLabel> Starting Salary</InputLabel>
 
-                  <FormControl className={classes.formControl}>
-                    <InputLabel> Highest Salary</InputLabel>
-                    <Select
-                      value={searchQuery[0].highestSalary}
-                      name="highestSalary"
-                      onChange={(e) => handleInputChange(e)}
-                      MenuProps={menuProps}
-                    >
-                      {HighSList.map((item, index) => (
-                        <MenuItem
-                          key={item}
-                          value={intSalaryValues[index]}
-                          style={{ height: '40px' }}
-                        >
-                          {item}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </Grid>
-              </Grid>
-            </TableCell>
-            <TableCell className={classes.tableCell}>
-              <Grid item className={classes.margin10}>
-                <FormControl className={classes.formControl}>
-                  <InputLabel>Contract Type</InputLabel>
-                  <Select
-                    multiple
-                    value={searchQuery[0].contract}
-                    name="contract"
-                    onChange={(e) => handleInputChange(e)}
-                    MenuProps={menuProps}
-                  >
-                    {contractList.map((item) => (
-                      <MenuItem key={item} value={item} style={{ height: '40px' }}>
-                        {item}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Grid>
-            </TableCell>
-            <TableCell className={classes.tableCell}>
-              <Grid item className={classes.margin10}>
-                <FormControl className={classes.formControl}>
-                  <InputLabel>Location</InputLabel>
-
-                  <Select
-                    multiple
-                    value={searchQuery[0].location}
-                    id="Location"
-                    label="Location"
-                    name="location"
-                    onChange={(e) => handleInputChange(e)}
-                    MenuProps={menuProps}
-                  >
-                    {locationList.map((item) => (
-                      <MenuItem key={item} value={item} style={{ height: '40px' }}>
-                        {item}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Grid>
-            </TableCell>
-            <TableCell className={classes.tableCell}>
-              <Button
-                color="primary"
-                justifycontent="center"
-                className={classes.SearchButton}
-                name="search"
-                onClick={onClickSearchResult}
-                // variant="outlined"
+              <Select
+                name="startingSalary"
+                value={searchQuery[0].startingSalary}
+                onChange={(e) => handleInputChange(e)}
+                MenuProps={menuProps}
               >
-                Search
-              </Button>
-            </TableCell>
-          </TableBody>
-        </Table>
+                {startSList.map((item, index) => (
+                  <MenuItem
+                    key={item}
+                    value={intSalaryValues[index]}
+                    style={{ height: '40px' }}
+                  >
+                    {item}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControl className={classes.formControl}>
+              <InputLabel> Highest Salary</InputLabel>
+              <Select
+                value={searchQuery[0].highestSalary}
+                name="highestSalary"
+                onChange={(e) => handleInputChange(e)}
+                MenuProps={menuProps}
+              >
+                {HighSList.map((item, index) => (
+                  <MenuItem
+                    key={item}
+                    value={intSalaryValues[index]}
+                    style={{ height: '40px' }}
+                  >
+                    {item}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
+        <Grid item className={classes.margin10}>
+          <FormControl className={classes.formControl}>
+            <InputLabel>Contract Type</InputLabel>
+            <Select
+              multiple
+              value={searchQuery[0].contract}
+              name="contract"
+              onChange={(e) => handleInputChange(e)}
+              MenuProps={menuProps}
+            >
+              {contractList.map((item) => (
+                <MenuItem key={item} value={item} style={{ height: '40px' }}>
+                  {item}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Grid item className={classes.margin10}>
+          <FormControl className={classes.formControl}>
+            <InputLabel>Location</InputLabel>
+
+            <Select
+              multiple
+              value={searchQuery[0].location}
+              id="Location"
+              label="Location"
+              name="location"
+              onChange={(e) => handleInputChange(e)}
+              MenuProps={menuProps}
+            >
+              {locationList.map((item) => (
+                <MenuItem key={item} value={item} style={{ height: '40px' }}>
+                  {item}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Button
+          color="primary"
+          justifycontent="center"
+          className={classes.SearchButton}
+          name="search"
+          onClick={onClickSearchResult}
+          // variant="outlined"
+        >
+          Search
+        </Button>
+        {/* <Button
+          color="secondary"
+          justifycontent="center"
+          className={classes.SearchButton}
+          name="listAll"
+          onClick={onClickListAll}
+          style={{ marginLeft: 10 }}
+        >
+          List All
+        </Button> */}
       </Grid>
     </form>
   );

@@ -57,6 +57,18 @@ const useStyles = makeStyles((theme) => ({
     overflowX: 'hidden',
     backgroundImage: `url(${bgDark})`,
   },
+  userMenu: {
+    '& .MuiPaper-root': {
+      color: '#FFF',
+      backgroundColor: '#D7D7D73F',
+    },
+    '& .MuiTypography-colorTextSecondary': {
+      color: '#FFFC',
+    },
+    '& .MuiListItemIcon-root': {
+      color: '#FFF',
+    },
+  },
   AppBar: {
     background: 'none',
     borderBottom: '1px solid #FFFA',
@@ -116,7 +128,6 @@ export default function HomePageRoute(props) {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('authToken')}`,
-      // Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTJiNDQwMzM0MjBjZWExYmQ0ZGRiYyIsImlhdCI6MTYyNTU1MzMyNn0.O7wqQZ2JfGihrqt4QkTW1Kh2ZK-j5FWg1zBewYMasyU'
     },
   };
   useEffect(() => {
@@ -168,7 +179,7 @@ export default function HomePageRoute(props) {
       getContentAnchorEl={null}
       open={isMenuOpen}
       onClose={handleMenuClose}
-      className={classes.UserMenu}
+      className={classes.userMenu}
     >
       <MenuItem>
         <ListItem alignItems="flex-start">

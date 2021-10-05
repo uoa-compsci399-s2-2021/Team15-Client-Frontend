@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 import {
   Box,
@@ -42,6 +43,17 @@ const useStyles = makeStyles((theme) => ({
     // width: "15%",
     float: 'right',
     paddingBottom: 10,
+  },
+  back: {
+    color: 'white',
+    // borderBottom: '1px solid white',
+    '&:hover': {
+      backgroundColor: '#270f61',
+    },
+    marginBottom: 10,
+    paddingRight: 20,
+    fontFamily: 'Oswald',
+    fontSize: 15,
   },
 }));
 
@@ -192,12 +204,9 @@ export default function SearchResultsSection({
         variant="outlined"
         onClick={() => setsearchQuery({ ...searchQuery, beforeSearch: true })}
         size="small"
-        style={{
-          marginLeft: 0,
-          marginBottom: 20,
-          padding: 0,
-        }}
+        className={classes.back}
       >
+        <ArrowBackIosIcon fontSize="small" style={{ color: 'white' }} />
         back
       </Button>
       <Box className={classes.ResultHead}>

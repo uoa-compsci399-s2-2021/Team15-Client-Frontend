@@ -27,9 +27,21 @@ const useStyles = makeStyles((theme) => ({
     // textAlign: "center",
     paddingTop: 10,
     marginTop: 10,
+
+    '&.MuiMenuItem-root': {
+      minHeight: 200,
+    },
+    '& *': {
+      color: 'white',
+    },
+    '& label.MuiFormLabel-root.Mui-focused': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottom: '2px solid white',
+    },
   },
-  CardCustom: {},
-  SearchResultsContainer: {},
+
   ResultHead: {
     display: 'flex',
     // flexWrap: "wrap",
@@ -153,7 +165,7 @@ export default function SavedJobs(props) {
         </Grid>
         <Grid xs={4}>
           <FormControl className={classes.formControl}>
-            <InputLabel>Sort</InputLabel>
+            <InputLabel>Sort Jobs</InputLabel>
 
             <Select
               value={SortValue}

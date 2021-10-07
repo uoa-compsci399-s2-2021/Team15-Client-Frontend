@@ -15,7 +15,7 @@ import {
 const useStyles = makeStyles((theme) => ({
   root: {
     '&.MuiMenuItem-root': {
-      minheight: 200,
+      minHeight: 200,
     },
     '& *': {
       color: 'white',
@@ -134,8 +134,14 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
       <Grid container direction="row" className={classes.gridContainer}>
         <Grid item className={classes.margin10}>
           <Typography
-            style={{ borderRight: '2px solid #80606A', paddingRight: 10, color: 'transparent', height: 60 }}
-          >{'b'}
+            style={{
+              borderRight: '2px solid #80606A',
+              paddingRight: 10,
+              color: 'transparent',
+              height: 60,
+            }}
+          >
+            {'b'}
           </Typography>
         </Grid>
         <Grid item className={classes.margin10}>

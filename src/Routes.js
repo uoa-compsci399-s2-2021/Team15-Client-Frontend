@@ -29,13 +29,16 @@ function Routes() {
           <Hello />
         </Route>
         <PrivateRoute exact path="/">
-          <Redirect to="/Home" />
+          <Redirect to="/Search" />
         </PrivateRoute>
-        <PrivateRoute path="/Home">
-          <Homepage tabValue={'/Home'} />
+        <PrivateRoute path="/Search">
+          <Homepage tabValue={'/Search'} />
         </PrivateRoute>
         <PrivateRoute path="/SavedJobs">
           <Homepage tabValue={'/SavedJobs'} />
+        </PrivateRoute>
+        <PrivateRoute path="/ListAll">
+          <Homepage tabValue={'/ListAll'} />
         </PrivateRoute>
         <PrivateRoute path="/ContactUs">
           <Homepage tabValue={'/ContactUs'} />

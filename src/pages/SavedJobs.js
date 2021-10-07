@@ -145,6 +145,7 @@ export default function SavedJobs(props) {
               fontFamily: 'Oswald',
               flexGrow: 1,
               verticalAlign: 'bottom',
+              color: 'White',
             }}
           >
             You have saved {items.length} Jobs

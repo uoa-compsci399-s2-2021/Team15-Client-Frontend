@@ -69,7 +69,7 @@ https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable
 
 ## Examples
 
-Here is the Deployed Website: [Website URL](Deployed url):
+Here is the Deployed Website: [Student Frontend Website URL](https://team15-stu.vercel.app/login):
 
 ### Login page
 

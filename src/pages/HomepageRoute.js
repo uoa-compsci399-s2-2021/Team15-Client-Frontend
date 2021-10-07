@@ -28,6 +28,7 @@ import Home from './Home';
 import SavedJobs from './SavedJobs';
 
 import bgDark from '../assets/bg-dark.jpeg';
+import ListAllPage from '../components/ListAll/ListAllPage';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -240,10 +241,19 @@ export default function HomePageRoute(props) {
               },
             }}
           >
-            <Tab label="Home" value="/Home" style={{ fontFamily: 'Oswald' }} />
+            <Tab
+              label="Search"
+              value="/Search"
+              style={{ fontFamily: 'Oswald' }}
+            />
             <Tab
               label="Saved Jobs"
               value="/SavedJobs"
+              style={{ fontFamily: 'Oswald' }}
+            />
+            <Tab
+              label="List All Jobs"
+              value="/ListAll"
               style={{ fontFamily: 'Oswald' }}
             />
           </Tabs>
@@ -269,7 +279,7 @@ export default function HomePageRoute(props) {
       </AppBar>
       {renderMenu}
 
-      <TabPanel value={value} index={'/Home'} className={classes.HomePage}>
+      <TabPanel value={value} index={'/Search'} className={classes.HomePage}>
         <Home
           userData={userData}
           items={items}
@@ -279,6 +289,13 @@ export default function HomePageRoute(props) {
       </TabPanel>
       <TabPanel value={value} index={'/SavedJobs'}>
         <SavedJobs
+          userData={userData}
+          items={items}
+          handleUpdate={handleUpdate}
+        />
+      </TabPanel>
+      <TabPanel value={value} index={'/ListAll'}>
+        <ListAllPage
           userData={userData}
           items={items}
           handleUpdate={handleUpdate}

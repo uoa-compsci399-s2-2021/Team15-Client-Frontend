@@ -62,17 +62,20 @@ SearchResultsSection.defaultProps = {
     jobTitle: '',
     startingSalary: '',
     highestSalary: '',
-    contract: '',
-    location: '',
+    contract: [],
+    location: [],
     beforeSearch: false,
     searchDone: false,
+    listAll: false,
   },
+  searchResults: false,
 };
 export default function SearchResultsSection({
   searchQuery,
-  setsearchQuery,
+  setSearchQuery,
   userData,
   handleUpdate,
+  searchResults,
 }) {
   const classes = useStyles();
   const [SortValue, setSortValue] = useState('');
@@ -189,7 +192,7 @@ export default function SearchResultsSection({
         );
     };
     fetchJobInfo();
-    setsearchQuery({ ...searchQuery, searchDone: true });
+    setSearchQuery({ ...searchQuery, searchDone: true });
   }, [searchQuery.searchDone]);
 
   if (error) {
@@ -200,15 +203,17 @@ export default function SearchResultsSection({
   }
   return (
     <Box className={classes.root} sx={{ width: '100vw' }}>
-      <Button
-        variant="outlined"
-        onClick={() => setsearchQuery({ ...searchQuery, beforeSearch: true })}
-        size="small"
-        className={classes.back}
-      >
-        <ArrowBackIosIcon fontSize="small" style={{ color: 'white' }} />
-        back
-      </Button>
+      {searchResults ? (
+        <Button
+          variant="outlined"
+          onClick={() => setSearchQuery({ ...searchQuery, beforeSearch: true })}
+          size="small"
+          className={classes.back}
+        >
+          <ArrowBackIosIcon fontSize="small" style={{ color: 'white' }} />
+          back
+        </Button>
+      ) : null}
       <Box className={classes.ResultHead}>
         <Grid xs={8}>
           <Typography
@@ -217,9 +222,12 @@ export default function SearchResultsSection({
               fontFamily: 'Oswald',
               flexGrow: 1,
               verticalAlign: 'bottom',
+              color: 'White',
             }}
           >
-            Found {items.length} Jobs Matching Your Search
+            {searchResults
+              ? `Found ${items.length} Jobs Matching Your Search`
+              : `Showing ${items.length} Jobs`}
           </Typography>
         </Grid>
         <Grid xs={4}>

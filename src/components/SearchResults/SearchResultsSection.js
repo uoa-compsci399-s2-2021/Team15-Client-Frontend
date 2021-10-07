@@ -26,6 +26,18 @@ const useStyles = makeStyles((theme) => ({
     // textAlign: "center",
     paddingTop: 10,
     marginTop: 10,
+    '&.MuiMenuItem-root': {
+      minheight: 200,
+    },
+    '& *': {
+      color: 'white',
+    },
+    '& label.MuiFormLabel-root.Mui-focused': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottom: '2px solid white',
+    },
   },
   CardCustom: {},
   SearchResultsContainer: {},
@@ -43,6 +55,10 @@ const useStyles = makeStyles((theme) => ({
     // width: "15%",
     float: 'right',
     paddingBottom: 10,
+    '&.MuiSelect-root, .MuiSelect-filled, .MuiSelect-standard': {
+      borderRadius: 5,
+      backgroundColor: 'white',
+    },
   },
   back: {
     color: 'white',
@@ -54,6 +70,9 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 20,
     fontFamily: 'Oswald',
     fontSize: 15,
+  },
+  inputLabel: {
+    color: 'white',
   },
 }));
 
@@ -232,7 +251,7 @@ export default function SearchResultsSection({
         </Grid>
         <Grid xs={4}>
           <FormControl className={classes.formControl}>
-            <InputLabel>Sort</InputLabel>
+            <InputLabel className={classes.inputLabel}>Sort Jobs</InputLabel>
 
             <Select
               value={SortValue}

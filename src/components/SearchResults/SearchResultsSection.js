@@ -202,7 +202,7 @@ export default function SearchResultsSection({
         .then(
           (result) => {
             setIsLoaded(true);
-            setItems(result.filter(filterListing));
+            setItems(result.filter(filterListing).reverse());
           },
           (error) => {
             setIsLoaded(true);

@@ -156,7 +156,7 @@ export default function HomePageRoute(props) {
         (result) => {
           // console.log(result);
           setIsLoaded(true);
-          setItems(result.filter((e) => e.isActive));
+          setItems(result.filter((e) => e.isActive).reverse());
         },
         (error) => {
           console.log(error);
@@ -247,13 +247,13 @@ export default function HomePageRoute(props) {
               style={{ fontFamily: 'Oswald' }}
             />
             <Tab
-              label="Saved Jobs"
-              value="/SavedJobs"
+              label="List All Jobs"
+              value="/ListAll"
               style={{ fontFamily: 'Oswald' }}
             />
             <Tab
-              label="List All Jobs"
-              value="/ListAll"
+              label="Saved Jobs"
+              value="/SavedJobs"
               style={{ fontFamily: 'Oswald' }}
             />
           </Tabs>

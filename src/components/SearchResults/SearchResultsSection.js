@@ -32,9 +32,6 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiInput-underline': {
       borderBottom: '2px solid #888',
     },
-    '& *': {
-      color: 'white',
-    },
     '& label.MuiFormLabel-root.Mui-focused': {
       color: 'white',
     },

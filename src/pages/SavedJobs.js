@@ -31,9 +31,9 @@ const useStyles = makeStyles((theme) => ({
     '&.MuiMenuItem-root': {
       minHeight: 200,
     },
-    '& *': {
-      color: 'white',
-    },
+    // '& *': {
+    //   color: 'white',
+    // },
     '& label.MuiFormLabel-root.Mui-focused': {
       color: 'white',
     },

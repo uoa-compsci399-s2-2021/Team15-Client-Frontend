@@ -26,6 +26,18 @@ const useStyles = makeStyles((theme) => ({
     // textAlign: "center",
     paddingTop: 10,
     marginTop: 10,
+    '&.MuiMenuItem-root': {
+      minheight: 200,
+    },
+    // '& *': {
+    //   color: 'white',
+    // },
+    '& label.MuiFormLabel-root.Mui-focused': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottom: '2px solid white',
+    },
   },
   CardCustom: {},
   SearchResultsContainer: {},
@@ -43,6 +55,24 @@ const useStyles = makeStyles((theme) => ({
     // width: "15%",
     float: 'right',
     paddingBottom: 10,
+    '&.MuiSelect-root, .MuiSelect-filled, .MuiSelect-standard': {
+      borderRadius: 5,
+      backgroundColor: 'white',
+    },
+  },
+  back: {
+    color: 'white',
+    // borderBottom: '1px solid white',
+    '&:hover': {
+      backgroundColor: '#270f61',
+    },
+    marginBottom: 10,
+    paddingRight: 20,
+    fontFamily: 'Oswald',
+    fontSize: 15,
+  },
+  inputLabel: {
+    color: 'white',
   },
   back: {
     color: 'white',
@@ -62,17 +92,20 @@ SearchResultsSection.defaultProps = {
     jobTitle: '',
     startingSalary: '',
     highestSalary: '',
-    contract: '',
-    location: '',
+    contract: [],
+    location: [],
     beforeSearch: false,
     searchDone: false,
+    listAll: false,
   },
+  searchResults: false,
 };
 export default function SearchResultsSection({
   searchQuery,
-  setsearchQuery,
+  setSearchQuery,
   userData,
   handleUpdate,
+  searchResults,
 }) {
   const classes = useStyles();
   const [SortValue, setSortValue] = useState('');
@@ -127,6 +160,7 @@ export default function SearchResultsSection({
   const filterListing = (value) => {
     if (!value.isActive) return false;
     if (searchQuery.listAll) return true;
+
     const PName = value.positionName
       .toLowerCase()
       .trim()
@@ -136,20 +170,23 @@ export default function SearchResultsSection({
         .trim()
         .includes(searchQuery.jobTitle.toLowerCase().trim());
     let LSalary = true;
-    if (
-      searchQuery.startingSalary !== ''
-      && searchQuery.startingSalary !== -1
-    ) {
-      LSalary = value.jobSalary >= searchQuery.startingSalary;
-    }
     let HSalary = true;
-    if (
-      searchQuery.highestSalary !== ''
-      && searchQuery.highestSalary !== -1
-      && searchQuery.startingSalary !== -1
-    ) {
-      HSalary = value.jobSalary <= searchQuery.highestSalary;
+    if (value.jobSalaryType === 'Annual') {
+      if (
+        searchQuery.startingSalary !== ''
+        && searchQuery.startingSalary !== -1
+      ) {
+        LSalary = value.jobSalary >= searchQuery.startingSalary;
+      }
+      if (
+        searchQuery.highestSalary !== ''
+        && searchQuery.highestSalary !== -1
+        && searchQuery.startingSalary !== -1
+      ) {
+        HSalary = value.jobSalary <= searchQuery.highestSalary;
+      }
     }
+
     let ContractT = true;
     let Hours = true;
     if (searchQuery.contract.length !== 0) {
@@ -180,7 +217,7 @@ export default function SearchResultsSection({
         .then(
           (result) => {
             setIsLoaded(true);
-            setItems(result.filter(filterListing));
+            setItems(result.filter(filterListing).reverse());
           },
           (error) => {
             setIsLoaded(true);
@@ -189,7 +226,7 @@ export default function SearchResultsSection({
         );
     };
     fetchJobInfo();
-    setsearchQuery({ ...searchQuery, searchDone: true });
+    setSearchQuery({ ...searchQuery, searchDone: true });
   }, [searchQuery.searchDone]);
 
   if (error) {
@@ -200,15 +237,17 @@ export default function SearchResultsSection({
   }
   return (
     <Box className={classes.root} sx={{ width: '100vw' }}>
-      <Button
-        variant="outlined"
-        onClick={() => setsearchQuery({ ...searchQuery, beforeSearch: true })}
-        size="small"
-        className={classes.back}
-      >
-        <ArrowBackIosIcon fontSize="small" style={{ color: 'white' }} />
-        back
-      </Button>
+      {searchResults ? (
+        <Button
+          variant="outlined"
+          onClick={() => setSearchQuery({ ...searchQuery, beforeSearch: true })}
+          size="small"
+          className={classes.back}
+        >
+          <ArrowBackIosIcon fontSize="small" style={{ color: 'white' }} />
+          back
+        </Button>
+      ) : null}
       <Box className={classes.ResultHead}>
         <Grid xs={8}>
           <Typography
@@ -217,14 +256,17 @@ export default function SearchResultsSection({
               fontFamily: 'Oswald',
               flexGrow: 1,
               verticalAlign: 'bottom',
+              color: 'White',
             }}
           >
-            Found {items.length} Jobs Matching Your Search
+            {searchResults
+              ? `Found ${items.length} Jobs Matching Your Search`
+              : `Showing ${items.length} Jobs`}
           </Typography>
         </Grid>
         <Grid xs={4}>
           <FormControl className={classes.formControl}>
-            <InputLabel>Sort</InputLabel>
+            <InputLabel className={classes.inputLabel}>Sort Jobs</InputLabel>
 
             <Select
               value={SortValue}

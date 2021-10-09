@@ -5,7 +5,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
-import CompanyLogo from './CompanyLogo';
+import { minHeight } from '@mui/system';
 import JobListingDetail from './JobListingDetail';
 import useFetch from '../apis/useFetch';
 
@@ -14,7 +14,7 @@ export default function CardCustom(props) {
     root: {
       display: 'flex',
       position: 'relative',
-
+      overflow: 'hidden',
       flexDirection: 'column',
       borderRadius: props.rounded ? 5 : 0,
       width: props.width ? props.width : 'auto',
@@ -24,7 +24,6 @@ export default function CardCustom(props) {
       color: props.color === 'white' ? 'black' : 'white',
 
       textAlign: 'left',
-
       padding: '10px',
     },
     gridContainer: {
@@ -36,14 +35,16 @@ export default function CardCustom(props) {
     },
     title: {
       flexGrow: 1,
-      ...theme.typography.button,
       fontFamily: 'Oswald',
     },
     information: {
       marginRight: 31,
+      width: '80%',
+      height: 55,
+      overflow: 'hidden',
       fontSize: '0.75rem',
-      paddingBottom: 10,
     },
+
     location: {
       // paddingInlineStart: 10,
       fontWeight: 700,
@@ -118,11 +119,11 @@ export default function CardCustom(props) {
         <Grid container direction="column" className={classes.gridContainer}>
           <Grid item className={classes.Header}>
             <Typography
-              sx={{ fontSize: '1rem', fontFamily: 'Oswald' }}
+              sx={{ fontSize: '1.5rem', fontFamily: 'Oswald' }}
               className={classes.title}
               display="inline"
             >
-              {props.item.positionName}
+              {props.item.positionName.toUpperCase()}
             </Typography>
             {props.userData.savedJobList !== undefined ? (
               <Checkbox
@@ -134,40 +135,43 @@ export default function CardCustom(props) {
               />
             ) : null}
             <img className={classes.logo} src={logoUrl} alt="not found" />
-            {/* <CompanyLogo
-              companyName={props.item.companyName}
-              url={logoUrl}
-              sx={{ maxHeight: 40, marginRight: 10 }}
-            /> */}
           </Grid>
 
           <Grid item className={classes.location}>
-            <Typography variant="h6" style={{ fontFamily: 'Oswald' }}>
-              {props.item.jobSalaryType === 'Market rate' ? (
-                <>&quot;Market rate&quot;</>
-              ) : (
-                <>
-                  ${props.item.jobSalary} {props.item.jobSalaryType}
-                </>
-              )}
-            </Typography>
-
-            <LocationOnIcon style={{ fontSize: '20' }} />
-            <span style={{ fontFamily: 'Oswald' }}>
-              {props.item.jobLocation}
+            <LocationOnIcon
+              style={{ fontSize: '20', position: 'relative', top: 5 }}
+            />
+            <span style={{}}>{props.item.jobLocation}</span>
+            <span>
+              <Typography
+                style={{
+                  fontSize: 15,
+                  fontWeight: 'bold',
+                  paddingLeft: 20,
+                }}
+              >
+                {props.item.jobSalaryType === 'Market rate' ? (
+                  <>Market rate</>
+                ) : (
+                  <>
+                    ${props.item.jobSalary} {props.item.jobSalaryType}
+                  </>
+                )}
+              </Typography>
             </span>
           </Grid>
-          <Typography
-            className={classes.information}
-            style={{ fontFamily: 'Oswald' }}
-          >
-            {typeof props.item.jobDescription !== 'undefined'
-              ? props.item.jobDescription.length > 173
-                ? `${props.item.jobDescription.substr(0, 170)}...`
-                : props.item.jobDescription
-              : 'Sorry This is embrassing'}
-          </Typography>
+          <Grid>
+            <Typography
+              className={classes.information}
+              sx={{ fontSize: '0.75rem' }}
+            >
+              {typeof props.item.jobDescription !== 'undefined'
+                ? props.item.jobDescription
+                : 'Sorry This is embarrassing'}
+            </Typography>
+          </Grid>
         </Grid>
+        <Grid sx={{ minHeight: 20 }} />
         <ArrowForwardIcon className={classes.ArrowForward} />
       </Paper>
       {open ? (
@@ -178,9 +182,7 @@ export default function CardCustom(props) {
           userData={props.userData}
           handleUpdate={props.handleUpdate}
         />
-      ) : (
-        <></>
-      )}
+      ) : null}
     </>
   );
 }

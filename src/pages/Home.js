@@ -34,7 +34,7 @@ function Home(props) {
   }, []);
 
   const classes = useStyles();
-  const [searchQuery, setsearchQuery] = useState({
+  const [searchQuery, setSearchQuery] = useState({
     jobTitle: '',
     startingSalary: '',
     highestSalary: '',
@@ -47,13 +47,14 @@ function Home(props) {
   const [width, setWidth] = useState(window.innerWidth);
   const [detailOpened, setDetailOpened] = useState(false);
   const onClickSearchResult = () => {
-    setsearchQuery({
+    setSearchQuery({
       ...searchQuery,
       beforeSearch: false,
       searchDone: false,
       listAll: false,
     });
   };
+
   useEffect(() => {
     window.addEventListener('resize', () => setWidth(window.innerWidth));
     return () => window.removeEventListener('resize', () => setWidth(window.innerWidth));
@@ -75,7 +76,7 @@ function Home(props) {
         ) : null}
         <Grid item xs={11} className={classes.SearchSection}>
           <SearchSection
-            searchQuery={[searchQuery, setsearchQuery]}
+            searchQuery={[searchQuery, setSearchQuery]}
             onClickSearchResult={onClickSearchResult}
           />
         </Grid>
@@ -93,17 +94,16 @@ function Home(props) {
           />
         </Grid>
       ) : null}
-      {searchQuery.beforeSearch ? (
-        <Box />
-      ) : (
+      {searchQuery.beforeSearch ? null : (
         <SearchResult
           id="SearchResults"
           className={classes.SearchResultSection}
           searchQuery={searchQuery}
-          setsearchQuery={setsearchQuery}
+          setSearchQuery={setSearchQuery}
           items={props.items}
           userData={props.userData}
           handleUpdate={props.handleUpdate}
+          searchResults
         />
       )}
       {/* <JobListingDetail /> */}

@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+    color: '#FFFFFF',
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -97,7 +98,7 @@ export default function Login() {
   async function handleSignIn() {
     setHasErrors(true);
     const loginInfo = { email, password };
-    if (email.length > 0 && password.length > 0) {
+    if (email.length > 0 && password.length > 0 && email.endsWith('@aucklanduni.ac.nz')) {
       try {
         setLoading(true);
         const response = await login(loginInfo);
@@ -106,16 +107,12 @@ export default function Login() {
           // window.location.href = '/';
           history.push('/');
         }
-        // console.log(response.data);
       } catch (e) {
         console.log(e);
-        // setErrorMessage(e.response.data.info);
         setTimeout(() => {
           setErrorMessage('');
         }, 8000);
         setLoading(false);
-        // console.log(localStorage.getItem('authToken'));
-        // console.log(e.response.data.error);
       }
     }
   }
@@ -145,7 +142,8 @@ export default function Login() {
                 onChange={(e) => setEmail(e.target.value.trim().toLowerCase())}
                 error={isError(email.length === 0)}
                 helperText={
-                  isError(email.length === 0) && 'Please enter your email!'
+                  (isError(email.length === 0) && 'Please enter your email')
+                  || (isError(!email.endsWith('@aucklanduni.ac.nz') && 'Please use your UOA email'))
                 }
               />
               <TextField

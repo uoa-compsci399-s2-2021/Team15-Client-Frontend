@@ -41,7 +41,7 @@ export default function DJLB(props) {
       {props.items.slice(0, 8).map((item, index) => (
         <ImageListItem
           rows={props.items.length > 4 ? 1 : 2}
-          key={`${item.positionName} Lastest ${index.toString()}`}
+          key={`${item.positionName} Latest ${index.toString()}`}
           cols={
             itemsLength === index
               ? index < 4

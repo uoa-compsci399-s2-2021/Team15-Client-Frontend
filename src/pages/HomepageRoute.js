@@ -28,6 +28,7 @@ import Home from './Home';
 import SavedJobs from './SavedJobs';
 
 import bgDark from '../assets/bg-dark.jpeg';
+import ListAllPage from '../components/ListAll/ListAllPage';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -55,7 +56,19 @@ const useStyles = makeStyles((theme) => ({
     width: '100vw',
     scrollbarWidth: '100vw',
     overflowX: 'hidden',
-    backgroundImage: `url(${bgDark})`,
+    backgroundColor: '#333',
+  },
+  userMenu: {
+    '& .MuiPaper-root': {
+      color: '#FFF',
+      backgroundColor: '#D7D7D73F',
+    },
+    '& .MuiTypography-colorTextSecondary': {
+      color: '#FFFC',
+    },
+    '& .MuiListItemIcon-root': {
+      color: '#FFF',
+    },
   },
   UserMenu: {
     '& .MuiPaper-root': {
@@ -78,6 +91,21 @@ const useStyles = makeStyles((theme) => ({
   },
   HomePage: {
     flexGrow: 1,
+  },
+  UserMenu: {
+    '& .MuiPaper-root': {
+      color: '#FFF',
+      backgroundColor: '#D7D7D73F',
+    },
+    '& .MuiTypography-colorTextSecondary': {
+      color: '#FFFC',
+    },
+    '& .MuiListItemIcon-root': {
+      color: '#FFF',
+    },
+  },
+  MenuItemDivider: {
+    backgroundColor: '#FFF',
   },
 }));
 
@@ -113,7 +141,6 @@ export default function HomePageRoute(props) {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('authToken')}`,
-      // Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTJiNDQwMzM0MjBjZWExYmQ0ZGRiYyIsImlhdCI6MTYyNTU1MzMyNn0.O7wqQZ2JfGihrqt4QkTW1Kh2ZK-j5FWg1zBewYMasyU'
     },
   };
   useEffect(() => {
@@ -141,7 +168,7 @@ export default function HomePageRoute(props) {
         (result) => {
           // console.log(result);
           setIsLoaded(true);
-          setItems(result.filter((e) => e.isActive));
+          setItems(result.filter((e) => e.isActive).reverse());
         },
         (error) => {
           console.log(error);
@@ -165,7 +192,7 @@ export default function HomePageRoute(props) {
       getContentAnchorEl={null}
       open={isMenuOpen}
       onClose={handleMenuClose}
-      className={classes.UserMenu}
+      className={classes.userMenu}
     >
       <MenuItem>
         <ListItem alignItems="flex-start">
@@ -195,8 +222,8 @@ export default function HomePageRoute(props) {
           ) : null}
         </ListItem>
       </MenuItem>
-      <Divider variant="middle" />
-      <MenuItem onClick={handleSignOut} component={RouterLink} to="/Login">
+      <Divider variant="middle" className={classes.MenuItemDivider} />
+      <MenuItem onClick={handleSignOut} component={RouterLink} to="/login">
         <ListItemIcon>
           <ExitToAppTwoToneIcon fontSize="medium" />
         </ListItemIcon>
@@ -226,7 +253,16 @@ export default function HomePageRoute(props) {
               },
             }}
           >
-            <Tab label="Home" value="/Home" style={{ fontFamily: 'Oswald' }} />
+            <Tab
+              label="Search"
+              value="/Search"
+              style={{ fontFamily: 'Oswald' }}
+            />
+            <Tab
+              label="List All Jobs"
+              value="/ListAll"
+              style={{ fontFamily: 'Oswald' }}
+            />
             <Tab
               label="Saved Jobs"
               value="/SavedJobs"
@@ -255,7 +291,7 @@ export default function HomePageRoute(props) {
       </AppBar>
       {renderMenu}
 
-      <TabPanel value={value} index={'/Home'} className={classes.HomePage}>
+      <TabPanel value={value} index={'/Search'} className={classes.HomePage}>
         <Home
           userData={userData}
           items={items}
@@ -265,6 +301,13 @@ export default function HomePageRoute(props) {
       </TabPanel>
       <TabPanel value={value} index={'/SavedJobs'}>
         <SavedJobs
+          userData={userData}
+          items={items}
+          handleUpdate={handleUpdate}
+        />
+      </TabPanel>
+      <TabPanel value={value} index={'/ListAll'}>
+        <ListAllPage
           userData={userData}
           items={items}
           handleUpdate={handleUpdate}

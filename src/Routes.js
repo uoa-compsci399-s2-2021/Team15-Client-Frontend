@@ -6,7 +6,6 @@ import {
   Redirect,
   useLocation,
 } from 'react-router-dom';
-import Hello from './pages/Hello';
 import Login from './pages/Login';
 import JobBoard from './pages/JobBoard';
 import PrivateRoute from './utils/PrivateRoute';
@@ -25,17 +24,17 @@ function Routes() {
   return (
     <Router>
       <Switch>
-        <Route path={'/Hello'}>
-          <Hello />
-        </Route>
         <PrivateRoute exact path="/">
-          <Redirect to="/Home" />
+          <Redirect to="/Search" />
         </PrivateRoute>
-        <PrivateRoute path="/Home">
-          <Homepage tabValue={'/Home'} />
+        <PrivateRoute path="/Search">
+          <Homepage tabValue={'/Search'} />
         </PrivateRoute>
         <PrivateRoute path="/SavedJobs">
           <Homepage tabValue={'/SavedJobs'} />
+        </PrivateRoute>
+        <PrivateRoute path="/ListAll">
+          <Homepage tabValue={'/ListAll'} />
         </PrivateRoute>
         <PrivateRoute path="/ContactUs">
           <Homepage tabValue={'/ContactUs'} />

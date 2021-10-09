@@ -42,7 +42,14 @@ export default function JobListingBottom(props) {
         </ImageList>
       </Grid>
       <Grid item xs={10}>
-        <DJLB detailOpen={props.detailOpen} closeDetail={props.closeDetail} items={props.items} isLoaded={props.isLoaded} userData={props.userData} handleUpdate={props.handleUpdate} />
+        <DJLB
+          detailOpen={props.detailOpen}
+          closeDetail={props.closeDetail}
+          items={props.items}
+          isLoaded={props.isLoaded}
+          userData={props.userData}
+          handleUpdate={props.handleUpdate}
+        />
       </Grid>
     </Grid>
   );

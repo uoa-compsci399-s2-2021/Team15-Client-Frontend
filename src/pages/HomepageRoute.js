@@ -70,18 +70,6 @@ const useStyles = makeStyles((theme) => ({
       color: '#FFF',
     },
   },
-  UserMenu: {
-    '& .MuiPaper-root': {
-      color: '#FFF',
-      backgroundColor: '#D7D7D73F',
-    },
-    '& .MuiTypography-colorTextSecondary': {
-      color: '#FFFC',
-    },
-    '& .MuiListItemIcon-root': {
-      color: '#FFF',
-    },
-  },
   AppBar: {
     background: 'none',
     borderBottom: '1px solid #FFFA',

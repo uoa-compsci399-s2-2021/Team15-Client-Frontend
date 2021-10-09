@@ -74,17 +74,6 @@ const useStyles = makeStyles((theme) => ({
   inputLabel: {
     color: 'white',
   },
-  back: {
-    color: 'white',
-    // borderBottom: '1px solid white',
-    '&:hover': {
-      backgroundColor: '#270f61',
-    },
-    marginBottom: 10,
-    paddingRight: 20,
-    fontFamily: 'Oswald',
-    fontSize: 15,
-  },
 }));
 
 SearchResultsSection.defaultProps = {

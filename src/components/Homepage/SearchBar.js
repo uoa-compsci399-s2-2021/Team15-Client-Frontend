@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiInput-underline:after': {
       borderBottom: '2px solid white',
     },
+    '& .MuiInput-underline': {
+      borderBottom: '2px solid #888',
+    },
   },
   textField: {
     width: 230,
@@ -55,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     width: 130,
-    borderRight: '2px solid #80606A',
+    borderRight: '2px solid #ac3f50',
     paddingRight: 5,
     height: 60,
   },
@@ -135,17 +138,16 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
         <Grid item className={classes.margin10}>
           <Typography
             style={{
-              borderRight: '2px solid #80606A',
               paddingRight: 10,
               color: 'transparent',
               height: 60,
             }}
-           />
+          />
         </Grid>
         <Grid item className={classes.margin10}>
           <TextField
             className={classes.textField}
-            style={{ borderRight: '2px solid #80606A', paddingRight: 10 }}
+            style={{ borderRight: '2px solid #ac3f50', paddingRight: 10 }}
             id="Search"
             label="What Are You Looking For?"
             name="jobTitle"

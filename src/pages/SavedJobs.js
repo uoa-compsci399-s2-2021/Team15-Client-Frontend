@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiInput-underline:after': {
       borderBottom: '2px solid white',
     },
+    '& .MuiInput-underline': {
+      borderBottom: '2px solid #888',
+    },
   },
 
   ResultHead: {

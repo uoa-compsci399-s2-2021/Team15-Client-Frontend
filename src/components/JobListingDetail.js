@@ -125,11 +125,11 @@ export default function JobListingDetail({
     },
     applySection: {
       padding: 20,
+      width: '100%',
     },
     body: {
       whiteSpace: 'pre-line',
       marginTop: 10,
-      fontFamily: 'Oswald',
     },
     save: {
       '& svg': {
@@ -319,10 +319,7 @@ export default function JobListingDetail({
         maxWidth="md"
         className={classes.dialogPaper}
       >
-        <Grid
-          container
-          className={classes.dialogWrapper}
-        >
+        <Grid container className={classes.dialogWrapper}>
           <Grid item xs={12}>
             <IconButton
               aria-label="close"
@@ -332,7 +329,9 @@ export default function JobListingDetail({
               onClick={hClose}
             >
               <ArrowBackIosIcon fontSize="small" style={{ color: 'white' }} />
-              <Typography style={{ fontFamily: 'Oswald', color: 'white' }}>Back</Typography>
+              <Typography style={{ fontFamily: 'Oswald', color: 'white' }}>
+                Back
+              </Typography>
             </IconButton>
           </Grid>
           <Grid item xs={12}>
@@ -423,7 +422,7 @@ export default function JobListingDetail({
             >
               Start Date:
             </Typography>
-            <Typography display="inline" style={{ fontFamily: 'Oswald' }}>
+            <Typography display="inline" style={{}}>
               {item.jobStartTime}
             </Typography>
             <br />
@@ -434,7 +433,7 @@ export default function JobListingDetail({
             >
               Application Closing Date:
             </Typography>
-            <Typography display="inline" style={{ fontFamily: 'Oswald' }}>
+            <Typography display="inline" style={{}}>
               {item.jobClosingDate}
             </Typography>
             <br />
@@ -445,7 +444,7 @@ export default function JobListingDetail({
             >
               Contract:
             </Typography>
-            <Typography display="inline" style={{ fontFamily: 'Oswald' }}>
+            <Typography display="inline" style={{}}>
               Permanent
             </Typography>
           </Grid>
@@ -481,16 +480,6 @@ export default function JobListingDetail({
               Key Skills
             </Typography>
             <Typography className={classes.body}>{item.jobSkill}</Typography>
-            <br />
-            <Typography
-              variant="h6"
-              style={{ marginTop: 30, fontFamily: 'Oswald' }}
-            >
-              Contact Detail
-            </Typography>
-            <Typography className={classes.body}>
-              {item.questionContactDetail}
-            </Typography>
           </Grid>
           {openApply ? (
             <Grid
@@ -504,6 +493,15 @@ export default function JobListingDetail({
                 </Typography>
                 <Typography className={classes.body}>
                   {item.applicationContactDetail}
+                </Typography>
+                <Typography
+                  variant="h6"
+                  style={{ marginTop: 30, fontFamily: 'Oswald' }}
+                >
+                  Contact Detail
+                </Typography>
+                <Typography className={classes.body}>
+                  {item.questionContactDetail}
                 </Typography>
               </Card>
             </Grid>

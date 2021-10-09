@@ -6,7 +6,6 @@ import {
   Redirect,
   useLocation,
 } from 'react-router-dom';
-import Hello from './pages/Hello';
 import Login from './pages/Login';
 import JobBoard from './pages/JobBoard';
 import PrivateRoute from './utils/PrivateRoute';
@@ -25,9 +24,6 @@ function Routes() {
   return (
     <Router>
       <Switch>
-        <Route path={'/Hello'}>
-          <Hello />
-        </Route>
         <PrivateRoute exact path="/">
           <Redirect to="/Search" />
         </PrivateRoute>

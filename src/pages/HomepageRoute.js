@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100vw',
     scrollbarWidth: '100vw',
     overflowX: 'hidden',
-    backgroundImage: `url(${bgDark})`,
+    backgroundColor: '#333',
   },
   userMenu: {
     '& .MuiPaper-root': {

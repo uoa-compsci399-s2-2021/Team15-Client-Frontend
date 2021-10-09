@@ -140,9 +140,7 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
               color: 'transparent',
               height: 60,
             }}
-          >
-            {'b'}
-          </Typography>
+           />
         </Grid>
         <Grid item className={classes.margin10}>
           <TextField

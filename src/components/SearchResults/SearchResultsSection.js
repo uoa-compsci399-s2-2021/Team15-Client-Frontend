@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
     '&.MuiMenuItem-root': {
       minheight: 200,
     },
+    '& .MuiInput-underline': {
+      borderBottom: '2px solid #888',
+    },
     '& *': {
       color: 'white',
     },

@@ -149,6 +149,7 @@ export default function SearchResultsSection({
   const filterListing = (value) => {
     if (!value.isActive) return false;
     if (searchQuery.listAll) return true;
+
     const PName = value.positionName
       .toLowerCase()
       .trim()
@@ -158,20 +159,23 @@ export default function SearchResultsSection({
         .trim()
         .includes(searchQuery.jobTitle.toLowerCase().trim());
     let LSalary = true;
-    if (
-      searchQuery.startingSalary !== ''
-      && searchQuery.startingSalary !== -1
-    ) {
-      LSalary = value.jobSalary >= searchQuery.startingSalary;
-    }
     let HSalary = true;
-    if (
-      searchQuery.highestSalary !== ''
-      && searchQuery.highestSalary !== -1
-      && searchQuery.startingSalary !== -1
-    ) {
-      HSalary = value.jobSalary <= searchQuery.highestSalary;
+    if (value.jobSalaryType === 'Annual') {
+      if (
+        searchQuery.startingSalary !== ''
+        && searchQuery.startingSalary !== -1
+      ) {
+        LSalary = value.jobSalary >= searchQuery.startingSalary;
+      }
+      if (
+        searchQuery.highestSalary !== ''
+        && searchQuery.highestSalary !== -1
+        && searchQuery.startingSalary !== -1
+      ) {
+        HSalary = value.jobSalary <= searchQuery.highestSalary;
+      }
     }
+
     let ContractT = true;
     let Hours = true;
     if (searchQuery.contract.length !== 0) {

@@ -30,7 +30,10 @@ export default function SearchSection({ searchQuery, onClickSearchResult }) {
         )}
       </Grid>
       <Grid item>
-        <SearchBar searchQuery={searchQuery} onClickSearchResult={onClickSearchResult} />
+        <SearchBar
+          searchQuery={searchQuery}
+          onClickSearchResult={onClickSearchResult}
+        />
       </Grid>
     </Grid>
   );

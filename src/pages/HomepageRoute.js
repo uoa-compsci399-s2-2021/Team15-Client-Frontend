@@ -242,17 +242,17 @@ export default function HomePageRoute(props) {
             }}
           >
             <Tab
-              label="Search"
+              label="Search Jobs"
               value="/Search"
               style={{ fontFamily: 'Oswald' }}
             />
             <Tab
-              label="List All Jobs"
+              label="View All Jobs"
               value="/ListAll"
               style={{ fontFamily: 'Oswald' }}
             />
             <Tab
-              label="Saved Jobs"
+              label="My Saved Jobs"
               value="/SavedJobs"
               style={{ fontFamily: 'Oswald' }}
             />

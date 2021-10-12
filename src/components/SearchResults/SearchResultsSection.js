@@ -232,7 +232,16 @@ export default function SearchResultsSection({
       {searchResults ? (
         <Button
           variant="outlined"
-          onClick={() => setSearchQuery({ ...searchQuery, beforeSearch: true })}
+          onClick={() => setSearchQuery({
+            jobTitle: '',
+            startingSalary: '',
+            highestSalary: '',
+            contract: [],
+            location: [],
+            beforeSearch: true,
+            searchDone: false,
+            listAll: false,
+          })}
           size="small"
           className={classes.back}
         >

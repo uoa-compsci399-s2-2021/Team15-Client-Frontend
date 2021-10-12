@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   searchResults: {},
   JLB: {},
   SearchResultSection: {
-    maxwidth: '80vw',
+    // maxwidth: '80vw',
   },
 }));
 

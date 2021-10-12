@@ -19,7 +19,7 @@ export default function DJLB(props) {
   const layout = [2, 1, 1, 1, 1, 2, 1, 1];
   const itemsLength = props.items.length - 1;
   const colors = [
-    '#ffb133',
+    '#ffa133',
     '#c66c75',
     '#9cb279',
     '#b67c93',

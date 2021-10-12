@@ -17,9 +17,6 @@ const useStyles = makeStyles((theme) => ({
     '&.MuiMenuItem-root': {
       minHeight: 200,
     },
-    '& *': {
-      color: '#003866',
-    },
     '& label.MuiFormLabel-root.Mui-focused': {
       color: '#003866',
     },
@@ -48,9 +45,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 10,
     width: 100,
     padding: 10,
-    '&:hover': {
-      backgroundColor: '#98BDDD',
-    },
+    // '&:hover': {
+    //   backgroundColor: '#98BDDD',
+    // },
   },
   marginT5: {
     marginTop: 5,
@@ -61,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     borderRight: '2px solid #98BDDD',
     paddingRight: 5,
     height: 60,
+
   },
 }));
 /** THis is a search Bar Currently it only Console logs out the form value  */
@@ -246,20 +244,10 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
           className={classes.SearchButton}
           name="search"
           onClick={onClickSearchResult}
-          // variant="outlined"
+          variant="contained"
         >
           Search
         </Button>
-        {/* <Button
-          color="secondary"
-          justifycontent="center"
-          className={classes.SearchButton}
-          name="listAll"
-          onClick={onClickListAll}
-          style={{ marginLeft: 10 }}
-        >
-          List All
-        </Button> */}
       </Grid>
     </form>
   );

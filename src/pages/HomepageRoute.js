@@ -269,9 +269,11 @@ export default function HomePageRoute(props) {
             color="inherit"
             sx={{ '& :hover': { backgroundColor: '#0080A7' } }}
           >
-            <Typography style={{ fontFamily: 'Oswald', paddingRight: 10 }}>
-              {capitalizeFirstLetter(userData.firstname)}
-            </Typography>
+            {userData.firstname ? (
+              <Typography style={{ fontFamily: 'Oswald', paddingRight: 10 }}>
+                {capitalizeFirstLetter(userData.firstname)}
+              </Typography>
+            ) : null}
             <Avatar
               alt={userData.firstname + ' ' + userData.lastname}
               className={classes.large}

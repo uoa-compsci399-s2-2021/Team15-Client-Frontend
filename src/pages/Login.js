@@ -25,6 +25,13 @@ const useStyles = makeStyles((theme) => ({
     '& *': {
       color: '#000',
     },
+    '& .MuiButton-root': {
+      backgroundColor: '#00467F',
+    },
+    '& 	.MuiButton-text': {
+      color: 'white',
+    },
+
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
         borderColor: '#0080A7',
@@ -47,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     width: '100vw',
     height: '100vh',
+    backgroundColor: '#0080A7',
   },
   paper: {
     display: 'flex',
@@ -125,7 +133,7 @@ export default function Login() {
           <div className={classes.paper}>
             <Avatar className={classes.avatar} src={ALogo} />
             <Typography component="h1" variant="h5">
-              Sign in
+              Sign In
             </Typography>
             <Typography color="error">{errorMessage}</Typography>
             <div className={classes.form} noValidate>
@@ -177,7 +185,6 @@ export default function Login() {
                 onClick={() => handleSignIn()}
                 disabled={false}
                 variant="outlined"
-                style={{ color: 'white', backgroundColor: '00467F' }}
               >
                 {loading ? (
                   <CircularProgress color="inherit" size="2rem" />

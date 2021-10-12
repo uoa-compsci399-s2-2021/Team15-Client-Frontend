@@ -219,7 +219,7 @@ export default function SearchResultsSection({
     return <div>Error: {error.message}</div>;
   }
   if (!isLoaded) {
-    return <div>Loading...</div>;
+    return null;
   }
   return (
     <Box className={classes.root} sx={{ width: '100vw' }}>

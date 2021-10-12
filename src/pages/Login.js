@@ -23,21 +23,21 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-around',
     '& *': {
-      color: '#FFFFFF',
+      color: '#000',
     },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: '#FFFA',
+        borderColor: '#0080A7',
       },
       '&:hover fieldset': {
-        borderColor: '#FFFC',
+        borderColor: '#0080A7',
       },
       '&.Mui-focused fieldset': {
-        borderColor: '#FFFC',
+        borderColor: '#0080A7',
       },
     },
     '& label.MuiFormLabel-root.Mui-focused': {
-      color: '#FFFC',
+      color: '#000',
     },
   },
   page: {
@@ -47,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     width: '100vw',
     height: '100vh',
-    backgroundImage: `url(${bgDark})`,
   },
   paper: {
     display: 'flex',
@@ -56,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '40px',
     borderRadius: '5px',
     border: '2px solid #80606A',
-    backgroundColor: '#0d0014C0',
+    backgroundColor: '#f2f2f2',
   },
   avatar: {
     margin: theme.spacing(1),
@@ -64,10 +63,10 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
-    color: '#FFFFFF',
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    color: 'white',
   },
 }));
 
@@ -83,22 +82,23 @@ export default function Login() {
   const history = useHistory();
 
   async function login(loginInfo) {
-    return axios(
-      'https://cs399-team15.herokuapp.com/api/auth/login',
-      {
-        headers: {
-          'Content-type': 'application/json',
-        },
-        data: loginInfo,
-        method: 'POST',
+    return axios('https://cs399-team15.herokuapp.com/api/auth/login', {
+      headers: {
+        'Content-type': 'application/json',
       },
-    );
+      data: loginInfo,
+      method: 'POST',
+    });
   }
 
   async function handleSignIn() {
     setHasErrors(true);
     const loginInfo = { email, password };
-    if (email.length > 0 && password.length > 0 && email.endsWith('@aucklanduni.ac.nz')) {
+    if (
+      email.length > 0
+      && password.length > 0
+      && email.endsWith('@aucklanduni.ac.nz')
+    ) {
       try {
         setLoading(true);
         const response = await login(loginInfo);
@@ -143,7 +143,10 @@ export default function Login() {
                 error={isError(email.length === 0)}
                 helperText={
                   (isError(email.length === 0) && 'Please enter your email')
-                  || (isError(!email.endsWith('@aucklanduni.ac.nz') && 'Please use your UOA email'))
+                  || isError(
+                    !email.endsWith('@aucklanduni.ac.nz')
+                      && 'Please use your UOA email',
+                  )
                 }
               />
               <TextField
@@ -159,7 +162,8 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 error={isError(password.length === 0)}
                 helperText={
-                  isError(password.length === 0) && 'Please enter your password!'
+                  isError(password.length === 0)
+                  && 'Please enter your password!'
                 }
               />
               <FormControlLabel
@@ -169,16 +173,16 @@ export default function Login() {
               <Button
                 type="submit"
                 fullWidth
-                variant="contained"
-                color="primary"
                 className={classes.submit}
                 onClick={() => handleSignIn()}
                 disabled={false}
+                variant="outlined"
+                style={{ color: 'white', backgroundColor: '00467F' }}
               >
                 {loading ? (
                   <CircularProgress color="inherit" size="2rem" />
                 ) : (
-                  <>Sign In</>
+                  'Sign In'
                 )}
               </Button>
             </div>

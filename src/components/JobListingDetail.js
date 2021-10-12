@@ -148,7 +148,7 @@ export default function JobListingDetail({
       paddingRight: 20,
       paddingTop: 5,
       paddingBottom: 10,
-      backgroundColor: '#0b0712',
+      backgroundColor: '#555',
       color: '#FFF',
       border: '2px solid #80606A',
       opacity: 0.99,

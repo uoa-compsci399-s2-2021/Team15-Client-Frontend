@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     height: '100%',
 
-    backgroundColor: '#7e5f6a',
+    backgroundColor: '#a78b95',
 
     fontFamily: 'Oswald',
     color: 'white',

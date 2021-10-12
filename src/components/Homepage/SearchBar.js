@@ -18,13 +18,13 @@ const useStyles = makeStyles((theme) => ({
       minHeight: 200,
     },
     '& *': {
-      color: 'white',
+      color: '#003866',
     },
     '& label.MuiFormLabel-root.Mui-focused': {
-      color: 'white',
+      color: '#003866',
     },
     '& .MuiInput-underline:after': {
-      borderBottom: '2px solid white',
+      borderBottom: '2px solid #003866',
     },
     '& .MuiInput-underline': {
       borderBottom: '2px solid #888',
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     width: 100,
     padding: 10,
     '&:hover': {
-      backgroundColor: '#270f61',
+      backgroundColor: '#98BDDD',
     },
   },
   marginT5: {
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     width: 130,
-    borderRight: '2px solid #ac3f50',
+    borderRight: '2px solid #98BDDD',
     paddingRight: 5,
     height: 60,
   },
@@ -147,7 +147,7 @@ export default function SearchBar({ searchQuery, onClickSearchResult }) {
         <Grid item className={classes.margin10}>
           <TextField
             className={classes.textField}
-            style={{ borderRight: '2px solid #ac3f50', paddingRight: 10 }}
+            style={{ borderRight: '2px solid #98BDDD', paddingRight: 10 }}
             id="Search"
             label="What Are You Looking For?"
             name="jobTitle"

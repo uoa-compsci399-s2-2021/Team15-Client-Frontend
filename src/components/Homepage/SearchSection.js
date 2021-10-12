@@ -13,6 +13,7 @@ const useStyles = makeStyles((searchQuery, theme) => ({
   header: {
     fontFamily: 'Oswald',
     marginBottom: '60px',
+    color: '#003866',
   },
 }));
 /** Holds the Search bar and the Text above it  */
@@ -30,7 +31,10 @@ export default function SearchSection({ searchQuery, onClickSearchResult }) {
         )}
       </Grid>
       <Grid item>
-        <SearchBar searchQuery={searchQuery} onClickSearchResult={onClickSearchResult} />
+        <SearchBar
+          searchQuery={searchQuery}
+          onClickSearchResult={onClickSearchResult}
+        />
       </Grid>
     </Grid>
   );

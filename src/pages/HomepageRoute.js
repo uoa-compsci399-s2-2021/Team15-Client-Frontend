@@ -56,12 +56,12 @@ const useStyles = makeStyles((theme) => ({
     width: '100vw',
     scrollbarWidth: '100vw',
     overflowX: 'hidden',
-    backgroundColor: '#333',
+    backgroundColor: '#f2f2f2',
   },
   userMenu: {
     '& .MuiPaper-root': {
       color: '#FFF',
-      backgroundColor: '#D7D7D73F',
+      backgroundColor: '#0080A7',
     },
     '& .MuiTypography-colorTextSecondary': {
       color: '#FFFC',
@@ -71,8 +71,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   AppBar: {
-    background: 'none',
+    background: '#00467F',
     borderBottom: '1px solid #FFFA',
+    color: 'white',
   },
   Tabs: {
     flexGrow: 1,
@@ -171,53 +172,55 @@ export default function HomePageRoute(props) {
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-      getContentAnchorEl={null}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-      className={classes.userMenu}
-    >
-      <MenuItem>
-        <ListItem alignItems="flex-start">
-          <ListItemAvatar>
-            <Avatar alt={userData.firstname + ' ' + userData.lastname} />
-          </ListItemAvatar>
-          {userData.firstname ? (
-            <ListItemText
-              primary={(
-                <Typography style={{ fontFamily: 'Oswald' }}>
-                  {capitalizeFirstLetter(userData.firstname)
-                    + ' '
-                    + capitalizeFirstLetter(userData.lastname)}
-                </Typography>
-              )}
-              secondary={(
-                <Typography
-                  style={{ fontFamily: 'Oswald' }}
-                  component="span"
-                  variant="body2"
-                  color="textSecondary"
-                >
-                  {userData.email}
-                </Typography>
-              )}
-            />
-          ) : null}
-        </ListItem>
-      </MenuItem>
-      <Divider variant="middle" className={classes.MenuItemDivider} />
-      <MenuItem onClick={handleSignOut} component={RouterLink} to="/login">
-        <ListItemIcon>
-          <ExitToAppTwoToneIcon fontSize="medium" />
-        </ListItemIcon>
-        <Typography style={{ fontFamily: 'Oswald' }}>Sign out</Typography>
-      </MenuItem>
-    </Menu>
+    <>
+      <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        id={menuId}
+        keepMounted
+        transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+        getContentAnchorEl={null}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+        className={classes.userMenu}
+      >
+        <MenuItem>
+          <ListItem alignItems="flex-start">
+            <ListItemAvatar>
+              <Avatar alt={userData.firstname + ' ' + userData.lastname} />
+            </ListItemAvatar>
+            {userData.firstname ? (
+              <ListItemText
+                primary={(
+                  <Typography style={{ fontFamily: 'Oswald' }}>
+                    {capitalizeFirstLetter(userData.firstname)
+                      + ' '
+                      + capitalizeFirstLetter(userData.lastname)}
+                  </Typography>
+                )}
+                secondary={(
+                  <Typography
+                    style={{ fontFamily: 'Oswald' }}
+                    component="span"
+                    variant="body2"
+                    color="textSecondary"
+                  >
+                    {userData.email}
+                  </Typography>
+                )}
+              />
+            ) : null}
+          </ListItem>
+        </MenuItem>
+        <Divider variant="middle" className={classes.MenuItemDivider} />
+        <MenuItem onClick={handleSignOut} component={RouterLink} to="/login">
+          <ListItemIcon>
+            <ExitToAppTwoToneIcon fontSize="medium" />
+          </ListItemIcon>
+          <Typography style={{ fontFamily: 'Oswald' }}>Sign out</Typography>
+        </MenuItem>
+      </Menu>
+    </>
   );
   return (
     <Box className={classes.root}>
@@ -242,26 +245,21 @@ export default function HomePageRoute(props) {
             }}
           >
             <Tab
-              label="Search"
+              label="Search Jobs"
               value="/Search"
               style={{ fontFamily: 'Oswald' }}
             />
             <Tab
-              label="List All Jobs"
+              label="View All Jobs"
               value="/ListAll"
               style={{ fontFamily: 'Oswald' }}
             />
             <Tab
-              label="Saved Jobs"
+              label="My Saved Jobs"
               value="/SavedJobs"
               style={{ fontFamily: 'Oswald' }}
             />
           </Tabs>
-          {userData.firstname ? (
-            <Typography style={{ fontFamily: 'Oswald' }}>
-              {capitalizeFirstLetter(userData.firstname)}
-            </Typography>
-          ) : null}
           <IconButton
             edge="end"
             aria-label="account of current user"
@@ -269,7 +267,13 @@ export default function HomePageRoute(props) {
             aria-haspopup="true"
             onClick={handleProfileMenuOpen}
             color="inherit"
+            sx={{ '& :hover': { backgroundColor: '#0080A7' } }}
           >
+            {userData.firstname ? (
+              <Typography style={{ fontFamily: 'Oswald', paddingRight: 10 }}>
+                {capitalizeFirstLetter(userData.firstname)}
+              </Typography>
+            ) : null}
             <Avatar
               alt={userData.firstname + ' ' + userData.lastname}
               className={classes.large}

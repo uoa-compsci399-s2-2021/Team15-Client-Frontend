@@ -13,6 +13,7 @@ const useStyles = makeStyles((searchQuery, theme) => ({
   header: {
     fontFamily: 'Oswald',
     marginBottom: '60px',
+    color: '#003866',
   },
 }));
 /** Holds the Search bar and the Text above it  */

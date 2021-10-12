@@ -32,14 +32,11 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiInput-underline': {
       borderBottom: '2px solid #888',
     },
-    '& *': {
-      color: 'white',
-    },
     '& label.MuiFormLabel-root.Mui-focused': {
-      color: 'white',
+      color: '#003866',
     },
     '& .MuiInput-underline:after': {
-      borderBottom: '2px solid white',
+      borderBottom: '2px solid #003866',
     },
   },
   CardCustom: {},
@@ -64,11 +61,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   back: {
-    color: 'white',
-    // borderBottom: '1px solid white',
-    '&:hover': {
-      backgroundColor: '#270f61',
-    },
+    color: '#003866',
+    '&:hover': { backgroundColor: '#98BDDD' },
     marginBottom: 10,
     paddingRight: 20,
     fontFamily: 'Oswald',
@@ -244,8 +238,12 @@ export default function SearchResultsSection({
           })}
           size="small"
           className={classes.back}
+          sx={{
+            color: '#003866',
+            '&:hover': { Color: '#98BDDD' },
+          }}
         >
-          <ArrowBackIosIcon fontSize="small" style={{ color: 'white' }} />
+          <ArrowBackIosIcon fontSize="small" style={{ color: '#003866' }} />
           back
         </Button>
       ) : null}
@@ -257,7 +255,7 @@ export default function SearchResultsSection({
               fontFamily: 'Oswald',
               flexGrow: 1,
               verticalAlign: 'bottom',
-              color: 'White',
+              color: '#003866',
             }}
           >
             {searchResults
@@ -267,7 +265,12 @@ export default function SearchResultsSection({
         </Grid>
         <Grid xs={4}>
           <FormControl className={classes.formControl}>
-            <InputLabel className={classes.inputLabel}>Sort Jobs</InputLabel>
+            <InputLabel
+              className={classes.inputLabel}
+              style={{ color: '#003866' }}
+            >
+              Sort Jobs
+            </InputLabel>
 
             <Select
               value={SortValue}

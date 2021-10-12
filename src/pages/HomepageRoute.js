@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100vw',
     scrollbarWidth: '100vw',
     overflowX: 'hidden',
-    backgroundColor: '#115082',
+    backgroundColor: '#f2f2f2',
   },
   userMenu: {
     '& .MuiPaper-root': {
@@ -71,9 +71,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   AppBar: {
-    background: '#F2F2F2',
+    background: '#00467F',
     borderBottom: '1px solid #FFFA',
-    color: '#00467F',
+    color: 'white',
   },
   Tabs: {
     flexGrow: 1,

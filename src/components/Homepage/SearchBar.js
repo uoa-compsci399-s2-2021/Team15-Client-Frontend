@@ -18,13 +18,13 @@ const useStyles = makeStyles((theme) => ({
       minHeight: 200,
     },
     '& *': {
-      color: 'white',
+      color: '#003866',
     },
     '& label.MuiFormLabel-root.Mui-focused': {
-      color: 'white',
+      color: '#003866',
     },
     '& .MuiInput-underline:after': {
-      borderBottom: '2px solid white',
+      borderBottom: '2px solid #003866',
     },
     '& .MuiInput-underline': {
       borderBottom: '2px solid #888',

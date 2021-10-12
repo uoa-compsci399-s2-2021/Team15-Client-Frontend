@@ -31,17 +31,14 @@ const useStyles = makeStyles((theme) => ({
     '&.MuiMenuItem-root': {
       minHeight: 200,
     },
-    '& *': {
-      color: 'white',
-    },
     '& label.MuiFormLabel-root.Mui-focused': {
-      color: 'white',
+      color: '#003866',
     },
     '& .MuiInput-underline:after': {
-      borderBottom: '2px solid white',
+      borderBottom: '2px solid #003866',
     },
     '& .MuiInput-underline': {
-      borderBottom: '2px solid #888',
+      borderBottom: '2px solid #003866',
     },
   },
 
@@ -160,7 +157,7 @@ export default function SavedJobs(props) {
               fontFamily: 'Oswald',
               flexGrow: 1,
               verticalAlign: 'bottom',
-              color: 'White',
+              color: '#003866',
             }}
           >
             You have saved {items.length} Jobs

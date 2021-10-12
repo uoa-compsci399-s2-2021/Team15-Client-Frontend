@@ -250,16 +250,14 @@ export default function JobListingDetail({
       jobId: item._id,
     };
     try {
-      setLoading(true);
+      setSaved(true);
       // call api
       const response = await saveJob(data);
       if (response.status === 200) {
-        setLoading(false);
-        setSaved(true);
         handleUpdate();
       } else {
         setError(true);
-        setLoading(false);
+        setSaved(false);
         //   setOpenMessageBox(true);
         //   await timeout(2000);
         //   setOpenMessageBox(false);
@@ -279,16 +277,14 @@ export default function JobListingDetail({
       jobId: item._id,
     };
     try {
-      setLoading(true);
-      // call api
+      setSaved(false);
       const response = await unsaveJob(data);
       if (response.status === 200) {
-        setLoading(false);
-        setSaved(false);
         handleUpdate();
       } else {
         setError(true);
-        setLoading(false);
+        setSaved(true);
+        // setLoading(false);
         //   setOpenMessageBox(true);
         //   await timeout(2000);
         //   setOpenMessageBox(false);

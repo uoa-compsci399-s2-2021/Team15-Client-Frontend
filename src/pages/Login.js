@@ -22,9 +22,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-around',
-    '& *': {
-      color: '#000',
-    },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
         borderColor: '#0080A7',
@@ -39,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     '& label.MuiFormLabel-root.Mui-focused': {
       color: '#000',
     },
+    backgroundColor: '#0080A7',
   },
   page: {
     display: 'flex',
@@ -109,16 +107,17 @@ export default function Login() {
         }
       } catch (e) {
         console.log(e);
+        setErrorMessage(e.response.data.error);
         setTimeout(() => {
           setErrorMessage('');
-        }, 8000);
+        }, 3000);
         setLoading(false);
       }
     }
   }
 
   return (
-    <Container component="main" className={classes.main}>
+    <Container component="main" className={classes.main} maxWidth={false}>
       <CssBaseline />
       <div className={classes.page}>
         <Container component="div" maxWidth="sm">
@@ -145,7 +144,7 @@ export default function Login() {
                   (isError(email.length === 0) && 'Please enter your email')
                   || isError(
                     !email.endsWith('@aucklanduni.ac.nz')
-                      && 'Please use your UOA email',
+                    && 'Please use your UOA email',
                   )
                 }
               />
@@ -176,8 +175,8 @@ export default function Login() {
                 className={classes.submit}
                 onClick={() => handleSignIn()}
                 disabled={false}
-                variant="outlined"
-                style={{ color: 'white', backgroundColor: '00467F' }}
+                color="primary"
+                variant="contained"
               >
                 {loading ? (
                   <CircularProgress color="inherit" size="2rem" />

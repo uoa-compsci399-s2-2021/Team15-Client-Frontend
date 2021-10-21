@@ -13,6 +13,7 @@ This is the Project files for the Frontend catered for the Computer Science Stud
 - Filter search results By Title or company, Salary range, Type of job, and Location
 - Save Jobs to account
 - View Jobs in detail
+- View All Active Jobs in Database
 - Desktop and mobile systems Supported
 
 ### Final Report:
@@ -78,6 +79,10 @@ Here is the Deployed Website: [Student Frontend Website URL](https://team15-stu.
 ### Homepage page
 
 ![Homepage page image](Example/Homepage.png)
+
+### View All Jobs page
+
+![View All Jobs page image](Example/vAllJobs.png)
 
 ### Saved Jobs page
 

@@ -148,9 +148,9 @@ export default function JobListingDetail({
       paddingRight: 20,
       paddingTop: 5,
       paddingBottom: 10,
-      backgroundColor: '#555',
-      color: '#FFF',
-      border: '2px solid #80606A',
+      backgroundColor: '#e8e9eb',
+      color: '#002478',
+      border: '2px solid #0e389c',
       opacity: 0.99,
     },
     img: {
@@ -207,7 +207,7 @@ export default function JobListingDetail({
   }
 
   const [openMessageBox, setOpenMessageBox] = useState(false);
-  const [saved, setSaved] = useState(userData.savedJobList.includes(jobID));
+  const [saved, setSaved] = useState(userData.savedJobList?.includes(jobID));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const closeMessageBox = () => {
@@ -324,8 +324,8 @@ export default function JobListingDetail({
               size="small"
               onClick={hClose}
             >
-              <ArrowBackIosIcon fontSize="small" style={{ color: 'white' }} />
-              <Typography style={{ fontFamily: 'Oswald', color: 'white' }}>
+              <ArrowBackIosIcon fontSize="small" style={{ color: '#002478' }} />
+              <Typography style={{ fontFamily: 'Oswald', color: '#002478' }}>
                 Back
               </Typography>
             </IconButton>

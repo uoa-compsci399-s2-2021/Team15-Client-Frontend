@@ -24,19 +24,19 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: '#0080A7',
+        borderColor: '#0a348a',
       },
       '&:hover fieldset': {
-        borderColor: '#0080A7',
+        borderColor: '#0a348a',
       },
       '&.Mui-focused fieldset': {
-        borderColor: '#0080A7',
+        borderColor: '#0a348a',
       },
     },
     '& label.MuiFormLabel-root.Mui-focused': {
       color: '#000',
     },
-    backgroundColor: '#0080A7',
+    backgroundColor: '#f2f3f5',
   },
   page: {
     display: 'flex',
@@ -52,8 +52,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     padding: '40px',
     borderRadius: '5px',
-    border: '2px solid #80606A',
-    backgroundColor: '#f2f2f2',
+    border: '2px solid #0a348a',
+    backgroundColor: '#f2f3f7',
   },
   avatar: {
     margin: theme.spacing(1),
@@ -65,6 +65,12 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
     color: 'white',
+  },
+  textField: {
+    '& p': {
+      color: 'red',
+      fontSize: 14,
+    },
   },
 }));
 
@@ -123,7 +129,11 @@ export default function Login() {
         <Container component="div" maxWidth="sm">
           <div className={classes.paper}>
             <Avatar className={classes.avatar} src={ALogo} />
-            <Typography component="h1" variant="h5">
+            <Typography
+              component="h1"
+              variant="h5"
+              style={{ fontFamily: 'Oswald' }}
+            >
               Sign in
             </Typography>
             <Typography color="error">{errorMessage}</Typography>
@@ -138,13 +148,14 @@ export default function Login() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                className={classes.textField}
                 onChange={(e) => setEmail(e.target.value.trim().toLowerCase())}
                 error={isError(email.length === 0)}
                 helperText={
                   (isError(email.length === 0) && 'Please enter your email')
                   || isError(
                     !email.endsWith('@aucklanduni.ac.nz')
-                    && 'Please use your UOA email',
+                      && 'Please login with your UOA email',
                   )
                 }
               />

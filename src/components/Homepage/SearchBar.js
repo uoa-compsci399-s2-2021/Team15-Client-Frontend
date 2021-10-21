@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
     '& label.MuiFormLabel-root.Mui-focused': {
       color: '#003866',
     },
-    '& .MuiInput-underline:after': {
-      borderBottom: '2px solid #003866',
-    },
-    '& .MuiInput-underline': {
-      borderBottom: '2px solid #888',
-    },
+    // '& .MuiInput-underline:after': {
+    //   borderBottom: '2px solid #003866',
+    // },
+    // '& .MuiInput-underline': {
+    //   borderBottom: '2px solid #888',
+    // },
   },
   textField: {
     width: 230,

@@ -60,14 +60,14 @@ const useStyles = makeStyles((theme) => ({
   },
   userMenu: {
     '& .MuiPaper-root': {
-      color: '#FFF',
-      backgroundColor: '#0080A7',
+      color: '#043275',
+      backgroundColor: '#e1e1e3',
     },
     '& .MuiTypography-colorTextSecondary': {
-      color: '#FFFC',
+      color: '#043275',
     },
     '& .MuiListItemIcon-root': {
-      color: '#FFF',
+      color: '#043275',
     },
   },
   AppBar: {
@@ -84,17 +84,17 @@ const useStyles = makeStyles((theme) => ({
   UserMenu: {
     '& .MuiPaper-root': {
       color: '#FFF',
-      backgroundColor: '#D7D7D73F',
+      backgroundColor: '#011b40',
     },
     '& .MuiTypography-colorTextSecondary': {
-      color: '#FFFC',
+      color: '#011b40',
     },
     '& .MuiListItemIcon-root': {
       color: '#FFF',
     },
   },
   MenuItemDivider: {
-    backgroundColor: '#FFF',
+    backgroundColor: '#011b40',
   },
 }));
 

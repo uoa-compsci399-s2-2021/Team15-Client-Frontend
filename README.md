@@ -1,4 +1,4 @@
-# Frontend Client Side of Online Job Board
+# Frontend Student Side of Online Job Board
 
 ## Product Link
 [https://team15-stu.vercel.app](https://team15-stu.vercel.app)

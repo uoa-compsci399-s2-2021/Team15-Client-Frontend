@@ -1,6 +1,15 @@
 # Frontend Client Side of Online Job Board
 
-Project Management Tool : [Trello CS399 Project: Team 15](https://trello.com/b/Vn3tMyRD/compsci-399-project-sprint-1-%F0%9F%9A%80-28-07-21-04-08-21)
+## Product Link
+[https://team15-stu.vercel.app](https://team15-stu.vercel.app)
+### Testing Account
+````
+Account: abcd123@aucklanduni.ac.nz
+Password: 123
+````
+
+## Project Management Tool : 
+[Trello CS399 Project: Team 15](https://trello.com/b/Vn3tMyRD/compsci-399-project-sprint-1-%F0%9F%9A%80-28-07-21-04-08-21)
 
 ## Description
 
